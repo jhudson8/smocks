@@ -81,5 +81,5 @@ smock.route('/api/login')
 
 .start({
     host: 'localhost',
-    port: 8080
+    port: 8000
 });
