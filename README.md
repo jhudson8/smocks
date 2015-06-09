@@ -10,6 +10,12 @@ With smocks you can define
 * dynamic configuration values defined for routes and variants (accessable through an admin console)
 * chaninable interface to streamline route definitions
 
+
+Docs
+-----------------------
+[View installation and API docs](http://jhudson8.github.io/fancydocs/index.html#project/jhudson8/smocks)
+
+
 Common Examples
 -----------------------
 ````javascript
