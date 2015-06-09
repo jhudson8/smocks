@@ -1,0 +1,18 @@
+{
+  "name": "smocks",
+  "version": "0.0.1",
+  "description": "Stateful mock HTTP server using HAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hapi", "mock", "http"
+  ],
+  "author": "Joe Hudson <joehud@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^3.9.3",
+    "hapi": "^8.6.1",
+  }
+}

@@ -1,0 +1,48 @@
+body {
+  margin: 0 12px;
+}
+
+h3 small {
+  display: inline-block;
+  padding-left: 2em;
+}
+
+.checkbox-form-control {
+  border: 0;
+}
+
+.variant {
+  display: inline-block;
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+
+.config-list {
+  margin-left: 24px;
+}
+
+.config-checkbox input {
+  display: inline-block;
+  float: left;
+}
+
+.config-checkbox label {
+  display: inline-block;
+  margin-left: .6em;
+}
+
+
+.multiselect-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.multiselect-option {
+  display: inline-block;
+  padding-right: 2em;
+}
+
+.multiselect-option input {
+  display: inline-block;
+  margin-right: .6em;
+}
