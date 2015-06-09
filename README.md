@@ -20,8 +20,6 @@ Docs
 Common Examples
 -----------------------
 ````javascript
-    #!/usr/bin/env node
-
     var smock = require('smock');
 
     // sample data
@@ -109,6 +107,6 @@ Common Examples
     });
 ````
 
-Now, run ```path/to/file.js``` and visit [http://localhost:8080/_admin](http://localhost:8080/_admin) to view the admin console.
+Now, run ```node path/to/file.js``` and visit [http://localhost:8080/_admin](http://localhost:8080/_admin) to view the admin console.
 
 Or, visit [/api/customer/1](/api/customer/1) to see customer details.  But wait, you'll see an ```AUTH_REQUIRED``` unless you login first (POST to ```/api/login```) because of our plugin.
