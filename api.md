@@ -241,25 +241,55 @@ As long as you understand that, the ```method```, ```variant``` and ```route``` 
 Different types of input fields can be defined for routes or variants including ```boolean```, ```text```, ```select```, ```multiselect```.  Through the admin panel, you can modify these config values.
 
 ```javascript
-    var smocks = require('smocks');
-
-    smocks.route('/api/foo')
+    smock.route('/api/foo')
       .config({
-        theVarKey: {
-          label: 'The variable label',
-          type: 'boolean|text|select|multiselect',
-          defaultValue: ...
-        }
+        aBooleanField: {
+          label: 'Is this a checkbox?',
+          type: 'boolean',
+          defaultValue: true
+        },
+        someTextField: {
+          label: 'A text field',
+          type: 'text',
+          defaultValue: 'Hello'
+        },
+        someSelectBox: {
+          label: 'A select box',
+          type: 'select',
+          options: [{label: 'One', value: 1}, {label: 'Two', value: 2}, {label: 'Three', value: 3}],
+          defaultValue: 2
+        },
+        someMultiSelect: {
+          label: 'A check list',
+          type: 'multiselect',
+          options: [{label: 'One', value: 1}, {label: 'Two', value: 2}, {label: 'Three', value: 3}],
+          defaultValue: [2, 3]
+        },
       })
-    .onRequest(function(request, reply) {
-      var value = this.config('theVarKey');
-      // do something with the value
-    })
+
+      // these variants are here to show how the config values can be retrieved
+      .variant('default').onRequest(function(request, reply) {
+        var aBooleanField = this.config('aBooleanField'); // boolean
+        var someTextField = this.config('someTextField'); // string
+        var someSelectBox = this.config('someSelectBox'); // integer (because the values are integers)
+        var someMultiSelect = this.config('someMultiSelect'); // array of integer (because the values are integers)
+        // ...
+      })
+      .variant('scenario1').onRequest(function(request, reply) {
+        // ...
+        
+      })
+      .variant('scenario2').onRequest(function(request, reply) {
+        // ...
+      })
 ```
 
 Then, within the route handler, the config values can be accessed by using ```this.config```.
 
 The same ```config``` method can be applied at the variant level as well.
+
+The previous config example would look like this in the admin panel
+[admin panel](http://jhudson8.github.io/smocks/images/config-types.png)
 
 
 #### Route / variant options
