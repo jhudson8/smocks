@@ -3,9 +3,18 @@ smocks
 
 Stateful HTTP mocking service.  Easily add routes and different scenarios for each route including the ability to maintain state with an admin interface to control everything.
 
+With smocks you can define
+
+* the route (with dynamic tokens) and method to handle
+* multiple route handlers for each route (selectable through an admin console)
+* dynamic configuration values defined for routes and variants (accessable through an admin console)
+* chaninable interface to streamline route definitions
+
 Common Examples
 -----------------------
 ````javascript
+    #!/usr/bin/env node
+
     var smock = require('smock');
 
     // sample data
@@ -93,3 +102,7 @@ Common Examples
         port: 8080
     });
 ````
+
+Now, run ```path/to/file.js``` and visit [http://localhost:8080/_admin](http://localhost:8080/_admin) to view the admin console.
+
+Or, visit [/api/customer/1](/api/customer/1) to see customer details.  But wait, you'll see an ```AUTH_REQUIRED``` unless you login first (POST to ```/api/login```) because of our plugin.
