@@ -6,7 +6,7 @@ Stateful HTTP mocking service.  Easily add routes and different scenarios for ea
 With smocks you can define
 
 * the route (with dynamic tokens) and method to handle
-* multiple route handlers for each route (selectable through an admin console)
+* multiple route handlers (variants) for each route (selectable through an admin console)
 * dynamic configuration values defined for routes and variants (accessable through an admin console)
 * chaninable interface to streamline route definitions
 
@@ -82,7 +82,6 @@ Common Examples
           })
 
 
-    .global()
     // plugins are like request handlers but they have a "next" callback to continue execution of the later plugins.  A plugin can also reply and not call next if it chooses to intercept the request
     .plugin({
       onRequest: function(request, reply, next) {
