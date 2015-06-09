@@ -7,14 +7,16 @@ API
 #### route(path)
 * ***path***: the route path (must start with ```/```).  Ex: ```/api/customer/{id}```
 
-Register a route handler and return the associated route object for setting the method, adding variants or config properties.
+Register a route handler to enable setting the method, adding variants or config properties.
 
 To see how variables can be used in the path, refer to the [HAPI routing guide](http://hapijs.com/tutorials/routing).
+
+Return the associated [Route object](#project/jhudson8/smocks/snippet/package/Route).
 
 #### plugin(plugin)
 * ***plugin***: the plugin object
 
-Register the plugin.  See the plugin object type for details.  Return the global object.
+Register the plugin.  See the plugin object type for details.  Return the [global object](#project/jhudson8/smocks/snippet/package/global).
 
 #### start(options)
 * ***options***: either object {host, port} or a HAPI server instance
@@ -29,7 +31,7 @@ If a HAPI server instance is provided, the routes will be bound to the HAPI serv
 ### Route
 #### route(path)
 
-Refer to [global:route](FIXME)
+Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
 #### method(method)
 * ***method***: the HTTP method (GET|POST|PUT|PATCH|DELETE)
@@ -41,7 +43,7 @@ Set the HTTP method for the current route and return the route object.
 
 Set any configuration attributes that will be available for modification on the admin panel.
 
-FIXME see config section for details
+See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%20configuration) for details.
 
 #### variant(id)
 * ***id***: the variant id
@@ -50,44 +52,44 @@ Set up a new route variant with the provided id.  The id is meaningful when sele
 
 A variant is basically a single request handler for a defined route.  This is useful to test out different scenarios for a single route definition.
 
-Return the variant object.
+Return the [Variant object](#project/jhudson8/smocks/snippet/package/Variant).
 
 #### plugin(plugin)
 
-Refer to [global:plugin](FIXME)
+Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
 
 #### onRequest(requestHandler)
-* ***requestHandler***: The [request handler](FIXME)
+* ***requestHandler***: The [RequestHandler](#project/jhudson8/smocks/section/Object%20Types/RequestHandler)
 
-Convienance method for creating a default variant (id of "default") and then calling [onRequest](FIXME) on the variant.
+Convienance method for creating a default variant (id of "default") and then calling [Variant:onRequest](#project/jhudson8/smocks/snippet/method/Variant/onRequest) on the variant.
 
 
 ### Variant
 #### route(path)
 
-Refer to [global:route](FIXME)
+Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
 #### method(method)
 
-Refer to [Route:method](FIXME)
+Refer to [Route:method](#project/jhudson8/smocks/snippet/method/Route/method)
 
 #### config(attributes)
 * ***attributes***: The configuration attributes
 
 Set any variant-scoped configuration attributes that will be available for modification on the admin panel.
 
-FIXME see config section for details
+See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%20configuration) for details.
 
 #### variant(id)
 
-Refer to [Route:variant](FIXME)
+Refer to [Route:variant](l#project/jhudson8/smocks/snippet/method/Route/variant)
 
 #### plugin(plugin)
 
-Refer to [global:plugin](FIXME)
+Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
 
 #### onRequest(requestHandler)
-* ***requestHandler***: The [request handler](FIXME)
+* ***requestHandler***: The [RequestHandler](#project/jhudson8/smocks/section/Object%20Types/RequestHandler)
 
 Associate a request handler with the current route/method/variant combination.
 
