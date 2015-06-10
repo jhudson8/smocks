@@ -35,7 +35,7 @@ smock.route('/api/history')
   .onRequest(function(request, reply) {
     // this is the simplest route handler we can have because we are using the default method (GET)
     // and the default variant id ("default") for this route
-    reply({hello: request.params.message});
+    reply({ hello: request.params.message });
   })
 
 
@@ -55,13 +55,13 @@ smock.route('/api/history')
 
   // simulate a back-end server error
   .variant('500').onRequest(function(request, reply) {
-    reply({code: 'BAD_NEWS', message: 'Something bad happened'}).code(500);
+    reply( {code: 'BAD_NEWS', message: 'Something bad happened'} ).code(500);
   })
 
   // wait 3 seconds and then simulate a back-end timeout with a 504
   .variant('timeout').onRequest(function(request, reply) {
     setTimeout(function() {
-      reply({code: 'TIMEOUT', message: 'Gateway timeout'}).code(504);
+      reply( {code: 'TIMEOUT', message: 'Gateway timeout'} ).code(504);
     }, 3000);
   })
 
