@@ -10,6 +10,8 @@ With smocks you can define
 * dynamic configuration values defined for routes and variants (accessable through an admin console)
 * chaninable interface to streamline route definitions
 * route request handlers that can keep a state for true dynamic mocking capabilities
+* global request handlers which can be selected for any route
+* plugins which can intercept all requests to perform actions
 
 
 Docs
