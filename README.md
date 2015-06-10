@@ -110,3 +110,6 @@ Common Examples
 Now, run ```node path/to/file.js``` and visit [http://localhost:8080/_admin](http://localhost:8080/_admin) to view the admin console.
 
 Or, visit [/api/customer/1](/api/customer/1) to see customer details.  But wait, you'll see an ```AUTH_REQUIRED``` unless you login first (POST to ```/api/login```) because of our plugin.
+
+The admin panel would look like
+![admin panel](http://jhudson8.github.io/smocks/images/demo-admin-panel.png)
