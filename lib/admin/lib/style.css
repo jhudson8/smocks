@@ -22,7 +22,8 @@ h3 small {
 }
 
 .config-list {
-  margin-left: 24px;
+  margin-top: 12px;
+  max-width: 280px;
 }
 
 .config-checkbox input {
@@ -64,4 +65,32 @@ h3 small {
 
 .action-group {
   margin-bottom: 12px;
+}
+
+.route-body {
+  margin-left: 12px;
+}
+
+.route-filter {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 4px;
+  width: 200px;
+}
+
+.route:before {
+  content: "\25BE";
+  display: inline-block;
+  float: left;
+  padding-right: 6px;
+}
+
+.route-active:before {
+  -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
+  -moz-transform: rotate(180deg);        /* FF */
+  -o-transform: rotate(180deg);          /* Opera */
+  -ms-transform: rotate(180deg);         /* IE9 */
+  transform: rotate(180deg);             /* W3C compliant browsers */
+  padding-left: 6px;
+  padding-right: 0;
 }
