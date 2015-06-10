@@ -83,6 +83,7 @@ function historyScenario(scenarioName) {
     // add a state entry to indicate that we've seen "scenario1"
     // state values are meaningful because the user can reset the state to go back to a fresh start
     var history = this.state('history') || [];
+    // save the var in state (in case we just created it)
     this.state('history', history);
     history.push(scenarioName);
 
