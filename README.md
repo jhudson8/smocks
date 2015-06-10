@@ -30,10 +30,10 @@ open ```mock-server.js``` and paste in [this content](https://github.com/jhudson
 ```
     node mock-server.js
 ```
-browse to [http://localhost:8000/_admin](http://localhost:8000/_admin) to see the admin panel
+browse to [http://localhost:8000/_admin](http://localhost:8000/_admin) to see the admin panel and play around.
 
-Click on any of the routes to select a variant (alter the response to the route)
+browse to [http://localhost:8000/api/history](http://localhost:8000/api/history) or [http://localhost:8000/hello/world](http://localhost:8000/hello/world) to try out the routes.
 
-browse to [http://localhost:8000/api/foo](http://localhost:8000/api/foo) or [http://localhost:8000/api/bar](http://localhost:8000/api/bar) to try out the routes.
+After visiting [http://localhost:8000/api/history](http://localhost:8000/api/history), refresh your page and notice the history changes (this is using state).  Go back to the [admin panel](http://localhost:8000/_admin) and reset your state to clear the history.
 
 Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/test/example.js) and to see what the route handlers are doing.

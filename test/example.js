@@ -1,6 +1,10 @@
 var smock = require('smocks');
 
-smock.route('/api/foo')
+/**
+ * Create a route definition that will keep track of (in the state) the requests that are called for all variants
+ * http://localhost:8000/api/history
+ */
+smock.route('/api/history')
   // not necessary since default is GET but just to be explicit
   .method('GET')
 
@@ -17,24 +21,38 @@ smock.route('/api/foo')
   // add 3 diffenrent variants which will push a token to a "history" array that we store in state.
   // take a look at http://localhost:8000/api/foo multiple times to see the history grow
   // the reset the state in the admin panel (top button) and see the history go away
-  .variant('scenario1').onRequest(fooScenario('scenario1'))
-  .variant('scenario2').onRequest(fooScenario('scenario2'))
-  .variant('scenario3').onRequest(fooScenario('scenario3'))
+  .variant('scenario1').onRequest(historyScenario('scenario1'))
+  .variant('scenario2').onRequest(historyScenario('scenario2'))
+  .variant('scenario3').onRequest(historyScenario('scenario3'))
 
 
-.route('/api/bar')
+/**
+ * Create a route definition that will return a hello workd-ish payload.  This demonstrates variables in a route definition.
+ * http://localhost:8000/hello/whatever
+ */
+.route('/api/hello/{message}')
   .onRequest(function(request, reply) {
     // this is the simplest route handler we can have because we are using the default method (GET)
     // and the default variant id ("default") for this route
-    reply({foo: 'bar'});
+    reply({hello: request.params.message});
   })
 
 
+/**
+ * Global variants (can be associated with any route definitions)
+ */
 .global()
+
+  // simulate a back-end server error
   .variant('500').onRequest(function(request, reply) {
-    // since this is a global variant, it can be selected as the active variant for any route
-    // we are testing a 500 server error scenario here
     reply({code: 'BAD_NEWS', message: 'Something bad happened'}).code(500);
+  })
+
+  // wait 3 seconds and then simulate a back-end timeout with a 504
+  .variant('timeout').onRequest(function(request, reply) {
+    setTimeout(function() {
+      reply({code: 'TIMEOUT', message: 'Gateway timeout'}).code(504);
+    }, 3000);
   })
 
 .start({
@@ -48,7 +66,7 @@ smock.route('/api/foo')
  *
  * We will simply rstore the user's scenario request history (can be changed by altering the variants in the admin panel).
  */
-function fooScenario(scenarioName) {
+function historyScenario(scenarioName) {
   // return the actual request handler (variant)
   return function(request, reply) {
     // add a state entry to indicate that we've seen "scenario1"
