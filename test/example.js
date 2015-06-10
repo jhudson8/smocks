@@ -3,6 +3,9 @@ var smock = require('smocks');
 smock.route('/api/foo')
   // not necessary since default is GET but just to be explicit
   .method('GET')
+
+  // add a route config (admin page input field) that we will use to indicate an attribute name in the response payload
+  // this is really just a silly example used to demonstrate the usage of config values
   .config({
     attributeName: {
       label: 'What attribute name should I use to demonstrate state?',
@@ -11,6 +14,9 @@ smock.route('/api/foo')
     }
   })
 
+  // add 3 diffenrent variants which will push a token to a "history" array that we store in state.
+  // take a look at http://localhost:8000/api/foo multiple times to see the history grow
+  // the reset the state in the admin panel (top button) and see the history go away
   .variant('scenario1').onRequest(fooScenario('scenario1'))
   .variant('scenario2').onRequest(fooScenario('scenario2'))
   .variant('scenario3').onRequest(fooScenario('scenario3'))

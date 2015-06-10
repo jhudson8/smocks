@@ -34,7 +34,6 @@ browse to [http://localhost:8000/_admin](http://localhost:8000/_admin) to see th
 
 Click on any of the routes to select a variant (alter the response to the route)
 
-browse to [http://localhost:8000/_admin](http://localhost:8000/api/foo) to execute one of the routes
+browse to [http://localhost:8000/api/foo](http://localhost:8000/api/foo) or [http://localhost:8000/api/bar](http://localhost:8000/api/bar) to try out the routes.
 
-Take a look at the code and select different variants to get a feel of things.
-
+Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/test/example.js) and to see what the route handlers are doing.
