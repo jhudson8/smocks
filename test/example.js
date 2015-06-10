@@ -11,6 +11,7 @@ smock.route('/api/history')
   // add a route config (admin page input field) that we will use to indicate an attribute name in the response payload
   // this is really just a silly example used to demonstrate the usage of config values
   .config({
+    // "attributeName" is arbitrary - it just represents the config key that the user input will be saved with
     attributeName: {
       label: 'What attribute name should I use to demonstrate state?',
       type: 'text',
