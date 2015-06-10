@@ -28,7 +28,7 @@ smock.route('/api/history')
 
 
 /**
- * Create a route definition that will return a hello workd-ish payload.  This demonstrates variables in a route definition.
+ * Create a route definition that will return a hello world-ish payload.  This demonstrates variables in a route definition.
  * http://localhost:8000/hello/whatever
  */
 .route('/api/hello/{message}')
@@ -77,6 +77,7 @@ smock.route('/api/history')
  * We will simply rstore the user's scenario request history (can be changed by altering the variants in the admin panel).
  */
 function historyScenario(scenarioName) {
+
   // return the actual request handler (variant)
   return function(request, reply) {
     // add a state entry to indicate that we've seen "scenario1"
