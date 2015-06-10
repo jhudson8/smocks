@@ -1,5 +1,8 @@
 var smocks = require('smocks');
 
+// notice the request handler methods (onRequest) methods
+// The ```onRequest``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler)
+
 /**
  * Create a route definition that will keep track of (in the state) the requests that are called for all variants
  * http://localhost:8000/api/history
