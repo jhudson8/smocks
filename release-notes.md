@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.1...master)
+
+## v0.2.1 - June 10th, 2015
+- update admin interface to support route filtering - a964455
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.0...v0.2.1)
 
 ## v0.2.0 - June 10th, 2015
 - add the "withFile" route/variant method - 358b0e8
