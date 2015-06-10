@@ -289,7 +289,7 @@ Then, within the route handler, the config values can be accessed by using ```th
 The same ```config``` method can be applied at the variant level as well.
 
 The previous config example would look like this in the admin panel
-[admin panel](http://jhudson8.github.io/smocks/images/config-types.png)
+![admin panel](http://jhudson8.github.io/smocks/images/config-types.png)
 
 
 #### Route / variant options
