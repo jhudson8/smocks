@@ -55,3 +55,13 @@ h3 small {
   padding-bottom: 4px;
   border-bottom: solid 1px #ccc;
 }
+
+.info {
+  padding: 8px;
+  background-color: #d9edf7;
+  border: solid 1px #ccc;
+}
+
+.action-group {
+  margin-bottom: 12px;
+}
