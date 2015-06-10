@@ -26,7 +26,7 @@ Go to a clean directory
     npm install smocks
     touch mock-server.js
 ```
-open ```mock-server.js``` and paste in [this content](https://github.com/jhudson8/smocks/blob/master/test/example.js)
+open ```mock-server.js``` and paste in [this content](https://raw.githubusercontent.com/jhudson8/smocks/master/test/example.js)
 ```
     node mock-server.js
 ```
