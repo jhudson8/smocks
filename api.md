@@ -77,6 +77,10 @@ Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
 
 Convienance method for creating a default variant (id of "default") and then calling [Variant:onRequest](#project/jhudson8/smocks/snippet/method/Variant/onRequest) on the variant.
 
+#### withFile(filePath)
+
+Convienance method for creating a default variant (id of "default") and then calling [Variant:withFile](#project/jhudson8/smocks/snippet/method/Variant/withFile) on the variant.
+
 
 ### Variant
 #### route(path)
@@ -106,6 +110,20 @@ Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
 * ***requestHandler***: The [RequestHandler](#project/jhudson8/smocks/section/Object%20Types/RequestHandler)
 
 Associate a request handler with the current route/method/variant combination.
+
+#### withFile(filePath)
+* ***filePath***: the path to the file to serve out (any route variables can be used in the file path as well)
+
+Remember that using ```./``` will refer to the top level module directory (the directory where ```node_modules``` exists regardless of the location of the file that is referring to a file location with ```./```);
+
+```javascript
+    var smocks = require('smocks');
+
+    smocks.route('/customer/{id}').withFile('./customer-{id}.json')
+    .start(...)
+```
+
+This would cause a request to ```/customer/1``` to return the file ```./customer-1.json```
 
 
 Sections
