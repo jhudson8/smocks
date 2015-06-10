@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.1.1...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.1.2...master)
+
+## v0.1.2 - June 10th, 2015
+- sync text config field changes as they are typed (rather than blur) - 5659740
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.1.1...v0.1.2)
 
 ## v0.1.1 - June 10th, 2015
 - fix bux to render resources from the correct directory - 9eb9e92
