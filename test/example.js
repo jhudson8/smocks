@@ -91,7 +91,7 @@ function historyScenario(scenarioName) {
     // config values are meaningful because the user can control them using the admin panel
     var attributeName = this.config('attributeName');
 
-    // not return the view history
+    // now return the view history
     var payload = {};
     payload[attributeName] = history;
     reply(payload);
