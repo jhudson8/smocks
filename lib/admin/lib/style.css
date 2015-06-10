@@ -1,10 +1,14 @@
 body {
-  margin: 0 12px;
+  margin: 12px;
+}
+
+h3 {
+  font-size: 18px;
 }
 
 h3 small {
   display: inline-block;
-  padding-left: 2em;
+  padding-left: 1em;
 }
 
 .checkbox-form-control {
@@ -45,4 +49,9 @@ h3 small {
 .multiselect-option input {
   display: inline-block;
   margin-right: .6em;
+}
+
+.route-active h3 {
+  padding-bottom: 4px;
+  border-bottom: solid 1px #ccc;
 }
