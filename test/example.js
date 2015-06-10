@@ -1,4 +1,4 @@
-var smock = require('mocks');
+var smock = require('smocks');
 
 smock.route('/api/foo')
   // not necessary since default is GET but just to be explicit
