@@ -20,7 +20,7 @@ Docs
 Common Examples
 -----------------------
 ````javascript
-    var smock = require('smock');
+    var smocks = require('smocks');
 
     // sample data
     var CUSTOMERS = {
@@ -28,7 +28,7 @@ Common Examples
     }
 
     // add a login handler
-    smock.route('/api/login')
+    smocks.route('/api/login')
         .method('POST')
           // options can be evaluated using this.options('requiresLogin') - we'll see how this is used later with the plugins
           .options({
