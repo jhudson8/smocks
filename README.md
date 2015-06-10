@@ -3,15 +3,15 @@ smocks
 
 Stateful HTTP mocking service.  Easily add routes and different scenarios for each route including the ability to maintain state with an admin interface to control everything.
 
-With smocks you can define
+With smocks you can
 
-* the route (with dynamic tokens) and method to handle
-* multiple route handlers (variants) for each route (selectable through an admin console)
-* dynamic configuration values defined for routes and variants (accessable through an admin console)
-* chaninable interface to streamline route definitions
-* route request handlers that can keep a state for true dynamic mocking capabilities
-* global request handlers which can be selected for any route
-* plugins which can intercept all requests to perform actions
+* create route definitions (with dynamic tokens)
+* define multiple route handlers (variants) for for any route (selectable through an admin console)
+* add input configuration components for routes and variants (accessable through an admin console)
+* use a chaninable interface to streamline route definitions
+* use route request handlers that can keep a state for true dynamic mocking capabilities
+* define global request handlers which can be selected for any route
+* use plugins which can intercept all requests to perform actions
 
 
 Docs
