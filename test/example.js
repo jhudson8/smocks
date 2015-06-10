@@ -1,10 +1,10 @@
-var smock = require('smocks');
+var smocks = require('smocks');
 
 /**
  * Create a route definition that will keep track of (in the state) the requests that are called for all variants
  * http://localhost:8000/api/history
  */
-smock.route('/api/history')
+smocks.route('/api/history')
   // not necessary since default is GET but just to be explicit
   .method('GET')
 
