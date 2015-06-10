@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.1.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.1.1...master)
+
+## v0.1.1 - June 10th, 2015
+- fix bux to render resources from the correct directory - 9eb9e92
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.1.0...v0.1.1)
 
 ## v0.1.0 - June 9th, 2015
 - add "Reset State" button to admin panel - a77d0db
