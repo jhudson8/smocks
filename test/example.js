@@ -40,6 +40,15 @@ smock.route('/api/history')
 
 
 /**
+ * You can also easily respond with files - and even use dynamic route variables using "withFile".
+ * Remember that ./ will point to the root of your project rather than the current directory (which in this case will be the same).
+ * To test this route, uncomment and add a file called "bar.json" in the root directory what some content.
+ * Then browse to http://localhost:8000/foo/bar
+ */
+// .route('/foo/{something}').withFile('./{something}.json')
+
+
+/**
  * Global variants (can be associated with any route definitions)
  */
 .global()
