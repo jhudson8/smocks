@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.1...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.2...master)
+
+## v0.2.2 - June 10th, 2015
+- added "view endoing" link for GET routes to  admin page - 5ec09ef
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.1...v0.2.2)
 
 ## v0.2.1 - June 10th, 2015
 - update admin interface to support route filtering - a964455
