@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.1.2...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.0...master)
+
+## v0.2.0 - June 10th, 2015
+- add the "withFile" route/variant method - 358b0e8
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.1.2...v0.2.0)
 
 ## v0.1.2 - June 10th, 2015
 - sync text config field changes as they are typed (rather than blur) - 5659740
