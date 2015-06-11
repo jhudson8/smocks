@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.3...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.3.0...master)
+
+## v0.3.0 - June 11th, 2015
+- refactoring ```onRequest``` -> ```respondWith``` and ```withFile``` -> ```respondWithFile``` - d95a07b
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.3...v0.3.0)
 
 ## v0.2.3 - June 11th, 2015
 - small route visibility updates in admin panel - 4e32120
