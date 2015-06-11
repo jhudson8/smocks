@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.2...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.3...master)
+
+## v0.2.3 - June 11th, 2015
+- small route visibility updates in admin panel - 4e32120
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.2.2...v0.2.3)
 
 ## v0.2.2 - June 10th, 2015
 - added "view endoing" link for GET routes to  admin page - 5ec09ef
