@@ -1,7 +1,7 @@
 var smocks = require('smocks');
 
-// notice the request handler methods (onRequest) methods
-// The ```onRequest``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler)
+// notice the request handler methods (respondWith) methods
+// The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler)
 
 /**
  * Create a route definition that will keep track of (in the state) the requests that are called for all variants
@@ -25,9 +25,9 @@ smocks.route('/api/history')
   // add 3 different variants which will push a token to a "history" array that we store in state.
   // take a look at http://localhost:8000/api/history multiple times to see the history grow
   // the reset the state in the admin panel (top button) and see the history go away
-  .variant('scenario1').onRequest(historyScenario('scenario1'))
-  .variant('scenario2').onRequest(historyScenario('scenario2'))
-  .variant('scenario3').onRequest(historyScenario('scenario3'))
+  .variant('scenario1').respondWith(historyScenario('scenario1'))
+  .variant('scenario2').respondWith(historyScenario('scenario2'))
+  .variant('scenario3').respondWith(historyScenario('scenario3'))
 
 
 /**
@@ -35,7 +35,7 @@ smocks.route('/api/history')
  * http://localhost:8000/hello/whatever
  */
 .route('/api/hello/{message}')
-  .onRequest(function(request, reply) {
+  .respondWith(function(request, reply) {
     // this is the simplest route handler we can have because we are using the default method (GET)
     // and the default variant id ("default") for this route
     reply({ hello: request.params.message });
@@ -43,12 +43,12 @@ smocks.route('/api/history')
 
 
 /**
- * You can also easily respond with files - and even use dynamic route variables using "withFile".
+ * You can also easily respond with files - and even use dynamic route variables using "respondWithFile".
  * Remember that ./ will point to the root of your project rather than the current directory (which in this case will be the same).
  * To test this route, uncomment the code below and add a file called "bar.json" in the root directory what some content.
  * Then browse to http://localhost:8000/foo/bar
  */
-// .route('/foo/{something}').withFile('./{something}.json')
+// .route('/foo/{something}').respondWithFile('./{something}.json')
 
 
 /**
@@ -57,12 +57,12 @@ smocks.route('/api/history')
 .global()
 
   // simulate a back-end server error
-  .variant('500').onRequest(function(request, reply) {
+  .variant('500').respondWith(function(request, reply) {
     reply( {code: 'BAD_NEWS', message: 'Something bad happened'} ).code(500);
   })
 
   // wait 3 seconds and then simulate a back-end timeout with a 504
-  .variant('timeout').onRequest(function(request, reply) {
+  .variant('timeout').respondWith(function(request, reply) {
     setTimeout(function() {
       reply( {code: 'TIMEOUT', message: 'Gateway timeout'} ).code(504);
     }, 3000);

@@ -26,18 +26,18 @@ smock.route('/api/foo')
     },
   })
 
-  .variant('default').onRequest(function(request, reply) {
+  .variant('default').respondWith(function(request, reply) {
     var aBooleanField = this.config('aBooleanField'); // boolean
     var someTextField = this.config('someTextField'); // string
     var someSelectBox = this.config('someSelectBox'); // integer (because the values are integers)
     var someMultiSelect = this.config('someMultiSelect'); // array of integer (because the values are integers)
     // ...
   })
-  .variant('scenario1').onRequest(function(request, reply) {
+  .variant('scenario1').respondWith(function(request, reply) {
     // ...
     
   })
-  .variant('scenario2').onRequest(function(request, reply) {
+  .variant('scenario2').respondWith(function(request, reply) {
     // ...
   })
 

@@ -13,7 +13,7 @@ With smocks you can
 * define global request handlers which can be selected for any route
 * use plugins which can intercept all requests to perform actions
 
-The ```onRequest``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler) so they are very easy to use.
+The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler) so they are very easy to use.
 
 API
 --------------
@@ -72,14 +72,14 @@ Return the [Variant object](#project/jhudson8/smocks/snippet/package/Variant).
 
 Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
 
-#### onRequest(requestHandler)
+#### respondWith(requestHandler)
 * ***requestHandler***: The [RequestHandler](#project/jhudson8/smocks/section/Object%20Types/RequestHandler)
 
-Convienance method for creating a default variant (id of "default") and then calling [Variant:onRequest](#project/jhudson8/smocks/snippet/method/Variant/onRequest) on the variant.
+Convienance method for creating a default variant (id of "default") and then calling [Variant:respondWith](#project/jhudson8/smocks/snippet/method/Variant/respondWith) on the variant.
 
-#### withFile(filePath)
+#### respondWithFile(filePath)
 
-Convienance method for creating a default variant (id of "default") and then calling [Variant:withFile](#project/jhudson8/smocks/snippet/method/Variant/withFile) on the variant.
+Convienance method for creating a default variant (id of "default") and then calling [Variant:respondWithFile](#project/jhudson8/smocks/snippet/method/Variant/respondWithFile) on the variant.
 
 
 ### Variant
@@ -106,12 +106,12 @@ Refer to [Route:variant](l#project/jhudson8/smocks/snippet/method/Route/variant)
 
 Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
 
-#### onRequest(requestHandler)
+#### respondWith(requestHandler)
 * ***requestHandler***: The [RequestHandler](#project/jhudson8/smocks/section/Object%20Types/RequestHandler)
 
 Associate a request handler with the current route/method/variant combination.
 
-#### withFile(filePath)
+#### respondWithFile(filePath)
 * ***filePath***: the path to the file to serve out (any route variables can be used in the file path as well)
 
 Remember that using ```./``` will refer to the top level module directory (the directory where ```node_modules``` exists regardless of the location of the file that is referring to a file location with ```./```);
@@ -119,7 +119,7 @@ Remember that using ```./``` will refer to the top level module directory (the d
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route('/customer/{id}').withFile('./customer-{id}.json')
+    smocks.route('/customer/{id}').respondWithFile('./customer-{id}.json')
     .start(...)
 ```
 
@@ -137,17 +137,66 @@ To view the admin panel, visit [http://localhost:{port number}/_admin](http://lo
 ***Note, to see route specific config options, click the route entry with your mouse.***
 
 
+### Config types
+
+Routes and variants can define config values to be exposed in the admin panel which can be accessed using ```this.config('varName')``` in route handlers (```respondWith``` functions).
+
+There are a few different config types depending on the type of data you want to collect.
+
+Here is what it looks like to define config values.
+
+```
+    var smocks = require('smocks');
+
+    smocks.route('/foo/bar')
+    // these config values are for the route
+    .config({
+      theVarName: {
+        label: 'The label shown on the admin panel',
+        type: 'boolean|text|select|multiselect',
+        defaultValue: {the default value}
+      }
+    })
+```
+
+Then, in your route handler, you would use ```this.config('theVarName')``` to access the value.
+
+_boolean value_
+
+```type``` value is ```boolean```.  The value will either be ```true``` or ```false``` or undefined if no defaultValue is provided.
+
+_text value_
+
+```type``` value is ```text```.  The value will be a string or undefined if no defaultValue is provided.
+
+_select value_
+
+This is used to allow the user to select a single option within a specific list of defined options (a select box).
+
+An additional ```options``` attribute is used here to describe the available options.  It is an array of objects which contain a ```label``` and ```value``` attribute.
+
+```options: [{label: 'One', value: 1}, {label: 'Two', value: 2}, {label: 'Three', value: 3}]```
+
+```type``` value is ```select```.  The value will be the ```value``` attribute of the selected option or undefined if no defaultValue is provided.
+
+_multiselect value_
+
+This is basically the same as the ```select``` config type except that you can select multiple values rather than a single value.  It is represented as a list of check boxes rather than a select box.
+
+```type``` value is ```multiselect```.  The value will be an array of the ```value``` attributes of the selected options or undefined if no defaultValue is provided.
+
+
 ### Object Types
 #### Plugin
 A plugin is a plain javascript object with the following attributes
 
-* ***onRequest***: function(request, reply, next): Standard HAPI request handler with an additional callback method to continue processing the next plugins.
+* ***respondWith***: function(request, reply, next): Standard HAPI request handler with an additional callback method to continue processing the next plugins.
 
 A small example plugin to add latency to all requests would be
 ```javascript
     ...
     .plugin({
-      onRequest: function(request, reply, next) {
+      respondWith: function(request, reply, next) {
         // wait 1 sec before continuing
         setTimeout(next, 1000);
       }
@@ -156,7 +205,7 @@ A small example plugin to add latency to all requests would be
 
 
 #### RequestHandler
-The ```onRequest``` method for variants and global plugins has access to the ```request``` and ```reply``` objects as parameters just like any [HAPI route handler](http://hapijs.com/api#route-handler).
+The ```respondWith``` method for variants and global plugins has access to the ```request``` and ```reply``` objects as parameters just like any [HAPI route handler](http://hapijs.com/api#route-handler).
 
 Additionally, state, config and options values can be accessed.
 
@@ -166,7 +215,7 @@ Additionally, state, config and options values can be accessed.
 
 ```javascript
     ...
-    onRequest(function(request, reply) {
+    respondWith(function(request, reply) {
       var oldStateValue = this.state('foo');
       // update the state for "foo" to be "bar"
       this.state('foo', 'bar');
@@ -188,11 +237,11 @@ Each defined route can have multiple response handlers defined.  Only 1 can be a
     smocks.route('/api/foo')
         .method('POST')
             .variant('default')
-                .onRequest(function(request, reply) {
+                .respondWith(function(request, reply) {
                     ...
                 })
             .variant('something_else')
-                .onRequest(function(request, reply) {
+                .respondWith(function(request, reply) {
                     ...
                 })
 
@@ -212,12 +261,12 @@ It is easy to define handlers for multiple methods associated with a single rout
 
     smocks.route('/api/foo')
         .method('GET')
-            .onRequest(function(request, reply) {
+            .respondWith(function(request, reply) {
                 ...
             })
 
         .method('POST')
-            .onRequest(function(request, reply) {
+            .respondWith(function(request, reply) {
                 ...
             })
 
@@ -240,32 +289,56 @@ As long as you understand that, the ```method```, ```variant``` and ```route``` 
 
     smocks.route('/api/foo')
         // the method is not necessary - GET is the default
-        .variant('default').onRequest(function(request, reply) {
+        .variant('default').respondWith(function(request, reply) {
           // this is the "default" variant for "/api/foo" (GET)
           ...
         })
-        .variant('scenario1').onRequest(function(request, reply) {
+        .variant('scenario1').respondWith(function(request, reply) {
           // this is the "scenario1" variant for "/api/foo" (GET)
           ...
         })
-        .variant('scenario2').onRequest(function(request, reply) {
+        .variant('scenario2').respondWith(function(request, reply) {
           // this is the "scenario2" variant for "/api/foo" (GET)
           ...
         })
 
       .method('POST')
         //  the variant is not necessary - "default" is the default variant id
-        .onRequest(function(request, reply) {
+        .respondWith(function(request, reply) {
           // this is the "default" variant for "/api/foo" (POST)
           ...
         })
-        .variant('scenario1').onRequest(function(request, reply) {
+        .variant('scenario1').respondWith(function(request, reply) {
           // this is the "scenario1" variant for "/api/foo" (POST)
           ...
         })
 
     .start();
 ```
+
+
+#### Config, options and state, oh my
+
+There are 3 different ways of introducting dynamic behavior into your responses but each serve a different purpose.
+
+_config_
+
+Config values are exposed as input fields in the admin panel so you have the ability to change the value at runtime.
+
+These are accessed using ```this.config('varName')``` in any route handler.
+
+_options_
+
+Options are like config but are not exposed in the admin panel.  These are most useful to expose metadata for a global pugin.  For example, you could have a plugin that examined all requests and, if the user hasn't signed in yet, respond with a 401 error.  The routes could expose an option value that indicated whether they were routes that required authentication.
+
+These are accessed using ```this.option('varName')```.
+
+_state_
+
+State is used to, obviously, maintain state.  For example, if you expose a route that adds a new piece of data, you should store it in state.  The user can reset the state with a button on the admin panel.
+
+State values can be accessed using ```this.state('varName')```.
+State values can be set using ```this.state('varName', 'value')```.
 
 
 #### Route / variant configuration
@@ -300,18 +373,18 @@ Different types of input fields can be defined for routes or variants including 
       })
 
       // these variants are here to show how the config values can be retrieved
-      .variant('default').onRequest(function(request, reply) {
+      .variant('default').respondWith(function(request, reply) {
         var aBooleanField = this.config('aBooleanField'); // boolean
         var someTextField = this.config('someTextField'); // string
         var someSelectBox = this.config('someSelectBox'); // integer (because the values are integers)
         var someMultiSelect = this.config('someMultiSelect'); // array of integer (because the values are integers)
         // ...
       })
-      .variant('scenario1').onRequest(function(request, reply) {
+      .variant('scenario1').respondWith(function(request, reply) {
         // ...
         
       })
-      .variant('scenario2').onRequest(function(request, reply) {
+      .variant('scenario2').respondWith(function(request, reply) {
         // ...
       })
 ```
@@ -337,7 +410,7 @@ This is mostly useful for global-level plugins.
       .options({
         theVarKey: 'the variable value'
       })
-    .onRequest(function(request, reply) {
+    .respondWith(function(request, reply) {
       var value = this.options('theVarKey');
       // do something with the value
     })
@@ -361,7 +434,7 @@ For example, a plugin to add simulated latency to all endpoint methods
       ...
 
     .plugin({
-      onRequest: function(request, reply, next) {
+      respondWith: function(request, reply, next) {
         // wait 1 sec before allowing the response to be handled
         setTimeout(next, 1000);
       }
