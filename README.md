@@ -38,4 +38,4 @@ After visiting [http://localhost:8000/api/history](http://localhost:8000/api/his
 
 Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/examples/main.js) and to see what the route handlers are doing.
 
-The ```onRequest``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler).
+The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler).
