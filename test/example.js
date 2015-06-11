@@ -23,7 +23,7 @@ smocks.route('/api/history')
   })
 
   // add 3 different variants which will push a token to a "history" array that we store in state.
-  // take a look at http://localhost:8000/api/foo multiple times to see the history grow
+  // take a look at http://localhost:8000/api/history multiple times to see the history grow
   // the reset the state in the admin panel (top button) and see the history go away
   .variant('scenario1').onRequest(historyScenario('scenario1'))
   .variant('scenario2').onRequest(historyScenario('scenario2'))
