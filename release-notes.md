@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.3.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.3.1...master)
+
+## v0.3.1 - June 11th, 2015
+- global plugin bug fix - 32b5afb
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.3.0...v0.3.1)
 
 ## v0.3.0 - June 11th, 2015
 - refactoring ```onRequest``` -> ```respondWith``` and ```withFile``` -> ```respondWithFile``` - d95a07b
