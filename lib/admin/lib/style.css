@@ -2,15 +2,6 @@ body {
   margin: 12px;
 }
 
-h3 {
-  font-size: 18px;
-}
-
-h3 small {
-  display: inline-block;
-  padding-left: 1em;
-}
-
 .checkbox-form-control {
   border: 0;
 }
@@ -82,6 +73,7 @@ h3 small {
   content: "\25BE";
   display: inline-block;
   float: left;
+  padding-top: 4px;
   padding-right: 6px;
 }
 
@@ -93,4 +85,18 @@ h3 small {
   transform: rotate(180deg);             /* W3C compliant browsers */
   padding-left: 6px;
   padding-right: 0;
+  padding-bottom: 4px;
+  padding-top: 0;
+}
+
+.route-title {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+}
+
+.route-title small {
+  display: inline-block;
+  padding-left: 1em;
+  font-size: 12px;
 }
