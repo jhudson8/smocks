@@ -27,9 +27,9 @@ smocks.route('/api/history')
   // add 3 different variants which will push a token to a "history" array that we store in state.
   // take a look at http://localhost:8000/api/history multiple times to see the history grow
   // the reset the state in the admin panel (top button) and see the history go away
-  .variant('scenario1').respondWith(historyScenario('scenario1'))
-  .variant('scenario2').respondWith(historyScenario('scenario2'))
-  .variant('scenario3').respondWith(historyScenario('scenario3'))
+  .variant('scenario 1').respondWith(historyScenario('scenario 1'))
+  .variant('scenario 2').respondWith(historyScenario('scenario 2'))
+  .variant('scenario 3').respondWith(historyScenario('scenario 3'))
 
 
 /**
@@ -59,7 +59,7 @@ smocks.route('/api/history')
 .global()
 
   // simulate a back-end server error
-  .variant('500').respondWith(function(request, reply) {
+  .variant('500 error').respondWith(function(request, reply) {
     reply( {code: 'BAD_NEWS', message: 'Something bad happened'} ).code(500);
   })
 
@@ -69,6 +69,34 @@ smocks.route('/api/history')
       reply( {code: 'TIMEOUT', message: 'Gateway timeout'} ).code(504);
     }, 3000);
   })
+
+
+  /**
+   * Plugins can be used to listen to every request and perform an action.  They can define
+   * config values as shown below.  The following plugin adds a config parameter to the admin page
+   * which will allow you to select a delay in the response.
+   */
+  .plugin({
+    config: {
+      delay: {
+        label: 'Add delay to all responses',
+        type: 'select',
+        options: [{label: 'no delay', value: 0}, {label: '1 sec', value: 1000}, {label: '5 sec', value: 5000}],
+        defaultValue: 0
+      }
+    },
+    onRequest: function(request, reply, next) {
+      // get the delay value from config
+      var delay = this.config('delay');
+      if (delay > 0) {
+        // if there is a delay, call next after a timeout
+        setTimeout(next, delay);
+      } else {
+        next();
+      }
+    }
+  })
+
 
 .start({
     host: 'localhost',

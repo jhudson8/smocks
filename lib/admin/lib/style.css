@@ -108,6 +108,7 @@ body {
 
 .display-selector {
   display: inline-block;
+  margin-bottom: 0;
 }
 
 .display-selector-choice {
@@ -118,4 +119,8 @@ body {
 .display-selector-choice label {
   display: inline-block;
   padding-left: 4px;
+}
+
+.reset-state {
+  margin-left: 24px;
 }
