@@ -43,9 +43,9 @@ body {
   margin-right: .6em;
 }
 
-.route-active h3 {
+.route-active {
   padding-bottom: 4px;
-  border-bottom: solid 1px #ccc;
+  border: solid 1px #ccc;
 }
 
 .info {
@@ -59,7 +59,7 @@ body {
 }
 
 .route-body {
-  margin-left: 12px;
+  margin-left: 36px;
 }
 
 .route-filter {
@@ -69,12 +69,17 @@ body {
   width: 200px;
 }
 
+.route {
+  margin 0 12px;
+}
+
 .route:before {
   content: "\25BE";
   display: inline-block;
   float: left;
   padding-top: 4px;
   padding-right: 6px;
+  margin-left: 12px;
 }
 
 .route-active:before {
@@ -99,4 +104,18 @@ body {
   display: inline-block;
   padding-left: 1em;
   font-size: 12px;
+}
+
+.display-selector {
+  display: inline-block;
+}
+
+.display-selector-choice {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+.display-selector-choice label {
+  display: inline-block;
+  padding-left: 4px;
 }

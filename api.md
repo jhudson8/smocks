@@ -27,6 +27,7 @@ To see how variables can be used in the path, refer to the [HAPI routing guide](
 
 Return the associated [Route object](#project/jhudson8/smocks/snippet/package/Route).
 
+
 #### plugin(plugin)
 * ***plugin***: the plugin object
 
@@ -44,7 +45,6 @@ If a HAPI server instance is provided, the routes will be bound to the HAPI serv
 
 ### Route
 #### route(path)
-
 Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
 #### method(method)
@@ -52,12 +52,48 @@ Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
 Set the HTTP method for the current route and return the route object.
 
+Return the same route object for chaining.
+
+```javascript
+    var smocks = require('smocks');
+    smocks.route('/foo/bar').respondWith(...)
+```
+
+
+#### label(label)
+* ***label***: a human readable label for the route
+
+Apply a human readable label for the route.
+
+Return the same route object for chaining.
+
+```javascript
+    var smocks = require('smocks');
+    smocks.route('/foo/bar').label('This is the route label').respondWith(...)
+```
+
 #### config(attributes)
 * ***attributes***: The configuration attributes
 
 Set any configuration attributes that will be available for modification on the admin panel.
 
 See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%20configuration) for details.
+
+Return the same route object for chaining.
+
+```javascript
+    var smocks = require('smocks');
+    smocks.route('/foo/bar')
+    .config({
+      myVar: {
+        label: 'Config label',
+        type: 'boolean|text|select|multiselect',
+        defaultValue: ...
+      }
+    })
+    .respondWith(...)
+```
+
 
 #### variant(id)
 * ***id***: the variant id
@@ -68,28 +104,32 @@ A variant is basically a single request handler for a defined route.  This is us
 
 Return the [Variant object](#project/jhudson8/smocks/snippet/package/Variant).
 
-#### plugin(plugin)
+```javascript
+    var smocks = require('smocks');
+    smocks.route('/foo/bar')
+    .variant('respond like this').respondWith(...)
+    .variant('respond like that').respondWith(...)
+```
 
+
+#### plugin(plugin)
 Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
+
 
 #### respondWith(requestHandler)
 * ***requestHandler***: The [RequestHandler](#project/jhudson8/smocks/section/Object%20Types/RequestHandler)
 
 Convienance method for creating a default variant (id of "default") and then calling [Variant:respondWith](#project/jhudson8/smocks/snippet/method/Variant/respondWith) on the variant.
 
-#### respondWithFile(filePath)
 
+#### respondWithFile(filePath)
 Convienance method for creating a default variant (id of "default") and then calling [Variant:respondWithFile](#project/jhudson8/smocks/snippet/method/Variant/respondWithFile) on the variant.
 
 
 ### Variant
 #### route(path)
-
 Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
-#### method(method)
-
-Refer to [Route:method](#project/jhudson8/smocks/snippet/method/Route/method)
 
 #### config(attributes)
 * ***attributes***: The configuration attributes
@@ -98,18 +138,35 @@ Set any variant-scoped configuration attributes that will be available for modif
 
 See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%20configuration) for details.
 
-#### variant(id)
+Return the same Variant object for chaining.
 
+
+#### variant(id)
 Refer to [Route:variant](l#project/jhudson8/smocks/snippet/method/Route/variant)
 
-#### plugin(plugin)
 
+#### plugin(plugin)
 Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
+
 
 #### respondWith(requestHandler)
 * ***requestHandler***: The [RequestHandler](#project/jhudson8/smocks/section/Object%20Types/RequestHandler)
 
 Associate a request handler with the current route/method/variant combination.
+
+Return the same Variant object for chaining.
+
+```javascript
+    var smocks = require('smocks');
+    smocks.route('/hello/{message}').respondWith(function(request, reply) {
+      var theMessage = request.params.message;
+      var aQueryStringValue = request.query.theQueryStringKey;
+      reply({message: theMessage}); // reply with a JSON payload
+      // or reply with something else
+      reply({error: {message: 'Some unknown error'}}).code(500);
+    });
+```
+
 
 #### respondWithFile(filePath)
 * ***filePath***: the path to the file to serve out (any route variables can be used in the file path as well)
@@ -118,12 +175,13 @@ Remember that using ```./``` will refer to the top level module directory (the d
 
 ```javascript
     var smocks = require('smocks');
-
     smocks.route('/customer/{id}').respondWithFile('./customer-{id}.json')
     .start(...)
 ```
 
 This would cause a request to ```/customer/1``` to return the file ```./customer-1.json```
+
+Return the same Variant object for chaining.
 
 
 Sections
