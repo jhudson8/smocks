@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.3.1...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.4.0...master)
+
+## v0.4.0 - June 11th, 2015
+- add support for optional human readable route labels - 5df5d38
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.3.1...v0.4.0)
 
 ## v0.3.1 - June 11th, 2015
 - global plugin bug fix - 32b5afb
