@@ -195,9 +195,48 @@ To view the admin panel, visit [http://localhost:{port number}/_admin](http://lo
 ***Note, to see route specific config options, click the route entry with your mouse.***
 
 
+### Plugins
+
+Plugins can be used to perform an action on all requests or just to encapsulate a set of route handlers.  Plugins can have config values just like Routes or Variants.
+
+Plugins are just simple objects that have the following attributes
+
+* ***plugin***: (optional) if exists, will simply be called with a single parameter (the smocks object) so you can add new routes.
+* ***config***: (optional) config definitions to allow the user with different types of input fields in the admin panel.  See the next section (Config types) for more details
+* ***onRequest***: Called for every request.  It is similar to the ([request, reply](http://hapijs.com/api#route-handler)) of the route handlers (Variants) but has an additional callback method that should be executed when the plugin has finished doing what it needs to do.
+
+The following plugin will add simulated latency (which can be controlled by the user) to all requests.
+```
+    var smocks = require('smocks');
+    smocks.plugin({
+      // define the input field for the admin panel allowing the user to adjust the delay
+        config: {
+          delay: {
+            label: 'Add delay to all responses',
+            type: 'select',
+            options: [{label: 'no delay', value: 0}, {label: '1 sec', value: 1000}, {label: '5 sec', value: 5000}],
+            defaultValue: 0
+          }
+        },
+
+        // call "next" after a timeout if the user requested a delay
+        onRequest: function(request, reply, next) {
+          // get the delay value from config
+          var delay = this.config('delay');
+          if (delay > 0) {
+            // if there is a delay, call next after a timeout
+            setTimeout(next, delay);
+          } else {
+            next();
+          }
+        }
+      })
+```
+
+
 ### Config types
 
-Routes and variants can define config values to be exposed in the admin panel which can be accessed using ```this.config('varName')``` in route handlers (```respondWith``` functions).
+Routes, variants and plugins can define config values to be exposed in the admin panel which can be accessed using ```this.config('varName')``` in route handlers (```respondWith``` functions).
 
 There are a few different config types depending on the type of data you want to collect.
 

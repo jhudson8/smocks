@@ -48,6 +48,10 @@ body {
   border: solid 1px #ccc;
 }
 
+.route-active:first-child {
+  border-top: none;
+}
+
 .info {
   padding: 8px;
   background-color: #d9edf7;
@@ -59,7 +63,7 @@ body {
 }
 
 .route-body {
-  margin-left: 36px;
+  margin-left: 48px;
 }
 
 .route-filter {
@@ -98,6 +102,7 @@ body {
   background: transparent;
   border: none;
   font-size: 18px;
+  outline: none;
 }
 
 .route-title small {
