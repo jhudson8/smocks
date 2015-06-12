@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.4.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.4.1...master)
+
+## v0.4.1 - June 12th, 2015
+- add config values for plugins just like Routes/Variants have - 1701bca
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.4.0...v0.4.1)
 
 ## v0.4.0 - June 11th, 2015
 - add support for optional human readable route labels - 5df5d38
