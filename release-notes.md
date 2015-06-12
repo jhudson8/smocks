@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.4.1...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.4.2...master)
+
+## v0.4.2 - June 12th, 2015
+- this is a mock server that might be running on localhost.  we'll go ahead and apply the CORS headers - 5a35486
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.4.1...v0.4.2)
 
 ## v0.4.1 - June 12th, 2015
 - add config values for plugins just like Routes/Variants have - 1701bca
