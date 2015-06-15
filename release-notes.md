@@ -2,7 +2,17 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.4.2...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.0...master)
+
+## v0.5.0 - June 14th, 2015
+- update "route" method.  It now looks more like a traditional HAPI route method by taking [an options object](http://hapijs.com/api#serverrouteoptions).
+- add an optional "onResponse" lifecycle method to plugins
+- you can now add route labels
+- added route filtering by path or label in the admin panel
+- add ability to save all route, variant and config selections as a "profile" in the admin panel
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.4.2...v0.5.0)
 
 ## v0.4.2 - June 12th, 2015
 - this is a mock server that might be running on localhost.  we'll go ahead and apply the CORS headers - 5a35486
