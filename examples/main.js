@@ -7,20 +7,18 @@ var smocks = require('smocks');
  * Create a route definition that will keep track of (in the state) the requests that are called for all variants
  * http://localhost:8000/api/history
  */
-smocks.route('/api/history')
+smocks.route({ path: '/api/history', method: 'GET' })
   // labels can be added to give a more human readable view of the route.  these are visible in the admin panel.
-  .label('Track history of which variant is called')
-  // not necessary since default is GET but just to be explicit
-  .method('GET')
+  .label('Use state to keep track when this API is hit')
 
   // add a route config (admin page input field) that we will use to indicate an attribute name in the response payload
   // this is really just a silly example used to demonstrate the usage of config values
   .config({
     // "attributeName" is arbitrary - it just represents the config key that the user input will be saved with
     attributeName: {
-      label: 'What attribute name should I use to demonstrate state?',
+      label: 'What value should we save when the API is hit?',
       type: 'text',
-      defaultValue: 'history'
+      defaultValue: 'request'
     }
   })
 
@@ -118,15 +116,12 @@ function historyScenario(scenarioName) {
     var history = this.state('history') || [];
     // save the var in state (in case we just created it)
     this.state('history', history);
-    history.push(scenarioName);
-
-    // get the user config attribute which we'll use to construct the payload
+    var toSet = {};
+    // get the user config attribute which we'll use as the value we push on to the state
     // config values are meaningful because the user can control them using the admin panel
-    var attributeName = this.config('attributeName');
+    toSet[scenarioName] = this.config('attributeName');
+    history.push(toSet);
 
-    // now return the view history
-    var payload = {};
-    payload[attributeName] = history;
-    reply(payload);
+    reply(history);
   };
 }

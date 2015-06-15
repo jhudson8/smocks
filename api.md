@@ -18,8 +18,12 @@ The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/a
 API
 --------------
 ### global
-#### route(path)
+#### route(options)
+* ***options***: object containing the following values
 * ***path***: the route path (must start with ```/```).  Ex: ```/api/customer/{id}```
+* ***label***: An optional human readable label that can be seen in the admin panel for this route
+* ***method***: optional method (GET is default)
+* ***handler***: optional default route handler (same as the first variant applied to this route)
 
 Register a route handler to enable setting the method, adding variants or config properties.
 
@@ -27,11 +31,28 @@ To see how variables can be used in the path, refer to the [HAPI routing guide](
 
 Return the associated [Route object](#project/jhudson8/smocks/snippet/package/Route).
 
+```javascript
+    var smocks = require('smocks');
+    smocks.route({
+      method: 'POST', // optional if method is 'GET'
+      path: '/api/customer/{customerId}',
+      handler: function(request, reply) {
+        // route handler but we would use replyWith if we have
+        // multiple variants
+      }
+    })
+    .replyWith(function(request, reply) {
+      // another way of definiting route handlers
+    })
+    ...
+```
+
 
 #### plugin(plugin)
 * ***plugin***: the plugin object
 
 Register the plugin.  See the plugin object type for details.  Return the [global object](#project/jhudson8/smocks/snippet/package/global).
+
 
 #### start(options)
 * ***options***: either object {host, port} or a HAPI server instance
@@ -44,33 +65,9 @@ If a HAPI server instance is provided, the routes will be bound to the HAPI serv
 
 
 ### Route
-#### route(path)
+#### route(options)
 Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
-#### method(method)
-* ***method***: the HTTP method (GET|POST|PUT|PATCH|DELETE)
-
-Set the HTTP method for the current route and return the route object.
-
-Return the same route object for chaining.
-
-```javascript
-    var smocks = require('smocks');
-    smocks.route('/foo/bar').respondWith(...)
-```
-
-
-#### label(label)
-* ***label***: a human readable label for the route
-
-Apply a human readable label for the route.
-
-Return the same route object for chaining.
-
-```javascript
-    var smocks = require('smocks');
-    smocks.route('/foo/bar').label('This is the route label').respondWith(...)
-```
 
 #### config(attributes)
 * ***attributes***: The configuration attributes
@@ -83,7 +80,7 @@ Return the same route object for chaining.
 
 ```javascript
     var smocks = require('smocks');
-    smocks.route('/foo/bar')
+    smocks.route(...)
     .config({
       myVar: {
         label: 'Config label',
@@ -106,7 +103,7 @@ Return the [Variant object](#project/jhudson8/smocks/snippet/package/Variant).
 
 ```javascript
     var smocks = require('smocks');
-    smocks.route('/foo/bar')
+    smocks.route(...)
     .variant('respond like this').respondWith(...)
     .variant('respond like that').respondWith(...)
 ```
@@ -127,7 +124,7 @@ Convienance method for creating a default variant (id of "default") and then cal
 
 
 ### Variant
-#### route(path)
+#### route(options)
 Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
 
@@ -158,7 +155,7 @@ Return the same Variant object for chaining.
 
 ```javascript
     var smocks = require('smocks');
-    smocks.route('/hello/{message}').respondWith(function(request, reply) {
+    smocks.route(...).respondWith(function(request, reply) {
       var theMessage = request.params.message;
       var aQueryStringValue = request.query.theQueryStringKey;
       reply({message: theMessage}); // reply with a JSON payload
@@ -175,7 +172,7 @@ Remember that using ```./``` will refer to the top level module directory (the d
 
 ```javascript
     var smocks = require('smocks');
-    smocks.route('/customer/{id}').respondWithFile('./customer-{id}.json')
+    smocks.route({path: '/customer/{id}'}).respondWithFile('./customer-{id}.json')
     .start(...)
 ```
 
@@ -203,7 +200,9 @@ Plugins are just simple objects that have the following attributes
 
 * ***plugin***: (optional) if exists, will simply be called with a single parameter (the smocks object) so you can add new routes.
 * ***config***: (optional) config definitions to allow the user with different types of input fields in the admin panel.  See the next section (Config types) for more details
-* ***onRequest***: Called for every request.  It is similar to the ([request, reply](http://hapijs.com/api#route-handler)) of the route handlers (Variants) but has an additional callback method that should be executed when the plugin has finished doing what it needs to do.
+* ***onRequest***: Called before the route handler (variant) executes for every request.  It is similar to the ([request, reply](http://hapijs.com/api#route-handler)) of the route handlers (Variants) but has an additional callback method that should be executed when the plugin has finished doing what it needs to do.
+
+* ***onResponse***: Called after the route handler (variant) executes for every request.  Parameters are similar to ```onRequest``` except the 2nd parameter is the return value from the [reply method (see response object)](http://hapijs.com/api#reply-interface).
 
 The following plugin will add simulated latency (which can be controlled by the user) to all requests.
 ```
@@ -229,6 +228,11 @@ The following plugin will add simulated latency (which can be controlled by the 
           } else {
             next();
           }
+        },
+
+        onResponse: function(request, response) {
+          // I can do things to the response here
+          response.code(404);
         }
       })
 ```
@@ -245,7 +249,7 @@ Here is what it looks like to define config values.
 ```
     var smocks = require('smocks');
 
-    smocks.route('/foo/bar')
+    smocks.route(...)
     // these config values are for the route
     .config({
       theVarName: {
@@ -287,13 +291,13 @@ This is basically the same as the ```select``` config type except that you can s
 #### Plugin
 A plugin is a plain javascript object with the following attributes
 
-* ***respondWith***: function(request, reply, next): Standard HAPI request handler with an additional callback method to continue processing the next plugins.
+* ***onRequest***: function(request, reply, next): Standard HAPI request handler with an additional callback method to continue processing the next plugins.
 
 A small example plugin to add latency to all requests would be
 ```javascript
     ...
     .plugin({
-      respondWith: function(request, reply, next) {
+      onRequest: function(request, reply, next) {
         // wait 1 sec before continuing
         setTimeout(next, 1000);
       }
@@ -384,7 +388,7 @@ As long as you understand that, the ```method```, ```variant``` and ```route``` 
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route('/api/foo')
+    smocks.route({path: '/api/foo'})
         // the method is not necessary - GET is the default
         .variant('default').respondWith(function(request, reply) {
           // this is the "default" variant for "/api/foo" (GET)
@@ -443,7 +447,7 @@ State values can be set using ```this.state('varName', 'value')```.
 Different types of input fields can be defined for routes or variants including ```boolean```, ```text```, ```select```, ```multiselect```.  Through the admin panel, you can modify these config values.
 
 ```javascript
-    smock.route('/api/foo')
+    smock.route(...)
       .config({
         aBooleanField: {
           label: 'Is this a checkbox?',
@@ -503,7 +507,7 @@ This is mostly useful for global-level plugins.
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route('/api/foo')
+    smocks.route(...)
       .options({
         theVarKey: 'the variable value'
       })
@@ -527,7 +531,7 @@ For example, a plugin to add simulated latency to all endpoint methods
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route('/api/foo')
+    smocks.route(...)
       ...
 
     .plugin({
@@ -537,4 +541,9 @@ For example, a plugin to add simulated latency to all endpoint methods
       }
     })
 ```
+
+
+### Profiles
+
+Using the Admin Panel, you can save all route, variant and config settings as a "profile".  Profiles can either be saved locally (using localStorage) or remotely by providing the code to update in your project.
 
