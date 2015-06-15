@@ -1,6 +1,6 @@
 var smock = require('../lib');
 
-smock.route('/api/foo')
+smock.route({path: '/api/foo'})
   .config({
     aBooleanField: {
       label: 'Is this a checkbox?',

@@ -7,9 +7,13 @@ var smocks = require('smocks');
  * Create a route definition that will keep track of (in the state) the requests that are called for all variants
  * http://localhost:8000/api/history
  */
-smocks.route({ path: '/api/history', method: 'GET' })
-  // labels can be added to give a more human readable view of the route.  these are visible in the admin panel.
-  .label('Use state to keep track when this API is hit')
+smocks.route({
+    path: '/api/history',
+    // the method is optional sinct it is "GET"
+    method: 'GET',
+    // labels can be added to give a more human readable view of the route.  these are visible in the admin panel.
+    label: 'Use state to keep track when this API is hit'
+  })
 
   // add a route config (admin page input field) that we will use to indicate an attribute name in the response payload
   // this is really just a silly example used to demonstrate the usage of config values
@@ -34,7 +38,10 @@ smocks.route({ path: '/api/history', method: 'GET' })
  * Create a route definition that will return a hello world-ish payload.  This demonstrates variables in a route definition.
  * http://localhost:8000/hello/whatever
  */
-.route('/api/hello/{message}').label('Hello world example demonstrating dynamic route variables')
+.route({
+    path: '/api/hello/{message}',
+    label: 'Hello world example demonstrating dynamic route variables'
+  })
   .respondWith(function(request, reply) {
     // this is the simplest route handler we can have because we are using the default method (GET)
     // and the default variant id ("default") for this route
