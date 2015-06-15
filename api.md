@@ -335,16 +335,13 @@ Each defined route can have multiple response handlers defined.  Only 1 can be a
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route('/api/foo')
-        .method('POST')
-            .variant('default')
-                .respondWith(function(request, reply) {
-                    ...
-                })
-            .variant('something_else')
-                .respondWith(function(request, reply) {
-                    ...
-                })
+    smocks.route(...)
+        .variant('default').respondWith(function(request, reply) {
+            ...
+        })
+        .variant('something_else').respondWith(function(request, reply) {
+            ...
+        })
 
     .start();
 ```
@@ -355,21 +352,20 @@ Now, in the admin panel, you will be able to choose between the ```default``` an
 
 #### Multiple route methods
 
-It is easy to define handlers for multiple methods associated with a single route using the chaining API.  Simply call the ```method``` method any time to define a new route handler with the defined method.
+It is easy to define handlers for multiple methods associated with a single route using the chaining API.  Since the method is an attribute of the route options, you can call route with a path that was previously registered but with different method.
 
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route('/api/foo')
-        .method('GET')
-            .respondWith(function(request, reply) {
-                ...
-            })
+    smocks.route({ path: '/api/foo', method 'GET' })
+        .respondWith(function(request, reply) {
+            ...
+        })
 
-        .method('POST')
-            .respondWith(function(request, reply) {
-                ...
-            })
+    .route({ path: '/api/foo', method 'POST' })
+        .respondWith(function(request, reply) {
+            ...
+        })
 
     .start();
 ```
@@ -388,7 +384,7 @@ As long as you understand that, the ```method```, ```variant``` and ```route``` 
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route({path: '/api/foo'})
+    smocks.route({ path: '/api/foo' })
         // the method is not necessary - GET is the default
         .variant('default').respondWith(function(request, reply) {
           // this is the "default" variant for "/api/foo" (GET)
@@ -403,7 +399,7 @@ As long as you understand that, the ```method```, ```variant``` and ```route``` 
           ...
         })
 
-      .method('POST')
+      .route({ path: '/api/foo', method: 'POST' })
         //  the variant is not necessary - "default" is the default variant id
         .respondWith(function(request, reply) {
           // this is the "default" variant for "/api/foo" (POST)
