@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.1...master)
+
+## v0.5.1 - June 14th, 2015
+- small bug fixes - baf3274
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.0...v0.5.1)
 
 ## v0.5.0 - June 14th, 2015
 - update "route" method.  It now looks more like a traditional HAPI route method by taking [an options object](http://hapijs.com/api#serverrouteoptions).
