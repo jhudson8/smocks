@@ -129,3 +129,28 @@ body {
 .reset-state {
   margin-left: 24px;
 }
+
+.profile-manager {
+  margin-bottom: 8px;
+}
+
+.profiles-label {
+  font-size: 1.2em;
+  font-weight: 800;
+  display: inline-block;
+}
+
+.profile-part {
+  padding-right: 12px;
+}
+
+.profile-selector {
+  display: inline-block;
+  width: 200px;
+}
+
+.profile-name {
+  display: inline-block;
+  width: 180px;
+  margin-left: 6px;
+}
