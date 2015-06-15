@@ -2,7 +2,14 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.1...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.2...master)
+
+## v0.5.2 - June 15th, 2015
+- bug fix: config defaultValue was not being applied - af4dbaf
+- add better route filtering in the admin panel - daf7827
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.1...v0.5.2)
 
 ## v0.5.1 - June 14th, 2015
 - small bug fixes - baf3274
