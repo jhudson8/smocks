@@ -6,14 +6,11 @@ body {
   border: 0;
 }
 
-.variant {
-  display: inline-block;
-  padding-right: 8px;
-  padding-bottom: 8px;
-}
-
 .config-list {
   margin-top: 12px;
+}
+
+.config-list input, .config-list select {
   max-width: 280px;
 }
 
@@ -154,3 +151,34 @@ body {
   width: 180px;
   margin-left: 6px;
 }
+
+.route-label {
+  margin-top: 12px;
+  font-weight: 800;
+}
+
+.variant {
+  display: inline-block;
+  border: solid 1px #3694f9;
+  padding: 4px 10px;
+  border-radius: 15px;
+  margin-top: 8px;
+  margin-left: 12px;
+  padding-right: 16px;
+}
+
+.variant.selected {
+  background-color: #3694f9;
+  color: #fff;
+}
+
+.variant label {
+  display: inline-block;
+  margin-left: 6px;
+  margin-bottom: 0;
+}
+
+.variant input {
+  outline: none;
+}
+
