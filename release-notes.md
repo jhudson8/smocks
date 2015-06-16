@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.2...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.3...master)
+
+## v0.5.3 - June 16th, 2015
+- small tweaks to admin panel - 0732259
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.2...v0.5.3)
 
 ## v0.5.2 - June 15th, 2015
 - bug fix: config defaultValue was not being applied - af4dbaf
