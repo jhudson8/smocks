@@ -176,6 +176,7 @@ body {
   display: inline-block;
   margin-left: 6px;
   margin-bottom: 0;
+  font-weight: normal;
 }
 
 .variant input {
