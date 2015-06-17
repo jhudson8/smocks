@@ -2,7 +2,15 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.3...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.4...master)
+
+## v0.5.4 - June 17th, 2015
+- minor tweaks to admin page and pluggable input types - f692eb3
+- minor tweaks to admin panel - afba25a
+
+The pluggable input types should actually come with a minor release but I've got a bit more of an API that I want to include (ability to bring in js libs / styles) and I'll do a minor release at that time.
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.3...v0.5.4)
 
 ## v0.5.3 - June 16th, 2015
 - small tweaks to admin panel - 0732259
