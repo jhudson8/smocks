@@ -2,7 +2,31 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.4...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.5...master)
+
+## v0.5.5 - June 17th, 2015
+I should *really* do a minor release for this but I'm not ready to document all of this yet... I just want to be able to use the changes for right now.  Anyway, if you are the kind of person that reads realease notes, here is what you can do now:
+
+Actions
+For any route, you can call .action(options) and it will expose a button that you can push within that route.  This button will perform some action (most likely involving updating the state somehow).  The action can also be at the global level (if you call .action on require('smocks') rather than on a route).  The options provided to the action call are
+
+* id: a unique identifier
+* label: the button label
+* handler: function(options): the handler function (the options objects relates to the values to any config entries provided for the action... use this.config(...) still for normal route config values)
+* config: same type of config object that you would provide to a route
+
+
+Display
+You can now also provide a ```display``` function to a route and it will display that content when you are viewing the route details.  The return value must be a string and it will be formatted as markdown.
+
+```
+    .route({
+      id: ...
+      display: function() { return 'hello' }
+    })
+```
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.4...v0.5.5)
 
 ## v0.5.4 - June 17th, 2015
 - minor tweaks to admin page and pluggable input types - f692eb3
