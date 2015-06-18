@@ -59,8 +59,13 @@ body {
   margin-bottom: 12px;
 }
 
-.route-body {
+.route-active .route-body {
   margin-left: 48px;
+}
+
+.route-active .route-body {
+  margin-bottom: 10px;
+  margin-right: 24px;
 }
 
 .route-filter {
@@ -196,4 +201,6 @@ body {
   margin-right: 12px;
 }
 
-
+.route-display p:last-child {
+  margin-bottom: 0;
+}
