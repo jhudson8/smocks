@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.6...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.7...master)
+
+## v0.5.7 - June 19th, 2015
+- minor bug fixes - 5d10c1c
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.6...v0.5.7)
 
 ## v0.5.6 - June 18th, 2015
 - bug fix with boolean input type - 0ef7130
