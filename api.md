@@ -6,14 +6,14 @@ Stateful HTTP mocking service built on top of [HAPI](http://hapijs.com/).  Easil
 With smocks you can
 
 * create route definitions (with dynamic tokens)
-* define multiple route handlers (variants) for for any route (selectable through an admin console)
-* add input configuration components for routes and variants (accessable through an admin console)
-* use a chaninable interface to streamline route definitions
+* define multiple route handlers (variants) for for any route (selectable through an admin panel)
+* add input configuration components for routes and variants (accessable through an admin panel)
+* define actions which can manipulate the current state and be executed from the admin pnael
 * use route request handlers that can keep a state for true dynamic mocking capabilities
-* define global request handlers which can be selected for any route
+* define global request handlers (variants) which can be selected for any route
 * use plugins which can intercept all requests to perform actions
+* use a RESTful API to make configuration changes programatically
 
-The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler) so they are very easy to use.
 
 
 Sections
@@ -56,11 +56,13 @@ The HAPI server will automatically have CORS headers applied to allow calls from
 #### Admin Panel
 Whenever the mock server is running, you can view an admin panel at ```{host}:{port}/_admin```.  Using this, you can
 
-* Select what type of response your routes should have (see Variants)
+* Select what type of response your routes should have (see [Variants](#section/Concepts/Variants))
 * Execute route specific actions (see Actions)
 * View all available routes by label or path
-* Set route specific or global configuration input fields (see Config)
-* Save all current settings as a profile (selected route variant and config values) to be applied at a later time (see Profiles)
+* Set route specific or global configuration input fields (see [Route / Variant configuration](#section/Concepts/Route%2520%252F%2520variant%2520configuration))
+* Save all current settings as a profile (selected route variant and config values) to be applied at a later time (see [Profiles](#section/Concepts/Profiles))
+
+Throughout these docs, you will see different screenshots to understand how different route configurations are represented in the admin panel.
 
 
 
@@ -106,6 +108,8 @@ Add config parameters that are exposed through the admin panel
     })
 ```
 
+![route ex1](http://jhudson8.github.io/smocks/images/route-ex1.png)
+
 
 Provide multiple response types for each route (called Variants).  With the variants below, you can select which type of response the ```/api/foo``` route should respond with in the admin panel.  More about variants later...
 
@@ -135,6 +139,8 @@ Provide multiple response types for each route (called Variants).  With the vari
     })
 ```
 
+![route ex2](http://jhudson8.github.io/smocks/images/route-ex2.png)
+
 
 You can provide a display value which will be used when viewing the route details in the admin panel.  We haven't discussed state yet but this is meaningful to represent the current state of things for quick glance in the admin panel.  The admin panel supports [markdown](http://daringfireball.net/projects/markdown/) for your display response.
 
@@ -147,6 +153,8 @@ You can provide a display value which will be used when viewing the route detail
       }
     })
 ```
+
+![route ex3](http://jhudson8.github.io/smocks/images/route-ex3.png)
 
 
 You can expose "actions" which are represented as buttons.  These are meaningful to quickly make changes to the state of things.  Actions, like routes and variants, can accept config parameters which will allow you to input data required to perform the action.
@@ -188,6 +196,7 @@ You can expose "actions" which are represented as buttons.  These are meaningful
     })
 ```
 
+![route ex4](http://jhudson8.github.io/smocks/images/route-ex4.png)
 
 You can use dynamic parameters in the route path, get access to query parameters and the body payload.  See [path parameters](http://hapijs.com/api#path-parameters) for more details.
 
@@ -325,11 +334,9 @@ Config values are referenced using ```this.config('varName')``` where ```varName
       });
 ```
 
+![config example](http://jhudson8.github.io/smocks/images/config-ex1.png)
+
 The same ```config``` values can be applied at the variant level as well.
-
-The previous config example would look like this in the admin panel
-![admin panel](http://jhudson8.github.io/smocks/images/config-types.png)
-
 
 
 #### Route options
@@ -372,6 +379,30 @@ The real benefit to using ```smocks``` is that state can be maintained.  Within 
       }
     });
 ```
+
+
+#### Config, options and state, oh my
+
+There are 3 different ways of introducting dynamic behavior into your responses but each serve a different purpose.
+
+_config_
+
+Config values are exposed as input fields in the admin panel so you have the ability to change the value at runtime.
+
+These are accessed using ```this.config('varName')``` in any route handler.
+
+_options_
+
+Options are like config but are not exposed in the admin panel.  These are most useful to expose metadata for a global pugin.  For example, you could have a plugin that examined all requests and, if the user hasn't signed in yet, respond with a 401 error.  The routes could expose an option value that indicated whether they were routes that required authentication.
+
+These are accessed using ```this.option('varName')```.
+
+_state_
+
+State is used to, obviously, maintain state.  For example, if you expose a route that adds a new piece of data, you should store it in state.  The user can reset the state with a button on the admin panel.
+
+State values can be accessed using ```this.state('varName')```.
+State values can be set using ```this.state('varName', 'value')```.
 
 
 
@@ -421,6 +452,8 @@ The following plugin will add simulated latency (which can be controlled by the 
       })
 ```
 
+![plugin example](http://jhudson8.github.io/smocks/images/plugin-ex1.png)
+
 Or, check to see if the use has logged in (assuming the route exposed a ```requiresLogin``` option; see Route Options).  We are using state (see State) to track if the login endpoing has been hit prior to the current route.
 
 ```javascript
@@ -443,31 +476,6 @@ Or, check to see if the use has logged in (assuming the route exposed a ```requi
 
 
 
-#### Config, options and state, oh my
-
-There are 3 different ways of introducting dynamic behavior into your responses but each serve a different purpose.
-
-_config_
-
-Config values are exposed as input fields in the admin panel so you have the ability to change the value at runtime.
-
-These are accessed using ```this.config('varName')``` in any route handler.
-
-_options_
-
-Options are like config but are not exposed in the admin panel.  These are most useful to expose metadata for a global pugin.  For example, you could have a plugin that examined all requests and, if the user hasn't signed in yet, respond with a 401 error.  The routes could expose an option value that indicated whether they were routes that required authentication.
-
-These are accessed using ```this.option('varName')```.
-
-_state_
-
-State is used to, obviously, maintain state.  For example, if you expose a route that adds a new piece of data, you should store it in state.  The user can reset the state with a button on the admin panel.
-
-State values can be accessed using ```this.state('varName')```.
-State values can be set using ```this.state('varName', 'value')```.
-
-
-
 #### Profiles
 
 Using the Admin Panel, you can save all route, variant and config settings as a "profile".  Profiles can either be saved locally (using localStorage) or remotely by providing the code to update in your project.
@@ -475,6 +483,8 @@ Using the Admin Panel, you can save all route, variant and config settings as a 
 The profiles can also be changed using an admin endpoint (for example, to use this with an automated testing solution).  To do so, simply POST to {host}:{port}/_admin/api/profile/{profile name}.
 
 Global profiles can be set applied to the ```smocks``` object.  The easiest way to do this is to make your changes in the admin panel, enter the ```Profile Name``` in the settings header, and click the ```for everyone``` button.  You will be provided with the code that is necessary for the provide to be loaded globally.
+
+![profile example](http://jhudson8.github.io/smocks/images/profile-ex1.png)
 
 
 
