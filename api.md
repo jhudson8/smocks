@@ -339,7 +339,7 @@ The real benefit to using ```smocks``` is that state can be maintained.  Within 
 
 
 
-### Plugins
+#### Plugins
 
 Plugins can be used to perform an action on all requests or just to encapsulate a set of route handlers.  Plugins can have config values just like Routes or Variants.
 
@@ -432,7 +432,7 @@ State values can be set using ```this.state('varName', 'value')```.
 
 
 
-### Profiles
+#### Profiles
 
 Using the Admin Panel, you can save all route, variant and config settings as a "profile".  Profiles can either be saved locally (using localStorage) or remotely by providing the code to update in your project.
 
