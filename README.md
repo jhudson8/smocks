@@ -6,12 +6,13 @@ Stateful HTTP mocking service built on top of [HAPI](http://hapijs.com/).  Easil
 With smocks you can
 
 * create route definitions (with dynamic tokens)
-* define multiple route handlers (variants) for any route (selectable through an admin console)
-* add input configuration components for routes and variants (accessable through an admin console)
-* use a chainable interface to streamline route definitions
+* define multiple route handlers (variants) for for any route (selectable through an admin panel)
+* add input configuration components for routes and variants (accessable through an admin panel)
+* define actions which can manipulate the current state and be executed from the admin pnael
 * use route request handlers that can keep a state for true dynamic mocking capabilities
-* define global request handlers which can be selected for any route
+* define global request handlers (variants) which can be selected for any route
 * use plugins which can intercept all requests to perform actions
+* use a RESTful API to make configuration changes programatically
 
 
 Docs
