@@ -18,6 +18,40 @@ The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/a
 
 Sections
 --------------
+### Starting the server
+
+The ```smocks.start``` method is used to start the server.  It kes a single argument which can either be
+
+_an options object_
+This will call [start on a HAPI server](http://hapijs.com/api#serverstartcallback) and pass the options to that method.  Then, all of the defined routes will be applied to the HAPI server.
+
+You would want to at least provide the following attributes
+
+* _host_: 'localhost' for example
+* port: 8000 for example (use a number rather than a string)
+
+_a HAPI server instance_
+All of the routes will be applied but the server will not be started.
+
+```javascript
+var smocks = require('smocks');
+
+  smocks.route(...)
+
+  .route(...)
+
+  .start({
+    host: 'localhost',
+    port: 8000
+  });
+
+// or, you can call start directly from smocks
+smocks.start(...);
+```
+
+The HAPI server will automatically have CORS headers applied to allow calls from any external domain.
+
+
 ### Concepts
 #### Admin Panel
 Whenever the mock server is running, you can view an admin panel at ```{host}:{port}/_admin```.  Using this, you can
@@ -63,7 +97,7 @@ Add config parameters that are exposed through the admin panel
           type: 'boolean',
           defaultValue: false
         }
-      }
+      },
       handler: function(request, reply) {
         // you can control this value through the admin panel
         var agreementAccepted = this.config('agreementAccepted');
@@ -109,7 +143,7 @@ You can provide a display value which will be used when viewing the route detail
     smocks.route({
       // ...
       display: function() {
-        return '* this will show up as a <ul>';
+        return '* this will show up as a unordered list';
       }
     })
 ```
@@ -127,27 +161,29 @@ You can expose "actions" which are represented as buttons.  These are meaningful
           type: 'text',
           defaultValue: '999.867.5309'
         }
-      }
-    })
-
-    // now define our action for the previous route
-    .action({
-      id: 'the_action_id',
-      label: 'the button label',
-      config: {
-        yourName: {
-          label: 'What is your name?',
-          type: 'text',
-          defaultValue: 'John Doe'
-        }
       },
-      handler: function(config) {
-        // this is how you access action specific user input
-        var yourName = config.yourName;
-        // this is how you access user input created for the route
-        var phoneNumber = this.config('yourPhoneNumber');
-        // now I would perform whatever action needs to be taken
-        // I would make changes to "state" most likely (more about state later)
+
+      // now define our action for the previous route
+      actions: {
+        'the_action_id': {
+          label: 'the button label',
+          config: {
+            yourName: {
+              label: 'What is your name?',
+              type: 'text',
+              defaultValue: 'John Doe'
+            }
+          },
+          handler: function(config) {
+            // this is how you access action specific user input
+            var yourName = config.yourName;
+            // this is how you access user input created for the route
+            var phoneNumber = this.config('yourPhoneNumber');
+            // now I would perform whatever action needs to be taken
+            // I would make changes to "state" most likely (more about state later)
+          }          
+        }
+
       }
     })
 ```
@@ -256,7 +292,7 @@ Config values are referenced using ```this.config('varName')``` where ```varName
 ```javascript
     smock.route({
       ...
-      .config({
+      config: {
         aBooleanField: {
           label: 'Is this a checkbox?',
           type: 'boolean',
@@ -437,6 +473,20 @@ State values can be set using ```this.state('varName', 'value')```.
 Using the Admin Panel, you can save all route, variant and config settings as a "profile".  Profiles can either be saved locally (using localStorage) or remotely by providing the code to update in your project.
 
 The profiles can also be changed using an admin endpoint (for example, to use this with an automated testing solution).  To do so, simply POST to {host}:{port}/_admin/api/profile/{profile name}.
+
+Global profiles can be set applied to the ```smocks``` object.  The easiest way to do this is to make your changes in the admin panel, enter the ```Profile Name``` in the settings header, and click the ```for everyone``` button.  You will be provided with the code that is necessary for the provide to be loaded globally.
+
+
+
+### RESTful admin API
+_reset the state_
+POST to ```{host}:{port}/_admin/api/state/reset```
+
+_set an active route variant_
+POST to ```{host}:{port}/_admin/api/route/{routeId}/variant/{variantId}
+
+_select a profile_
+POST to ```/_admin/api/profile/{profile name}```
 
 
 
