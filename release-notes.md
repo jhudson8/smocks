@@ -2,7 +2,14 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.7...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v0.6.0...master)
+
+## v0.6.0 - June 30th, 2015
+- bug fix: handle default route handler correctly - a2c2a7b
+- allow global variants to have optional (route specific) config attributes - 1055c17
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.5.7...v0.6.0)
 
 ## v0.5.7 - June 19th, 2015
 - minor bug fixes - 5d10c1c
