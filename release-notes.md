@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.6.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.0...master)
+
+## v1.0.0 - July 3rd, 2015
+initial 1.0 release
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v0.6.0...v1.0.0)
 
 ## v0.6.0 - June 30th, 2015
 - bug fix: handle default route handler correctly - a2c2a7b
