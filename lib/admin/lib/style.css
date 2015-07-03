@@ -79,16 +79,22 @@ body {
   margin 0 12px;
 }
 
-.route:before {
+.route-title {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  outline: none; 
+}
+
+.route-title:before {
   content: "\25BE";
   display: inline-block;
   float: left;
-  padding-top: 4px;
   padding-right: 6px;
   margin-left: 12px;
 }
 
-.route-active:before {
+.route-active .route-title:before {
   -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
   -moz-transform: rotate(180deg);        /* FF */
   -o-transform: rotate(180deg);          /* Opera */
@@ -98,13 +104,6 @@ body {
   padding-right: 0;
   padding-bottom: 4px;
   padding-top: 0;
-}
-
-.route-title {
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  outline: none;
 }
 
 .route-title small {
