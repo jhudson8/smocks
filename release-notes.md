@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.1...master)
+
+## v1.0.1 - July 19th, 2015
+- bug fix: allow routes to use the "options" attribute - 030fc55
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.0...v1.0.1)
 
 ## v1.0.0 - July 3rd, 2015
 initial 1.0 release
