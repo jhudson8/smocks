@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.1...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.2...master)
+
+## v1.0.2 - July 20th, 2015
+- add sanity checks to prevent duplicate route / variant ids - 23c7aa3
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.1...v1.0.2)
 
 ## v1.0.1 - July 19th, 2015
 - bug fix: allow routes to use the "options" attribute - 030fc55
