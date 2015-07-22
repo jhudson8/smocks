@@ -1,6 +1,6 @@
 {
   "name": "smocks",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Stateful mock HTTP server using HAPI",
   "main": "index.js",
   "repository": {
