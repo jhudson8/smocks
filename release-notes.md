@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.2...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.3...master)
+
+## v1.0.3 - July 22nd, 2015
+- fix onAction bug - 1242e16
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.2...v1.0.3)
 
 ## v1.0.2 - July 20th, 2015
 - add sanity checks to prevent duplicate route / variant ids - 23c7aa3
