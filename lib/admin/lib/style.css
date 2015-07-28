@@ -132,7 +132,8 @@ body {
 }
 
 .profile-manager {
-  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .profiles-label {
@@ -207,3 +208,4 @@ body {
 .nav {
   margin-top: 10px;
 }
+
