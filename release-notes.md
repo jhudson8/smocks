@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.0...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.1...master)
+
+## v1.1.1 - July 28th, 2015
+- bug fix: add path to cookie state - 0eaaa68 (only applies if using the 'session' state)
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.0...v1.1.1)
 
 ## v1.1.0 - July 28th, 2015
 - added toHapiPlugin method to export a hapi plugin - 781bf91
