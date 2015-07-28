@@ -203,3 +203,7 @@ body {
 .route-display p:last-child {
   margin-bottom: 0;
 }
+
+.nav {
+  margin-top: 10px;
+}
