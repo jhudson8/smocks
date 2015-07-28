@@ -2,7 +2,23 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.3...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.0...master)
+
+## v1.1.0 - July 28th, 2015
+- added toHapiPlugin method to export a hapi plugin - 781bf91
+
+Returning a Hapi plugin can be done using
+
+```
+smocks.toHapiPlugin(options);
+```
+
+- make state pluggable and add cookie-based state - 0ee9dd0
+
+To use a session (cookie-based) state, include `state: 'session'` as a startup option
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.0.3...v1.1.0)
 
 ## v1.0.3 - July 22nd, 2015
 - fix onAction bug - 1242e16
