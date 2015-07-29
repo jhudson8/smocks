@@ -212,3 +212,9 @@ body {
   margin-top: 10px;
 }
 
+.permalink {
+  display: inline-block;
+  float: right;
+  margin-right: 12px;
+  margin-top: 4px;
+}
