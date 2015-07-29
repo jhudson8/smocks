@@ -129,6 +129,7 @@ body {
 
 .reset-state {
   margin-left: 24px;
+  float: right;
 }
 
 .profile-manager {
@@ -144,11 +145,13 @@ body {
 
 .profile-part {
   padding-right: 12px;
+  margin-bottom: 8px;
 }
 
 .profile-selector {
   display: inline-block;
   width: 200px;
+  margin-left: 1em;
 }
 
 .profile-name {
