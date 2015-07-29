@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.1...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.2...master)
+
+## v1.1.2 - July 29th, 2015
+- bug fix: local profile application was not setting fixture variant selections correctly - 9ce0aa7
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.1...v1.1.2)
 
 ## v1.1.1 - July 28th, 2015
 - bug fix: add path to cookie state - 0eaaa68 (only applies if using the 'session' state)
