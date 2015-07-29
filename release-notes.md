@@ -2,7 +2,14 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.3...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.4...master)
+
+## v1.1.4 - July 29th, 2015
+- update permalinks to ensure that only the specific permalinked fixture is visible.  And to be path/label specific based on when the permalink was clicked - 4872a6d
+- update filter component styles - c9f58f2
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.3...v1.1.4)
 
 ## v1.1.3 - July 29th, 2015
 - added fixture permalinks in admin panel - 89d93bc
