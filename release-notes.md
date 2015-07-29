@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.2...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.3...master)
+
+## v1.1.3 - July 29th, 2015
+- added fixture permalinks in admin panel - 89d93bc
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.2...v1.1.3)
 
 ## v1.1.2 - July 29th, 2015
 - bug fix: local profile application was not setting fixture variant selections correctly - 9ce0aa7
