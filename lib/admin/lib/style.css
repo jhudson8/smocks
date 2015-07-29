@@ -72,7 +72,7 @@ body {
   display: inline-block;
   margin-right: 12px;
   padding: 4px;
-  width: 200px;
+  width: 240px;
 }
 
 .route {
@@ -218,3 +218,16 @@ body {
   margin-right: 12px;
   margin-top: 4px;
 }
+
+@media (min-width: 700px) {
+  .route-filter {
+    width: 300px;
+  }
+}
+
+@media (min-width: 800px) {
+  .route-filter {
+    width: 400px;
+  }
+}
+
