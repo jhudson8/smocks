@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.4...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.5...master)
+
+## v1.1.5 - July 31st, 2015
+- fix reset state button in admin panel - 66b61c0
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.4...v1.1.5)
 
 ## v1.1.4 - July 29th, 2015
 - update permalinks to ensure that only the specific permalinked fixture is visible.  And to be path/label specific based on when the permalink was clicked - 4872a6d
