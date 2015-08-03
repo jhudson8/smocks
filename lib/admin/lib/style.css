@@ -1,5 +1,6 @@
 body {
   margin: 12px;
+  min-width: 768px;
 }
 
 .checkbox-form-control {
@@ -72,7 +73,7 @@ body {
   display: inline-block;
   margin-right: 12px;
   padding: 4px;
-  width: 240px;
+  width: 400px;
 }
 
 .route {
@@ -127,7 +128,7 @@ body {
   padding-left: 4px;
 }
 
-.reset-state {
+.reset-state, .reset-config {
   margin-left: 24px;
   float: right;
 }
@@ -145,7 +146,10 @@ body {
 
 .profile-part {
   padding-right: 12px;
-  margin-bottom: 8px;
+}
+
+.profile-part + .profile-part {
+  margin-top: 8px;
 }
 
 .profile-selector {
@@ -218,16 +222,3 @@ body {
   margin-right: 12px;
   margin-top: 4px;
 }
-
-@media (min-width: 700px) {
-  .route-filter {
-    width: 300px;
-  }
-}
-
-@media (min-width: 800px) {
-  .route-filter {
-    width: 400px;
-  }
-}
-
