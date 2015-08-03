@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.5...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.6...master)
+
+## v1.1.6 - August 3rd, 2015
+- add ability to reset route configuration in admin panel - 7f92a44
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.5...v1.1.6)
 
 ## v1.1.5 - July 31st, 2015
 - fix reset state button in admin panel - 66b61c0
