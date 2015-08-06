@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.6...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.7...master)
+
+## v1.1.7 - August 5th, 2015
+- fix profile loading bug - f36da2b
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.6...v1.1.7)
 
 ## v1.1.6 - August 3rd, 2015
 - add ability to reset route configuration in admin panel - 7f92a44
