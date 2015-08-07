@@ -2,7 +2,13 @@
 
 ## Development
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.8...master)
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.9...master)
+
+## v1.1.9 - August 7th, 2015
+- added route id and variant id to be displayed in admin console to assist with API access - 7514214
+
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.1.8...v1.1.9)
 
 ## v1.1.8 - August 6th, 2015
 - add getVariant method to route model for API access - 8cdf525
