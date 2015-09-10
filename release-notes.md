@@ -2,6 +2,22 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.2.0...master)
+
+## v1.2.0 - September 10th, 2015
+- Separated the smocks core from HAPI to allow for direct API access to fixtures
+
+You can no longer call `start` from the smocks instance.  Instead, use `smocks/hapi`.
+
+```
+var smocks = require('smocks');
+// add smocks fixtures just like you used to do
+
+var server = require('smocks/hapi');
+// same options as you used to do
+server.start(...);
+```
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.1.9...master)
 
 ## v1.1.9 - August 7th, 2015
