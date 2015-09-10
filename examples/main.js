@@ -1,4 +1,5 @@
 var smocks = require('smocks');
+var server = require('smocks/hapi');
 
 // notice the request handler methods (respondWith) methods
 // The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler)
@@ -103,7 +104,7 @@ smocks.route({
   })
 
 
-.start({
+server.start({
     host: 'localhost',
     port: 8000
 });
