@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.2.1...master)
+
+## v1.2.1 - September 11th, 2015
+- bug fix: don't use `reply.file` in admin pages
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.2.0...master)
 
 ## v1.2.0 - September 10th, 2015
