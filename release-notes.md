@@ -4,6 +4,11 @@
 
 [Commits](https://github.com/jhudson8/smocks/compare/v1.2.1...master)
 
+## v1.2.2 - September 29th, 2015
+- bug fix: fix select box input plugin
+
+[Commits](https://github.com/jhudson8/smocks/compare/v1.2.1...master)
+
 ## v1.2.1 - September 11th, 2015
 - bug fix: don't use `reply.file` in admin pages
 
