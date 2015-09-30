@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.3.0...master)
+
+## v1.2.2 - September 29th, 2015
+- Add ability to replay HAR recordings (only JSON responses)
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.2.1...master)
 
 ## v1.2.2 - September 29th, 2015
