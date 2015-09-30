@@ -222,3 +222,38 @@ body {
   margin-right: 12px;
   margin-top: 4px;
 }
+
+.har-form {
+  padding: 10px;
+}
+
+.har-form .info {
+  display: flex;
+}
+
+.har-form input {
+  flex-grow: 1;
+}
+
+.har-form-label {
+  padding-right: 12px;
+  line-height: 30px;
+}
+
+.har-details-file label {
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.har-details-body {
+  margin-left: 20px;
+}
+
+.har-details-item.responded {
+  color: green;
+  text-decoration: line-through;
+}
+
+.har-details {
+  margin: 0 12px;
+}
