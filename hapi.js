@@ -14,6 +14,11 @@ var _inputs = {
 
 module.exports = {
   toPlugin: function(options) {
+    if (options.options) {
+      smocks.initOptions = options.options;
+      delete options.options;
+    }
+
     smocks._sanityCheckRoutes();
     options = smocks._sanitizeOptions(options);
 
@@ -30,6 +35,11 @@ module.exports = {
   },
 
   start: function(options) {
+    if (options.options) {
+      smocks.initOptions = options.options;
+      delete options.options;
+    }
+
     smocks._sanityCheckRoutes();
     options = smocks._sanitizeOptions(options);
 

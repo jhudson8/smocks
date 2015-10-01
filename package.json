@@ -8,12 +8,15 @@
     "url": "https://github.com/jhudson8/smocks.git"
   },
   "keywords": [
-    "hapi", "mock", "http"
+    "hapi",
+    "mock",
+    "http"
   ],
   "author": "Joe Hudson <joehud@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^3.9.3",
-    "hapi": "^8.6.1"
+    "babel": "^5.8.23",
+    "hapi": "^8.6.1",
+    "lodash": "^3.9.3"
   }
 }
