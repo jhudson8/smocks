@@ -1,259 +1,67 @@
 body {
-  margin: 12px;
-  min-width: 768px;
+  padding: 20px;
+  margin: auto;
+  min-width: 800px;
+  max-width: 1024px;
 }
 
-.checkbox-form-control {
-  border: 0;
+.route-description {
+  position: relative;
 }
 
-.config-list {
+.route-description h3 {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  margin-top: 14px;
+}
+
+.route-description-body {
   margin-top: 12px;
 }
 
-.config-list input, .config-list select {
-  max-width: 280px;
-}
-
-.config-checkbox input {
+.actions .button, .variants .button {
   display: inline-block;
-  float: left;
-}
-
-.config-checkbox label {
-  display: inline-block;
-  margin-left: .6em;
-}
-
-
-.multiselect-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.multiselect-option {
-  display: inline-block;
-  padding-right: 2em;
-}
-
-.multiselect-option input {
-  display: inline-block;
-  margin-right: .6em;
-}
-
-.route-active {
-  padding-bottom: 4px;
-  border: solid 1px #ccc;
-}
-
-.route-active:first-child {
-  border-top: none;
-}
-
-.info {
-  padding: 8px;
-  background-color: #d9edf7;
-  border: solid 1px #ccc;
-}
-
-.action-group {
-  margin-bottom: 12px;
-}
-
-.route-active .route-body {
-  margin-left: 48px;
-}
-
-.route-active .route-body {
-  margin-bottom: 10px;
-  margin-right: 24px;
-}
-
-.route-filter {
-  display: inline-block;
-  margin-right: 12px;
-  padding: 4px;
-  width: 340px;
-}
-
-.route {
-  margin 0 12px;
-}
-
-.route-title {
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  outline: none; 
-}
-
-.route-title:before {
-  content: "\25BE";
-  display: inline-block;
-  float: left;
-  padding-right: 6px;
-  margin-left: 12px;
-}
-
-.route-active .route-title:before {
-  -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
-  -moz-transform: rotate(180deg);        /* FF */
-  -o-transform: rotate(180deg);          /* Opera */
-  -ms-transform: rotate(180deg);         /* IE9 */
-  transform: rotate(180deg);             /* W3C compliant browsers */
-  padding-left: 6px;
-  padding-right: 0;
-  padding-bottom: 4px;
-  padding-top: 0;
-}
-
-.route-title small {
-  display: inline-block;
-  padding-left: 1em;
-  font-size: 12px;
-}
-
-.display-selector {
-  display: inline-block;
-  margin-bottom: 0;
-}
-
-.display-selector-choice {
-  display: inline-block;
-  padding-left: 10px;
-}
-
-.display-selector-choice label {
-  display: inline-block;
-  padding-left: 4px;
-}
-
-.reset-state, .reset-config {
-  margin-left: 24px;
-  float: right;
-}
-
-.profile-manager {
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
-
-.profiles-label {
-  font-size: 1.2em;
-  font-weight: 800;
-  display: inline-block;
-}
-
-.profile-part {
-  padding-right: 12px;
-}
-
-.profile-part + .profile-part {
-  margin-top: 8px;
-}
-
-.profile-selector {
-  display: inline-block;
-  width: 200px;
-  margin-left: 1em;
-}
-
-.profile-name {
-  display: inline-block;
-  width: 180px;
-  margin-left: 6px;
-}
-
-.route-label {
-  margin-top: 12px;
-  font-weight: 800;
-}
-
-.variant {
-  display: inline-block;
-  border: solid 1px #3694f9;
-  padding: 4px 10px;
-  border-radius: 15px;
-  margin-top: 8px;
-  margin-left: 12px;
-  padding-right: 16px;
-}
-
-.variant.selected {
-  background-color: #3694f9;
-  color: #fff;
-}
-
-.variant label {
-  display: inline-block;
-  margin-left: 6px;
-  margin-bottom: 0;
-  font-weight: normal;
-}
-
-.variant input {
-  outline: none;
-}
-
-.actions {
-  margin-top: 10px;
-}
-
-.actions h5 {
-  font-size: 18px;
-  border-bottom: solid 1px #ccc;
-}
-
-.actions .action-button, .pending-action-actions button {
-  margin-right: 12px;
-}
-
-.route-display p:last-child {
-  margin-bottom: 0;
-}
-
-.nav {
-  margin-top: 10px;
-}
-
-.permalink {
-  display: inline-block;
-  float: right;
-  margin-right: 12px;
   margin-top: 4px;
 }
 
-.har-form {
-  padding: 10px;
+.pending-action-message h5 {
+  border-bottom: solid 1px #CCC;
 }
 
-.har-form .info {
-  display: flex;
+.closed.route-description {
+  cursor: pointer;
 }
 
-.har-form input {
-  flex-grow: 1;
+.route-specific-details {
+  margin-top: 20px;
 }
 
-.har-form-label {
-  padding-right: 12px;
-  line-height: 30px;
+.permalink.button {
+  position: absolute;
+  top: 12px;
+  right: 68px;
 }
 
-.har-details-file label {
-  display: inline-block;
-  margin-right: 12px;
+.view-endpoint.button {
+  position: absolute;
+  top: 12px;
+  right: 118px;
 }
 
-.har-details-body {
-  margin-left: 20px;
+.filter-input {
+  width: 460px;
 }
 
-.har-details-item.responded {
-  color: green;
-  text-decoration: line-through;
+@media(max-width: 1023px) {
+  .filter-input {
+    width: 360px;
+  }
 }
 
-.har-details {
-  margin: 0 12px;
+@media(max-width: 920px) {
+  .filter-input {
+    width: 260px;
+  }
 }
+
