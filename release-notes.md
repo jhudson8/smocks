@@ -2,6 +2,12 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.0...master)
+
+## v1.4.0 - October 1st, 2015
+- Added ability to upload HAR files which will override mock responses
+- MASSIVE overhaul of admin panel
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.3.1...master)
 
 ## v1.3.1 - September 29th, 2015
