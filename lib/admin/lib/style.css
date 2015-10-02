@@ -40,28 +40,58 @@ body {
 .permalink.button {
   position: absolute;
   top: 12px;
-  right: 68px;
+  right: 88px;
 }
 
 .view-endpoint.button {
   position: absolute;
   top: 12px;
-  right: 118px;
+  right: 130px;
+}
+
+.tab-container {
+  position: relative;
+}
+
+.tab-action-buttons {
+  position: absolute;
+  right: 20px;
+}
+
+.file-upload-box {
+  font-weight: bold;
+  text-align: center;
+  padding: 1em 0;
+  margin: 1em 0;
+  color: #555;
+  border: 2px dashed #555;
+  border-radius: 7px;
+  cursor: default;
+  height: 340px;
+  position: relative;
+}
+.file-upload-box.hovering {
+  background-color: #fcfff5;
+  border-color: #2c662d;
+}
+
+.har-details-file {
+  margin-left: 20px;
 }
 
 .filter-input {
-  width: 460px;
+  width: 600px;
 }
 
 @media(max-width: 1023px) {
   .filter-input {
-    width: 360px;
+    width: 500px;
   }
 }
 
 @media(max-width: 920px) {
   .filter-input {
-    width: 260px;
+    width: 400px;
   }
 }
 
