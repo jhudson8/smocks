@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.2...master)
+
+## v1.4.2 - October 2nd 2015
+- fix select component and profile management 
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.1...master)
 
 ## v1.4.1 - October 1st, 2015
