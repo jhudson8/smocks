@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.1...master)
+
+## v1.4.1 - October 1st, 2015
+- small fix to cache transpiled JSX code for admin panel
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.0...master)
 
 ## v1.4.0 - October 1st, 2015
