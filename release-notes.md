@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.6...master)
+
+## v1.4.6 - October 3rd 2015
+- add dynamic HAR tracking
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.5...master)
 
 ## v1.4.5 - October 3rd 2015
