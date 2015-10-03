@@ -499,6 +499,25 @@ _select a profile_
 POST to ```/_admin/api/profile/{profile name}```
 
 
+#### HTTP Archive (HAR) Reply
+
+Using [Google Chrome](http://www.google.com/chrome/) and other browsers, you can create a [HAR](https://en.wikipedia.org/wiki/.har) file which is basically a recording of the network activity during your session.
+
+The smocks server has the ability to upload a [HAR](https://en.wikipedia.org/wiki/.har) file and reply the exact payloads as seen in the browsing session.  This is intended to only be used with a RESTful API and has the following caviats
+
+* Only the `.json` responses will be recorded
+* The HAR response will be rendered as long as the path and method match (query parameters and request payload are not evaluated)
+* Network calls defined in the HAR but are not defined with the Smocks server will return a 404
+
+Click the ***Har Reply*** tab to upload a HAR file
+
+![profile example](http://jhudson8.github.io/smocks/images/har-empty.png)
+
+Drag and drop your HAR file into the `HTTP Archive Upload` box
+
+![profile example](http://jhudson8.github.io/smocks/images/har-uploaded.png)
+
+
 
 API
 --------------
