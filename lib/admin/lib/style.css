@@ -1,4 +1,9 @@
 body {
+  margin: 0;
+  padding: 0;
+}
+
+#content {
   position: relative;
   padding: 20px;
   margin: auto;
@@ -133,4 +138,23 @@ body {
 .ribbon {
   left: calc((100% + 1rem) + 1.75em) !important;
   top: -4px;
+}
+
+#success-message {
+  display: none;
+  z-index: 2;
+  width: 100%;
+  position: fixed;
+  top: 66px;
+  opacity: 0.9;
+}
+
+#success-message .message {
+  margin: auto;
+  max-width: 600px;
+  padding: 6px !important;
+}
+
+#success-message.visible {
+  display: block;
 }
