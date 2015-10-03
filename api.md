@@ -499,7 +499,7 @@ _select a profile_
 POST to ```/_admin/api/profile/{profile name}```
 
 
-#### HTTP Archive (HAR) Reply
+### HTTP Archive Reply
 
 Using [Google Chrome](http://www.google.com/chrome/) and other browsers, you can create a [HAR](https://en.wikipedia.org/wiki/.har) file which is basically a recording of the network activity during your session.
 
