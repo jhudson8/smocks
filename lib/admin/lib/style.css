@@ -100,8 +100,9 @@ body {
   position: relative;
 }
 .file-upload-box.hovering {
-  background-color: #fcfff5;
-  border-color: #2c662d;
+  background-color: #2c662d;
+  border-color: #FFF;
+  color: #FFF;
 }
 
 .har-item {
