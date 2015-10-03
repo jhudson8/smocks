@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.3...master)
+
+## v1.4.3 - October 3rd 2015
+- bug fix: don't show view link for non-GET fixtures
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.2...master)
 
 ## v1.4.2 - October 2nd 2015
