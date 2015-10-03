@@ -2,6 +2,13 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.8...master)
+
+## v1.4.8 - October 3rd 2015
+- admin style updates
+
+yes, I should let the release bake so I don't have to release so often but... that's how I do things
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.7...master)
 
 ## v1.4.7 - October 3rd 2015
