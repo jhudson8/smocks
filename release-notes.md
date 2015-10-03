@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.7...master)
+
+## v1.4.7 - October 3rd 2015
+- fix route rendering after HAR reset
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.6...master)
 
 ## v1.4.6 - October 3rd 2015
