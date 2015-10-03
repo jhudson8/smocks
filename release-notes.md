@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.5...master)
+
+## v1.4.5 - October 3rd 2015
+- add logo
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.4...master)
 
 ## v1.4.4 - October 3rd 2015
