@@ -2,7 +2,7 @@ body {
   position: relative;
   padding: 20px;
   margin: auto;
-  min-width: 860px;
+  min-width: 876px;
   max-width: 1024px;
   padding-top: 10px;
 }
@@ -18,6 +18,20 @@ body {
   background-repeat: no-repeat;
   text-indent: -1000;
   line-height: 28px;
+}
+
+.filter-container {
+  flex-grow: 1;
+}
+
+.filter-container > .input {
+  position: relative;
+  top: -4px;
+  margin-left: 28px;
+}
+
+.filter-container > .input, .filter-container > .input > input {
+  width: 100% !important;
 }
 
 .route-description {
@@ -115,24 +129,7 @@ body {
   text-overflow: ellipsis;
 }
 
-.filter-input {
-  width: 600px;
-}
-
 .ribbon {
   left: calc((100% + 1rem) + 1.75em) !important;
   top: -4px;
 }
-
-@media(max-width: 1023px) {
-  .filter-input {
-    width: 500px;
-  }
-}
-
-@media(max-width: 920px) {
-  .filter-input {
-    width: 400px;
-  }
-}
-
