@@ -13,6 +13,7 @@ With smocks you can
 * define global request handlers (variants) which can be selected for any route
 * use plugins which can intercept all requests to perform actions
 * use a RESTful API to make configuration changes programatically
+* Replay exports from HAR files
 
 
 Docs
@@ -42,4 +43,4 @@ Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/example
 The ```respondWith``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler).
 
 The admin panel shows you all of the routes you define and provides an interface to select different ways that routes should respond or update config values.
-![admin panel](http://jhudson8.github.io/smocks/images/main-admin-panel-example.png)
+![admin panel](http://jhudson8.github.io/smocks/images/main.png)
