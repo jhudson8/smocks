@@ -90,6 +90,10 @@ body {
   border-color: #2c662d;
 }
 
+.har-item {
+  margin-bottom: 8px;
+}
+
 .har-details-file {
   margin-left: 20px;
 }
