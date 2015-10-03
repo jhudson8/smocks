@@ -79,6 +79,14 @@ body {
   margin-left: 20px;
 }
 
+.variants .button {
+  width: 49%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .filter-input {
   width: 600px;
 }
