@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v1.4.4...master)
+
+## v1.4.4 - October 3rd 2015
+- bug fix: rix RESTful endpoints
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.3...master)
 
 ## v1.4.3 - October 3rd 2015
