@@ -39,13 +39,13 @@ body {
 
 .permalink.button {
   position: absolute;
-  top: 12px;
+  top: 9px;
   right: 88px;
 }
 
 .view-endpoint.button {
   position: absolute;
-  top: 12px;
+  top: 9px;
   right: 130px;
 }
 
@@ -89,6 +89,11 @@ body {
 
 .filter-input {
   width: 600px;
+}
+
+.ribbon {
+  left: calc((100% + 1rem) + 1.75em) !important;
+  top: -4px;
 }
 
 @media(max-width: 1023px) {
