@@ -118,13 +118,9 @@ body {
   font-size: 16px;
 }
 
-.har-item i {
-  margin-top: -4px;
-}
-
 .har-details-file {
   position: relative;
-  margin-left: 48px;
+  margin-left: 24px;
   padding-top: 12px;
 }
 
@@ -143,16 +139,17 @@ body {
   top: 8px;
 }
 .har-start-marker-handle > i {
-  cursor: pointer;
+  cursor: move;
+}
+.har-item-route {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
-.har-start-marker-handle > i, .har-item {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.har-item {
+  display: flex;
 }
 
 .har-item.supressed {
