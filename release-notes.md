@@ -2,6 +2,17 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.0.0...master)
+
+## v2.0.0 - October 3rd 2015
+
+Fresh new look, ability to replay HAR sessions, and a bunch of other stability enhancements.  You must now assign an id to your smocks instance using
+```
+require('smocks').id('my-project');
+```
+This allows you to have multiple project using smocks to have their own locally saved profiles - but the server will not start unless you set an id.
+
+
 [Commits](https://github.com/jhudson8/smocks/compare/v1.4.8...master)
 
 ## v1.4.8 - October 3rd 2015
