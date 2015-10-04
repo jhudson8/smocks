@@ -139,7 +139,7 @@ body {
   top: -4px;
 }
 
-#success-message {
+#message {
   display: none;
   z-index: 2;
   width: 100%;
@@ -150,17 +150,17 @@ body {
   transition: opacity 1s;
 }
 
-#success-message .message {
+#message .message {
   margin: auto;
   max-width: 600px;
   padding: 6px !important;
 }
 
-#success-message.visible {
+#message.visible {
   display: block;
 }
 
-#success-message.fading {
+#message.fading {
   display: block;
   opacity: 0;
 }
