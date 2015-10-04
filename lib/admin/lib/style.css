@@ -6,7 +6,6 @@ body {
 #content {
   position: relative;
   padding: 20px;
-  margin: auto;
   min-width: 876px;
   max-width: 1024px;
   padding-top: 10px;
@@ -146,7 +145,9 @@ body {
   width: 100%;
   position: fixed;
   top: 66px;
-  opacity: 0.9;
+  opacity: 1;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 }
 
 #success-message .message {
@@ -158,3 +159,9 @@ body {
 #success-message.visible {
   display: block;
 }
+
+#success-message.fading {
+  display: block;
+  opacity: 0;
+}
+
