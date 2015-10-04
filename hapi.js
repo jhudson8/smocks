@@ -35,6 +35,9 @@ module.exports = {
   },
 
   start: function(options) {
+    if (!smocks.id()) {
+      throw new Error('You must set an id value for the smocks instance... smocks.id("my-project")');
+    }
     if (options.options) {
       smocks.initOptions = options.options;
       delete options.options;
