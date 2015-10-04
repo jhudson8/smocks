@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.0.1...master)
+
+## v2.0.1 - October 4th 2015
+- Add fancier error messaging to match the fancy success messaging
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.0.0...master)
 
 ## v2.0.0 - October 3rd 2015
