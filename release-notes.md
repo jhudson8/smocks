@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.0.2...master)
+
+## v2.0.2 - October 6th 2015
+- add more details to HAR data in admin page
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.0.1...master)
 
 ## v2.0.1 - October 4th 2015
