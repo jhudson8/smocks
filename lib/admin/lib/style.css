@@ -112,6 +112,9 @@ body {
 .har-item {
   margin-bottom: 8px;
 }
+.har-item:nth-child(odd) {
+  background-color: #EFEFEF;
+}
 
 .har-item span, .har-item a {
   line-height: 24px;
@@ -132,7 +135,7 @@ body {
 }
 .har-start-marker-line {
   border-top: dashed 3px #999;
-  width: 300px;
+  width: 580px;
   height: 1px;
   position: absolute;
   left: 28px;
@@ -155,6 +158,40 @@ body {
 .har-item.supressed {
   opacity: 0.3;
   text-decoration: line-through;
+}
+.response-time-fill {
+  display: inline-block;
+  background-color: rgb(39, 111, 134);
+  height: 100%;
+  border-radius: 6px;
+}
+.response-time-fill.error {
+  background-color: rgb(219, 40, 40);
+}
+.response-status-code {
+  display: inline-block;
+  width: 80px;
+}
+.response-status-code.error {
+  color: rgb(219, 40, 40);
+}
+.response-time {
+  display: inline-block;
+  width: 100px;
+}
+.response-time-graph {
+  width: 400px;
+  height: 12px;
+  border: solid 1px #DEDEDE;
+  display: inline-block;
+  border-radius: 6px;
+}
+.path-method {
+  display: inline-block;
+  width: 80px;
+}
+.path-uri {
+  display: inline-block;
 }
 
 .variants .button {

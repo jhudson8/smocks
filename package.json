@@ -17,6 +17,7 @@
   "dependencies": {
     "babel": "^5.8.23",
     "hapi": "^8.6.1",
-    "lodash": "^3.9.3"
+    "lodash": "^3.9.3",
+    "moment": "^2.10.6"
   }
 }
