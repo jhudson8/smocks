@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.0.3...master)
+
+## v2.0.3 - October 6th 2015
+- add har call preview functionality
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.0.2...master)
 
 ## v2.0.2 - October 6th 2015
