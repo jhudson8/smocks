@@ -186,6 +186,10 @@ body {
   display: inline-block;
   border-radius: 6px;
 }
+.response-viewer {
+  display: inline-block;
+  margin-left: 12px;
+}
 .path-method {
   display: inline-block;
   width: 80px;
