@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.0.4...master)
+
+## v2.0.4 - October 14th 2015
+- minor admin panel style fixes
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.0.3...master)
 
 ## v2.0.3 - October 6th 2015
