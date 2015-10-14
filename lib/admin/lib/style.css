@@ -24,6 +24,18 @@ body {
   line-height: 28px;
 }
 
+.route-description {
+  -webkit-transition: height .1s !important;
+  transition: height .1s !important;
+}
+.route-description.selected {
+  height: 460px;
+  overflow-y: scroll;
+}
+.route-description.closed {
+  height: 52px;
+}
+
 .filter-container {
   flex-grow: 1;
 }
