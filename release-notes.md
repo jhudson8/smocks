@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.0.5...master)
+
+## v2.0.5 - October 15th 2015
+- bug fix: ensure the first variant defined for a route is used as the default
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.0.4...master)
 
 ## v2.0.4 - October 14th 2015
