@@ -118,8 +118,6 @@ function configServer(server) {
         method: route.method(),
         path: route.path(), 
         handler: function(request, reply) {
-          reply = wrapReply(request, reply, _plugins);
-
           if (!smocks.state.isInitialized(request)) {
             _.each(_routes, function(route) {
               route.resetRouteVariant(request);
@@ -143,6 +141,7 @@ function configServer(server) {
                 handlePlugins();
               }
             } else {
+              reply = wrapReply(request, reply, _plugins);
               route._handleRequest.call(route, request, reply);
             }
           }

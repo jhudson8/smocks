@@ -518,6 +518,30 @@ Drag and drop your HAR file into the `HTTP Archive Upload` box
 ![profile example](http://jhudson8.github.io/smocks/images/har-uploaded.png)
 
 
+### Proxying
+You can use smocks to be a straight proxy to another server.  To do so, you must provide the proxy details in the hapi start options.
+
+```
+smocks.start({
+  port: 8000,
+  host: 'localhost',
+  options: {
+    proxy: {
+      '{key shown in admin panel}': '{fully qualified endpoint prefix before the request path}',
+      // example
+      'google': 'http://www.google.com'
+      // or, using a function
+      'google': function (request) {
+        return ...
+      }
+    }
+  }
+});
+```
+
+View the `Config` tab on the admin panel to make any proxy setting changes.
+
+
 
 API
 --------------
