@@ -20,36 +20,24 @@ Sections
 --------------
 ### Starting the server
 
-The ```smocks.start``` method is used to start the server.  It kes a single argument which can either be
+The mock server can run without the context of an actual hapi server (for direct API access).  Use the `smocks/hapi` module instead.
 
-_an options object_
-This will call [start on a HAPI server](http://hapijs.com/api#serverstartcallback) and pass the options to that method.  Then, all of the defined routes will be applied to the HAPI server.
+The ```require('smocks/hapi').start(hapiOptions, smocksOptions)``` method is used to start the server.
 
-You would want to at least provide the following attributes
+* ***hapiOptions***: the hapi connection options (at least `host` and `port` must be provided)
+* ***smocksOptions***: (optional) and smocks options to be provided
 
-* _host_: 'localhost' for example
-* port: 8000 for example (use a number rather than a string)
+For example
 
-_a HAPI server instance_
-All of the routes will be applied but the server will not be started.
-
-```javascript
-var smocks = require('smocks');
-
-  smocks.route(...)
-
-  .route(...)
-
-  .start({
-    host: 'localhost',
-    port: 8000
-  });
-
-// or, you can call start directly from smocks
-smocks.start(...);
+```
+// initialize smocks routes here
+require('smocks/hapi').start({
+  host: 'localhost',
+  port: 8080
+});
 ```
 
-The HAPI server will automatically have CORS headers applied to allow calls from any external domain.
+The HAPI server will automatically have CORS headers applied unless the `routes` attribute is provided in the hapi options.
 
 
 ### Concepts

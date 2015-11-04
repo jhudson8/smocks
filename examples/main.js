@@ -105,8 +105,8 @@ smocks.route({
 
 
 server.start({
-    host: 'localhost',
-    port: 8000
+  host: 'localhost',
+  port: 8000
 });
 
 

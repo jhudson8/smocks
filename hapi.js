@@ -15,8 +15,7 @@ var _inputs = {
 module.exports = {
   toPlugin: function(options) {
     if (options.options) {
-      smocks.initOptions = options.options;
-      delete options.options;
+      smocks.initOptions = options.smocksOptions || {};
     }
 
     smocks._sanityCheckRoutes();
@@ -34,29 +33,28 @@ module.exports = {
     return register;
   },
 
-  start: function(options) {
+  start: function(hapiOptions, smocksOptions) {
     if (!smocks.id()) {
       throw new Error('You must set an id value for the smocks instance... smocks.id("my-project")');
     }
-    if (options.options) {
-      smocks.initOptions = options.options;
-      delete options.options;
+
+    hapiOptions = hapiOptions || {};
+    var hapiServerOptions = hapiOptions.server;
+    var hapiConnectionOptions = hapiOptions.connection;
+    if (!hapiServerOptions && !hapiConnectionOptions) {
+      hapiConnectionOptions = hapiOptions;
+    }
+    smocksOptions = smocks._sanitizeOptions(smocksOptions || {});
+
+    smocks.initOptions = smocksOptions;
+    smocks._sanityCheckRoutes();
+
+    if (!hapiConnectionOptions.routes) {
+      hapiConnectionOptions.routes = { cors: true };
     }
 
-    smocks._sanityCheckRoutes();
-    options = smocks._sanitizeOptions(options);
-
-    var cors = options.cors || true;
-    delete options.cors;
-
-    var server = new Hapi.Server({
-      connections: {
-        routes: {
-          cors: cors
-        }
-      }
-    });
-    server.connection(options);
+    var server = new Hapi.Server(hapiServerOptions);
+    server.connection(hapiConnectionOptions);
 
     configServer(server);
     server.start(function(err) {
@@ -65,7 +63,7 @@ module.exports = {
         process.exit(1);
       }
     });
-    console.log('started smocks server on ' + options.port + '.  visit http://localhost:' + options.port + '/_admin to configure');
+    console.log('started smocks server on ' + hapiConnectionOptions.port + '.  visit http://localhost:' + hapiConnectionOptions.port + '/_admin to configure');
 
     return {
       server: server,
