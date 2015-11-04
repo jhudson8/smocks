@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.1.1...master)
+
+## v2.1.1 - November 3rd 2015
+
+- downgrade wreck to be compatable with v1
 
 [Commits](https://github.com/jhudson8/smocks/compare/v2.1.0...master)
 
