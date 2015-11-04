@@ -2,6 +2,29 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.2.0...master)
+
+## v2.2.0 - November 4th 2015
+
+- hapi server start config params has changed.  See details below
+
+The ```require('smocks/hapi').start(hapiOptions, smocksOptions)``` method is used to start the server.
+
+* ***hapiOptions***: the hapi connection options (at least `host` and `port` must be provided)
+* ***smocksOptions***: (optional) and smocks options to be provided
+
+For example
+
+```
+// initialize smocks routes here
+require('smocks/hapi').start({
+  host: 'localhost',
+  port: 8080
+});
+```
+
+The HAPI server will automatically have CORS headers applied unless the `routes` attribute is provided in the hapi options.
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.1.1...master)
 
 ## v2.1.1 - November 3rd 2015
