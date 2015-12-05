@@ -13,22 +13,29 @@ var _inputs = {
 
 
 module.exports = {
-  toPlugin: function(options) {
-    if (options.options) {
-      smocks.initOptions = options.smocksOptions || {};
-    }
+  toPlugin: function(pluginOptions, smocksOptions) {
+    pluginOptions = pluginOptions || {};
+    smocksOptions = smocksOptions || {};
+    smocks.initOptions = smocksOptions;
 
     smocks._sanityCheckRoutes();
-    options = smocks._sanitizeOptions(options);
+    options = smocks._sanitizeOptions(smocksOptions);
 
-    var register = function (server, _options, next) {
-      if (options.onRegister) {
-        options.onRegister(server, _options);
-        delete options.onInitialize;
+    var register = function (server, options, next) {
+      function _next (err) {
+        if (err) {
+          next(err);
+        } else {
+          configServer(server);
+          next();
+        }
       }
 
-      configServer(server);
-      return next();
+      if (pluginOptions.onRegister) {
+        pluginOptions.onRegister(server, options, _next);
+      } else {
+        _next();
+      }
     };
     return register;
   },

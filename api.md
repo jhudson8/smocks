@@ -19,25 +19,38 @@ With smocks you can
 Sections
 --------------
 ### Starting the server
+After you define your fixtures, you will want to start the server (or you can actually refer to your fixtures with an API if you want to use with unit tests).
 
-The mock server can run without the context of an actual hapi server (for direct API access).  Use the `smocks/hapi` module instead.
+There are 2 ways to start the server:
 
-The ```require('smocks/hapi').start(hapiOptions, smocksOptions)``` method is used to start the server.
-
-* ***hapiOptions***: the hapi connection options (at least `host` and `port` must be provided)
-* ***smocksOptions***: (optional) and smocks options to be provided
-
-For example
-
+Starting the server directly
 ```
-// initialize smocks routes here
 require('smocks/hapi').start({
-  host: 'localhost',
-  port: 8080
+  // options provided to Hapi.Server.start
+  port: 8080,
+  host: 'localhost'
+}, {
+  // smocks core options
 });
 ```
 
-The HAPI server will automatically have CORS headers applied unless the `routes` attribute is provided in the hapi options.
+Or, you can just export a Hapi plugin to be included elsewhere
+```
+var plugin = require('smocks/hapi').toPlugin({
+  // hapi plugin options
+  onRegister: function (server, options, next) {
+    // this is optional but "next" must be called if used
+  }
+}, {
+  // smocks core options
+});
+plugin.attributes = {
+  pkg: require('/path/to/package.json')
+};
+module.exports = plugin;
+```
+
+The different smocks core options are discussed in detail below.
 
 
 ### Concepts
@@ -505,23 +518,42 @@ Drag and drop your HAR file into the `HTTP Archive Upload` box
 
 ![profile example](http://jhudson8.github.io/smocks/images/har-uploaded.png)
 
+There may be cases where you need to alter the URL of what is in the `.har` file to match what the
+mock server will respond to.  These can be set as `pathMapper` in the `har` options when starting the smocks server
+```
+require('smocks/hapi').start({
+  // hapi options
+}, {
+  // smocks options
+  har: {
+    pathMapper: function (path) {
+      if (pathFromHarShouldBeReturned) {
+        return convertPathInSomeWay(path); // or leave as-is
+      }
+      // if nothing is returned, the mock server will just respond
+      // normally to what would represent this path
+    }
+  },
+```
+
 
 ### Proxying
 You can use smocks to be a straight proxy to another server.  To do so, you must provide the proxy details in the hapi start options.
-
+n
 ```
-smocks.start({
+require('smocks/hapi').start({
+  // hapi options
   port: 8000,
   host: 'localhost',
-  options: {
-    proxy: {
-      '{key shown in admin panel}': '{fully qualified endpoint prefix before the request path}',
-      // example
-      'google': 'http://www.google.com'
-      // or, using a function
-      'google': function (request) {
-        return ...
-      }
+}, {
+  // smocks options
+  proxy: {
+    '{key shown in admin panel}': '{fully qualified endpoint prefix before the request path}',
+    // example
+    'google': 'http://www.google.com'
+    // or, using a function
+    'google': function (request) {
+      return ...
     }
   }
 });
