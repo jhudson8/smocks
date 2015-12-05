@@ -14,6 +14,7 @@ With smocks you can
 * use plugins which can intercept all requests to perform actions
 * use a RESTful API to make configuration changes programatically
 * Replay exports from HAR files
+* be able to use as a direct proxy to real service endpoints
 
 
 Docs
