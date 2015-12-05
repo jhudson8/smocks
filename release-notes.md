@@ -2,6 +2,12 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.3.1...master)
+
+## v2.3.1 - December 5th 2015
+
+- remove accidental console log
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.3.0...master)
 
 ## v2.3.0 - December 5th 2015
