@@ -2,6 +2,30 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v2.3.0...master)
+
+## v2.3.0 - December 5th 2015
+
+- make the hapi plugin function be consistent with the start function (pluginOptions, smocksOptions)
+
+```
+var plugin = require('smocks/hapi').toPlugin({
+  // hapi plugin options
+  onRegister: function (server, options, next) {
+    // this is optional but "next" must be called if used
+  }
+}, {
+  // smocks core options
+});
+plugin.attributes = {
+  pkg: require('/path/to/package.json')
+};
+module.exports = plugin;
+``
+
+This is not backwards compatible if you were using a previous version of the `toPlugin` method`
+
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.2.0...master)
 
 ## v2.2.0 - November 4th 2015
