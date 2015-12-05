@@ -1,4 +1,4 @@
-var smocks = require('../lib');
+var smocks = require('smocks');
 
 // we always have to set a mock server id
 smocks.id('example');
