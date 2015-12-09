@@ -79,13 +79,14 @@ Routes are defined using the ```route``` method on the ```smocks``` object.  An 
 * _path_: the route path
 * _method_: (optional) the route method - defaults to ```GET```
 * _handler_: (optional) the [HAPI route handler](http://hapijs.com/api#route-handler) which provides the route response.  This is optional because you could use multiple vairants to handle the response.  (see Variants).
-* _config_: An object contain input configuration meta data (see Configuration)
+* _input_: An object contain input values which should be shown in the admin panel (see Input)
 * _display_: A function which can return [markdown]([markdown](http://daringfireball.net/projects/markdown/)) where the contents are exposed when viewing the route information on the amin panel
 * _actions_: An object containing a set of actions associated with this route (see Actions)
+* _config_: [HAPI route options](http://hapijs.com/api#route-options)
 
 In more detail, you can...
 
-Add config parameters that are exposed through the admin panel
+Add input parameters that are exposed through the admin panel
 
 ```javascript
     var smocks = require('smocks');
@@ -95,7 +96,8 @@ Add config parameters that are exposed through the admin panel
       label: 'My Route',
       path: '/api/foo',
       method: 'GET',
-      config: {
+
+      input: {
         // more about config later
         agreementAccepted: {
           label: 'agreement accepted?',
@@ -103,9 +105,10 @@ Add config parameters that are exposed through the admin panel
           defaultValue: false
         }
       },
+
       handler: function(request, reply) {
         // you can control this value through the admin panel
-        var agreementAccepted = this.config('agreementAccepted');
+        var agreementAccepted = this.input('agreementAccepted');
         reply({accepted: agreementAccepted});
       }
     })
@@ -166,7 +169,7 @@ You can expose "actions" which are represented as buttons.  These are meaningful
     var smocks = require('smocks');
     smocks.route({
       // ...
-      config: {
+      input: {
         yourPhoneNumber: {
           label: 'What is your phone number?',
           type: 'text',
@@ -178,7 +181,7 @@ You can expose "actions" which are represented as buttons.  These are meaningful
       actions: {
         'the_action_id': {
           label: 'the button label',
-          config: {
+          input: {
             yourName: {
               label: 'What is your name?',
               type: 'text',
@@ -189,7 +192,7 @@ You can expose "actions" which are represented as buttons.  These are meaningful
             // this is how you access action specific user input
             var yourName = config.yourName;
             // this is how you access user input created for the route
-            var phoneNumber = this.config('yourPhoneNumber');
+            var phoneNumber = this.input('yourPhoneNumber');
             // now I would perform whatever action needs to be taken
             // I would make changes to "state" most likely (more about state later)
           }          
@@ -229,7 +232,7 @@ Routes are defined using the ```variant``` method on the ```Route``` object (ret
 
 * _id_: (optional) the route id - used for the RESTful admin API and profile settings
 * _label_: (optional) the route label - used for display on the admin panel
-* _config_: An object contain input configuration meta data (see Configuration)
+* _input_: An object contain input configuration data to be shown in the admin panel (see Input)
 * _handler_: (optional) the [HAPI route handler](http://hapijs.com/api#route-handler) which provides the route response
 
 Variants are useful because they allow yout test multiple scenarios that can happen with your route.  Say, for example, you have a route exposing the ability to update a password.  You might have several exceptional scenarios that you would want to test out (each could be a vairant that you simply select to tell the route handler to use the appropriate response)
@@ -266,11 +269,11 @@ Add variant specific config parameters (only visible if the variant is selected 
         id: 'invalid_password',
         label: 'invalid password',
         handler: function(request, reply) {
-          // the input value is retrieved using this.config('varName');
-          var typeOfValidationError = this.config('typeOfValidationError')
+          // the input value is retrieved using this.input('varName');
+          var typeOfValidationError = this.input('typeOfValidationError')
           reply({error: 'field', message: typeOfValidationError}).code(400);
         },
-        config: {
+        input: {
           // the key is the identifier used to retrieve the value
           typeOfValidationError: {
             // the input field label
@@ -286,11 +289,11 @@ Add variant specific config parameters (only visible if the variant is selected 
 
 
 
-#### Route / variant configuration
+#### Route / variant input
 
-Different types of input fields can be defined for routes or variants including ```boolean```, ```text```, ```select```, ```multiselect```.  Through the admin panel, you can modify these config values.
+Different types of input fields can be defined for routes or variants including ```boolean```, ```text```, ```select```, ```multiselect```.  Through the admin panel, you can modify these input values and they can be accessed in your route handler.
 
-Routes and Variants when defined can provide an optional ```config``` attribute which defines any input fields that should be shown in the admin panel.  This config attribute is an object with each attribute relating to a single input field and the associated key as the input field id.
+Routes and Variants when defined can provide an optional ```input``` attribute which defines any input fields that should be shown in the admin panel.  This input attribute is an object with each attribute relating to a single input field and the associated key as the input field id.
 
 The attributes for each input field setting are
 
@@ -299,12 +302,12 @@ The attributes for each input field setting are
 * _defaultValue_: the value for the input field when the user has not yet made a selection in the admin panel
 * _options_: (specific to ```select``` and ```multiselect```) an array of options for the input field.  Each element in the array is an object with a ```value``` and ```label``` attribute.
 
-Config values are referenced using ```this.config('varName')``` where ```varName``` is the specific config attribute key.
+Input values are referenced using ```this.input('varName')``` where ```varName``` is the specific input attribute key.
 
 ```javascript
     smock.route({
       ...
-      config: {
+      input: {
         aBooleanField: {
           label: 'Is this a checkbox?',
           type: 'boolean',
@@ -329,40 +332,44 @@ Config values are referenced using ```this.config('varName')``` where ```varName
         }
       },
       handler: function(request, response) {
-        var aBooleanField = this.config('aBooleanField'); // boolean
-        var someTextField = this.config('someTextField'); // string
-        var someSelectBox = this.config('someSelectBox'); // integer (because the values are integers)
-        var someMultiSelect = this.config('someMultiSelect'); // array of integer (because the values are integers)
+        var aBooleanField = this.input('aBooleanField'); // boolean
+        var someTextField = this.input('someTextField'); // string
+        var someSelectBox = this.input('someSelectBox'); // integer (because the values are integers)
+        var someMultiSelect = this.input('someMultiSelect'); // array of integer (because the values are integers)
         // ...
       });
 ```
 
-![config example](http://jhudson8.github.io/smocks/images/config-ex1.png)
+![input example](http://jhudson8.github.io/smocks/images/config-ex1.png)
 
 The same ```config``` values can be applied at the variant level as well.
 
 
-#### Route options
+#### Route meta data
 
 This is similar to Route / variant config except that these values are not exposed within the admin console.  They are accessable within the route handlers though.
 
 This is mostly useful for global plugins (see Plugins).
 
-Within the route handler, the options values can be accessed by using ```this.options('varName')```.
+Within the route handler, the options values can be accessed by using ```this.meta('varName')```.
 
 ```javascript
     var smocks = require('smocks');
 
-    smocks.route(...)
-      .options({
+    smocks.route({
+      ...
+      meta: {
         requiresLogin: true
-      })
-    .respondWith(function(request, reply) {
-      var value = this.options('requiresLogin');
-      // do something with the value
-    })
+      },
+      handler: function(request, reply) {
+        // this doesn't make a lot of sense because the value is defined here
+        // but would actually make more sense as a plugin... this is just showing
+        // how you would (and could) get the meta value in a route handler
+        var value = this.meta('requiresLogin');
+        ...
+      }
+    );
 ```
-
 
 
 #### State
@@ -384,21 +391,15 @@ The real benefit to using ```smocks``` is that state can be maintained.  Within 
 ```
 
 
-#### Config, options and state, oh my
+#### Input, state and meta, oh my
 
 There are 3 different ways of introducting dynamic behavior into your responses but each serve a different purpose.
 
-_config_
+_input_
 
-Config values are exposed as input fields in the admin panel so you have the ability to change the value at runtime.
+Input values are exposed as input fields in the admin panel so you have the ability to change the value at runtime.
 
-These are accessed using ```this.config('varName')``` in any route handler.
-
-_options_
-
-Options are like config but are not exposed in the admin panel.  These are most useful to expose metadata for a global pugin.  For example, you could have a plugin that examined all requests and, if the user hasn't signed in yet, respond with a 401 error.  The routes could expose an option value that indicated whether they were routes that required authentication.
-
-These are accessed using ```this.option('varName')```.
+These are accessed using ```this.input('varName')``` in any route handler.
 
 _state_
 
@@ -407,6 +408,11 @@ State is used to, obviously, maintain state.  For example, if you expose a route
 State values can be accessed using ```this.state('varName')```.
 State values can be set using ```this.state('varName', 'value')```.
 
+_meta_
+
+Meta settings are like config but are not exposed in the admin panel.  These are most useful to expose metadata for a global pugin.  For example, you could have a plugin that examined all requests and, if the user hasn't signed in yet, respond with a 401 error.  The routes could expose a meta value that indicated whether they were routes that required authentication.
+
+These are accessed using ```this.meta('varName')```.
 
 
 #### Plugins
@@ -416,7 +422,7 @@ Plugins can be used to perform an action on all requests or just to encapsulate 
 Plugins are just simple objects that have the following attributes
 
 * _plugin_: (optional) if exists, will simply be called with a single parameter (the smocks object) so you can add new routes.
-* _config_: (optional) config definitions to allow the user with different types of input fields in the admin panel.  See the next section (Config types) for more details
+* _input_: (optional) input definitions to allow the user with different types of input fields in the admin panel.  See the next section (Input types) for more details
 * _onRequest_: Called before the route handler (variant) executes for every request.  It is similar to the ([request, reply](http://hapijs.com/api#route-handler)) of the route handlers (Variants) but has an additional callback method that should be executed when the plugin has finished doing what it needs to do.
 
 * _onResponse_: Called after the route handler (variant) executes for every request.  Parameters are similar to ```onRequest``` except the 2nd parameter is the return value from the [reply method (see response object)](http://hapijs.com/api#reply-interface).
@@ -427,7 +433,7 @@ The following plugin will add simulated latency (which can be controlled by the 
     var smocks = require('smocks');
     smocks.plugin({
       // define the input field for the admin panel allowing the user to adjust the delay
-        config: {
+        input: {
           delay: {
             label: 'Add delay to all responses',
             type: 'select',
@@ -439,7 +445,7 @@ The following plugin will add simulated latency (which can be controlled by the 
         // call "next" after a timeout if the user requested a delay
         onRequest: function(request, reply, next) {
           // get the delay value from config
-          var delay = this.config('delay');
+          var delay = this.input('delay');
           if (delay > 0) {
             // if there is a delay, call next after a timeout
             setTimeout(next, delay);
@@ -464,7 +470,7 @@ Or, check to see if the use has logged in (assuming the route exposed a ```requi
     smocks.plugin({
       onRequest: function(request, reply, next) {
         // only do this check if the route exposed a "requiresLogin" option
-        if (this.options('requiresLogin')) {
+        if (this.meta('requiresLogin')) {
           // now, see if we have previously logged in (the login route would have set this state value)
           if (!this.state('loggedIn')) {
             // if we haven't logged respond with a 401 and bypass calling "next"
@@ -619,26 +625,27 @@ If a HAPI server instance is provided, the routes will be bound to the HAPI serv
 Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
 
-#### config(attributes)
-* ***attributes***: The configuration attributes
+#### input(attributes)
+* ***attributes***: The input attributes
 
-Set any configuration attributes that will be available for modification on the admin panel.
+Set any input attributes that will be available for modification on the admin panel.
 
-See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%20configuration) for details.
+See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%20input) for details.
 
 Return the same route object for chaining.
 
 ```javascript
     var smocks = require('smocks');
-    smocks.route(...)
-    .config({
-      myVar: {
-        label: 'Config label',
-        type: 'boolean|text|select|multiselect',
-        defaultValue: ...
-      }
-    })
-    .respondWith(...)
+    smocks.route({
+      ...
+      input: {
+        myVar: {
+          label: 'Input label',
+          type: 'boolean|text|select|multiselect',
+          defaultValue: ...
+        }
+      })
+      .respondWith(...)
 ```
 
 

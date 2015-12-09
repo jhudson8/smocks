@@ -2,6 +2,22 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v3.0.0...master)
+
+## v3.0.0 - December 9th 2015
+
+This release contains significant route / variant API refactoring.
+
+* `config` route attributes are now called `input` (access using `this.input('...')`
+* `options` route attributes are now called `meta` (access using `this.meta('...')`
+* if a `config` attribute is provided for a route, it will be passed through as a [HAPI route config](http://hapijs.com/api#route-options)
+
+In general, since the 2.0 release, the major additions are
+
+* ability to upload and play back har files
+* ability to proxy to another service
+
+
 [Commits](https://github.com/jhudson8/smocks/compare/v2.3.1...master)
 
 ## v2.3.1 - December 5th 2015

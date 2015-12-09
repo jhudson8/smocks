@@ -5,10 +5,10 @@ var smocks = require('./lib');
 var Hapi = require('hapi');
 var _ = require('lodash');
 var _inputs = {
-  boolean: require('./lib/admin/api/config-plugins/checkbox'),
-  text: require('./lib/admin/api/config-plugins/text'),
-  select: require('./lib/admin/api/config-plugins/select'),
-  multiselect: require('./lib/admin/api/config-plugins/multiselect')
+  boolean: require('./lib/admin/api/input-plugins/checkbox'),
+  text: require('./lib/admin/api/input-plugins/text'),
+  select: require('./lib/admin/api/input-plugins/select'),
+  multiselect: require('./lib/admin/api/input-plugins/multiselect')
 };
 
 
@@ -121,14 +121,15 @@ function configServer(server) {
     if (route.hasVariants()) {
       server.route({
         method: route.method(),
-        path: route.path(), 
+        path: route.path(),
+        config: route.config(),
         handler: function(request, reply) {
           if (!smocks.state.isInitialized(request)) {
             _.each(_routes, function(route) {
               route.resetRouteVariant(request);
-              route.resetSelectedConfig(request);
+              route.resetSelectedInput(request);
             });
-            smocks.plugins.resetConfig(request);
+            smocks.plugins.resetInput(request);
             smocks.state.onInitialized && smocks.state.onInitialized(request);
           }
 
