@@ -27,7 +27,7 @@ function get(routeId/*, variantId, context, options*/) {
 
   if (!context) {
     // create an empty context
-    context = new Context({config: options.config});
+    context = new Context({config: options.input});
   }
 
   var route = smocks.routes.get(routeId);
@@ -67,21 +67,21 @@ function Reply() {
 }
 
 
-function Context(config, state) {
-  this._config = config || {};
+function Context(input, state) {
+  this._input = input || {};
   this._state = state || {};
 }
 _.extend(Context.prototype, {
   __Context: true,
-  state: function(key, value) {
+  state: function (key, value) {
     if (_.isUndefined(value)) {
       return this._state[key];
     } else {
       this._state[key] = value;
     }
   },
-  config: function(key) {
-    return this._config[key];
+  input: function (key) {
+    return this._input[key];
   }
 });
 
