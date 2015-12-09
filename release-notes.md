@@ -2,6 +2,12 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v3.0.1...master)
+
+## v3.0.1 - December 9th 2015
+
+bug fix: I forgot to update direct API access to use `input` rather than `config`
+
 [Commits](https://github.com/jhudson8/smocks/compare/v3.0.0...master)
 
 ## v3.0.0 - December 9th 2015
