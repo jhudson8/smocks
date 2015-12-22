@@ -2,6 +2,13 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v3.0.2...master)
+
+## v3.0.2 - December 22nd 2015
+
+don't return full config data (for admin panel) when making simple restful calls.  Not exactly a bug fix but an optimization.
+
+
 [Commits](https://github.com/jhudson8/smocks/compare/v3.0.1...master)
 
 ## v3.0.1 - December 9th 2015
