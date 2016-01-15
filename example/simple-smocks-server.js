@@ -10,7 +10,7 @@ smocks.route({
     path: '/api/counter',
     method: 'GET', // method is optional if it is GET
 
-    config: {
+    input: {
       countBy: {
         label: 'Count by',
         type: 'text',
@@ -46,7 +46,7 @@ function respond (message, reply) {
   // context is "this" from the route handler
 
   // this is how you get the user config value
-  var countBy = this.config('countBy');
+  var countBy = this.input('countBy');
   countBy = parseInt(countBy, 10) || 1;
 
   // this is how you get state values
