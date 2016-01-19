@@ -83,6 +83,8 @@ Routes are defined using the ```route``` method on the ```smocks``` object.  An 
 * _display_: A function which can return [markdown]([markdown](http://daringfireball.net/projects/markdown/)) where the contents are exposed when viewing the route information on the amin panel
 * _actions_: An object containing a set of actions associated with this route (see Actions)
 * _config_: [HAPI route options](http://hapijs.com/api#route-options)
+* _connection_: optional connection label for route to be added to. allows
+  for smocks endpoint to run on port of choice, for instance.
 
 In more detail, you can...
 
@@ -483,6 +485,60 @@ Or, check to see if the use has logged in (assuming the route exposed a ```requi
     });
 ```
 
+
+#### Connections
+
+Smocks can use one or more connections for where to set endpoints. The main
+endpoints are set using `smocks.connection('label')` where label is the name
+of the connection.
+
+This is useful for where smocks is setup as a plugin.
+
+Example:
+``` javascript
+
+var hapi = require('hapi');
+var smocks = require('smocks');
+var server = new hapi.Server();
+server.connection({ port: 8080, labels: 'main' });
+server.connection({ port: 8088, labels: 'smocks' });
+server.connection({ port: 8089, labels: 'mockhost1' });
+
+smocks.id('example'); // must set
+smocks.connection('smocks');
+
+var plugin = require('smocks/hapi').toPlugin({
+    onRegister: (server, options, next) => {
+
+         smocks.route({
+            id: 'counter',
+            connection: 'mockhost1',
+            method: 'GET',
+            path: '/',
+            label: 'Simple get',
+            handler: function (request, reply) {
+                return reply('you got!');
+            }
+         });
+        return next();
+    }
+});
+
+server.register({ register: plugin, options: {} }, function (err) {
+    server.start(function () {
+        // ..
+    });
+});
+
+```
+
+This way the main server is not affected by the smocks routes, and there is no
+risk of endpoint collision. Here all the admin connections are on the admin
+connection, and the mocked host is on it's own. This is useful when mocking
+external hosts that the code may rely on.
+
+When a connection is not explicitly defined, the smocks routes will show up on
+_ALL_ connections.
 
 
 #### Profiles
