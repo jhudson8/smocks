@@ -119,7 +119,13 @@ function configServer(server) {
 
   _.each(_routes, function(route) {
     if (route.hasVariants()) {
-      server.route({
+
+      var connection = server;
+
+      if (route.connection()) {
+        connection = server.select(route.connection());
+      }
+      connection.route({
         method: route.method(),
         path: route.path(),
         config: route.config(),
