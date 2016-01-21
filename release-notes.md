@@ -2,6 +2,14 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v3.1.0...master)
+
+## v3.1.0 - January 20th 2015
+
+Allows a choice of to which connection endpoints are added
+https://github.com/jhudson8/smocks/pull/2
+
+
 [Commits](https://github.com/jhudson8/smocks/compare/v3.0.2...master)
 
 ## v3.0.2 - December 22nd 2015
