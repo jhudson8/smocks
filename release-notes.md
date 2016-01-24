@@ -2,6 +2,13 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v3.1.1...master)
+
+## v3.1.1 - January 24th 2015
+
+bug fix: just added content type headers to resources used from the admin panel
+
+
 [Commits](https://github.com/jhudson8/smocks/compare/v3.1.0...master)
 
 ## v3.1.0 - January 20th 2015
