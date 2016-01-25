@@ -62,8 +62,8 @@ Whenever the mock server is running, you can view an admin panel at ```{host}:{p
 * Select what type of response your routes should have (see [Variants](#section/Concepts/Variants))
 * Execute route specific actions (see Actions)
 * View all available routes by label or path
-* Set route specific or global configuration input fields (see [Route / Variant configuration](#section/Concepts/Route%2520%252F%2520variant%2520configuration))
-* Save all current settings as a profile (selected route variant and config values) to be applied at a later time (see [Profiles](#section/Concepts/Profiles))
+* Set route specific or global input fields (see [Route / Variant Input](#section/Concepts/Route%2520%252F%2520variant%2520input))
+* Save all current settings as a profile (selected route variant and input values) to be applied at a later time (see [Profiles](#section/Concepts/Profiles))
 
 Throughout these docs, you will see different screenshots to understand how different route configurations are represented in the admin panel.
 
@@ -479,7 +479,7 @@ Or, check to see if the use has logged in (assuming the route exposed a ```requi
             return reply({error: 'auth', message: 'Not logged in'}).code(401);
           }
         }
-        
+
         next();
       }
     });
@@ -543,7 +543,7 @@ _ALL_ connections.
 
 #### Profiles
 
-Using the Admin Panel, you can save all route, variant and config settings as a "profile".  Profiles can either be saved locally (using localStorage) or remotely by providing the code to update in your project.
+Using the Admin Panel, you can save all route, variant and input settings as a "profile".  Profiles can either be saved locally (using localStorage) or remotely by providing the code to update in your project.
 
 The profiles can also be changed using an admin endpoint (for example, to use this with an automated testing solution).  To do so, simply POST to {host}:{port}/_admin/api/profile/{profile name}.
 
@@ -792,4 +792,3 @@ Remember that using ```./``` will refer to the top level module directory (the d
 This would cause a request to ```/customer/1``` to return the file ```./customer-1.json```
 
 Return the same Variant object for chaining.
-
