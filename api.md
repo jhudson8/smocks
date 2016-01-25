@@ -349,7 +349,7 @@ The same ```config``` values can be applied at the variant level as well.
 
 #### Route meta data
 
-This is similar to Route / variant config except that these values are not exposed within the admin console.  They are accessable within the route handlers though.
+This is similar to Route / variant input except that these values are not exposed within the admin console.  They are accessable within the route handlers though.
 
 This is mostly useful for global plugins (see Plugins).
 
@@ -741,12 +741,12 @@ Convienance method for creating a default variant (id of "default") and then cal
 Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
 
-#### config(attributes)
-* ***attributes***: The configuration attributes
+#### input(attributes)
+* ***attributes***: The input attributes
 
-Set any variant-scoped configuration attributes that will be available for modification on the admin panel.
+Set any variant-scoped input attributes that will be available for modification on the admin panel.
 
-See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%20configuration) for details.
+See [input example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20variant%input) for details.
 
 Return the same Variant object for chaining.
 
