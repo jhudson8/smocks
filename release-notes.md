@@ -2,6 +2,11 @@
 
 ## Development
 
+[Commits](https://github.com/jhudson8/smocks/compare/v3.1.2...master)
+
+## v3.1.2 - January 25th 2015
+- fix global plugin config REST service
+
 [Commits](https://github.com/jhudson8/smocks/compare/v3.1.1...master)
 
 ## v3.1.1 - January 24th 2015
