@@ -1,20 +1,19 @@
 # Release Notes
 
-## Development
+## v3.1.3 - January 26th 2015
 
-[Commits](https://github.com/jhudson8/smocks/compare/v3.1.2...master)
+- add helpful tooltips to admin panel
+
 
 ## v3.1.2 - January 25th 2015
+
 - fix global plugin config REST service
 
-[Commits](https://github.com/jhudson8/smocks/compare/v3.1.1...master)
 
 ## v3.1.1 - January 24th 2015
 
 bug fix: just added content type headers to resources used from the admin panel
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v3.1.0...master)
 
 ## v3.1.0 - January 20th 2015
 
@@ -22,20 +21,15 @@ Allows a choice of to which connection endpoints are added
 https://github.com/jhudson8/smocks/pull/2
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v3.0.2...master)
-
 ## v3.0.2 - December 22nd 2015
 
 don't return full config data (for admin panel) when making simple restful calls.  Not exactly a bug fix but an optimization.
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v3.0.1...master)
-
 ## v3.0.1 - December 9th 2015
 
 bug fix: I forgot to update direct API access to use `input` rather than `config`
 
-[Commits](https://github.com/jhudson8/smocks/compare/v3.0.0...master)
 
 ## v3.0.0 - December 9th 2015
 
@@ -51,13 +45,10 @@ In general, since the 2.0 release, the major additions are
 * ability to proxy to another service
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.3.1...master)
-
 ## v2.3.1 - December 5th 2015
 
 - remove accidental console log
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.3.0...master)
 
 ## v2.3.0 - December 5th 2015
 
@@ -81,8 +72,6 @@ module.exports = plugin;
 This is not backwards compatible if you were using a previous version of the `toPlugin` method`
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.2.0...master)
-
 ## v2.2.0 - November 4th 2015
 
 - hapi server start config params has changed.  See details below
@@ -104,13 +93,11 @@ require('smocks/hapi').start({
 
 The HAPI server will automatically have CORS headers applied unless the `routes` attribute is provided in the hapi options.
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.1.1...master)
 
 ## v2.1.1 - November 3rd 2015
 
 - downgrade wreck to be compatable with v1
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.1.0...master)
 
 ## v2.1.0 - November 1st 2015
 
@@ -139,32 +126,25 @@ smocks.start({
 View the `Config` tab on the admin panel to make any proxy setting changes.
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.0.5...master)
-
 ## v2.0.5 - October 15th 2015
 - bug fix: ensure the first variant defined for a route is used as the default
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.0.4...master)
 
 ## v2.0.4 - October 14th 2015
 - minor admin panel style fixes
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.0.3...master)
 
 ## v2.0.3 - October 6th 2015
 - add har call preview functionality
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.0.2...master)
 
 ## v2.0.2 - October 6th 2015
 - add more details to HAR data in admin page
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.0.1...master)
 
 ## v2.0.1 - October 4th 2015
 - Add fancier error messaging to match the fancy success messaging
 
-[Commits](https://github.com/jhudson8/smocks/compare/v2.0.0...master)
 
 ## v2.0.0 - October 3rd 2015
 
@@ -175,75 +155,60 @@ require('smocks').id('my-project');
 This allows you to have multiple project using smocks to have their own locally saved profiles - but the server will not start unless you set an id.
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.8...master)
-
 ## v1.4.8 - October 3rd 2015
 - admin style updates
 
 yes, I should let the release bake so I don't have to release so often but... that's how I do things
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.7...master)
 
 ## v1.4.7 - October 3rd 2015
 - fix route rendering after HAR reset
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.6...master)
 
 ## v1.4.6 - October 3rd 2015
 - add dynamic HAR tracking
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.5...master)
 
 ## v1.4.5 - October 3rd 2015
 - add logo
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.4...master)
 
 ## v1.4.4 - October 3rd 2015
 - bug fix: rix RESTful endpoints
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.3...master)
 
 ## v1.4.3 - October 3rd 2015
 - bug fix: don't show view link for non-GET fixtures
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.2...master)
 
 ## v1.4.2 - October 2nd 2015
 - fix select component and profile management 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.1...master)
 
 ## v1.4.1 - October 1st, 2015
 - small fix to cache transpiled JSX code for admin panel
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.4.0...master)
 
 ## v1.4.0 - October 1st, 2015
 - Added ability to upload HAR files which will override mock responses
 - MASSIVE overhaul of admin panel
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.3.1...master)
 
 ## v1.3.1 - September 29th, 2015
 - small spelling fix
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.3.0...master)
 
 ## v1.3.0 - September 29th, 2015
 - (beta) Add ability to replay HAR recordings (only JSON responses)
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.2.1...master)
 
 ## v1.2.2 - September 29th, 2015
 - bug fix: fix select box input plugin
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.2.1...master)
 
 ## v1.2.1 - September 11th, 2015
 - bug fix: don't use `reply.file` in admin pages
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.2.0...master)
 
 ## v1.2.0 - September 10th, 2015
 - Separated the smocks core from HAPI to allow for direct API access to fixtures
@@ -259,62 +224,43 @@ var server = require('smocks/hapi');
 server.start(...);
 ```
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.9...master)
 
 ## v1.1.9 - August 7th, 2015
 - added route id and variant id to be displayed in admin console to assist with API access - 7514214
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.8...v1.1.9)
-
 ## v1.1.8 - August 6th, 2015
 - add getVariant method to route model for API access - 8cdf525
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.7...v1.1.8)
 
 ## v1.1.7 - August 5th, 2015
 - fix profile loading bug - f36da2b
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.6...v1.1.7)
-
 ## v1.1.6 - August 3rd, 2015
 - add ability to reset route configuration in admin panel - 7f92a44
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.5...v1.1.6)
-
 ## v1.1.5 - July 31st, 2015
 - fix reset state button in admin panel - 66b61c0
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.4...v1.1.5)
 
 ## v1.1.4 - July 29th, 2015
 - update permalinks to ensure that only the specific permalinked fixture is visible.  And to be path/label specific based on when the permalink was clicked - 4872a6d
 - update filter component styles - c9f58f2
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.3...v1.1.4)
-
 ## v1.1.3 - July 29th, 2015
 - added fixture permalinks in admin panel - 89d93bc
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.2...v1.1.3)
 
 ## v1.1.2 - July 29th, 2015
 - bug fix: local profile application was not setting fixture variant selections correctly - 9ce0aa7
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.1...v1.1.2)
-
 ## v1.1.1 - July 28th, 2015
 - bug fix: add path to cookie state - 0eaaa68 (only applies if using the 'session' state)
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v1.1.0...v1.1.1)
 
 ## v1.1.0 - July 28th, 2015
 - added toHapiPlugin method to export a hapi plugin - 781bf91
@@ -330,50 +276,34 @@ smocks.toHapiPlugin(options);
 To use a session (cookie-based) state, include `state: 'session'` as a startup option
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.3...v1.1.0)
-
 ## v1.0.3 - July 22nd, 2015
 - fix onAction bug - 1242e16
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.2...v1.0.3)
 
 ## v1.0.2 - July 20th, 2015
 - add sanity checks to prevent duplicate route / variant ids - 23c7aa3
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.1...v1.0.2)
-
 ## v1.0.1 - July 19th, 2015
 - bug fix: allow routes to use the "options" attribute - 030fc55
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v1.0.0...v1.0.1)
-
 ## v1.0.0 - July 3rd, 2015
 initial 1.0 release
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.6.0...v1.0.0)
 
 ## v0.6.0 - June 30th, 2015
 - bug fix: handle default route handler correctly - a2c2a7b
 - allow global variants to have optional (route specific) config attributes - 1055c17
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.7...v0.6.0)
-
 ## v0.5.7 - June 19th, 2015
 - minor bug fixes - 5d10c1c
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.6...v0.5.7)
-
 ## v0.5.6 - June 18th, 2015
 - bug fix with boolean input type - 0ef7130
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.5...v0.5.6)
 
 ## v0.5.5 - June 17th, 2015
 I should *really* do a minor release for this but I'm not ready to document all of this yet... I just want to be able to use the changes for right now.  Anyway, if you are the kind of person that reads realease notes, here is what you can do now:
@@ -397,34 +327,25 @@ You can now also provide a ```display``` function to a route and it will display
     })
 ```
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.4...v0.5.5)
-
 ## v0.5.4 - June 17th, 2015
 - minor tweaks to admin page and pluggable input types - f692eb3
 - minor tweaks to admin panel - afba25a
 
 The pluggable input types should actually come with a minor release but I've got a bit more of an API that I want to include (ability to bring in js libs / styles) and I'll do a minor release at that time.
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.3...v0.5.4)
 
 ## v0.5.3 - June 16th, 2015
 - small tweaks to admin panel - 0732259
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.2...v0.5.3)
 
 ## v0.5.2 - June 15th, 2015
 - bug fix: config defaultValue was not being applied - af4dbaf
 - add better route filtering in the admin panel - daf7827
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.1...v0.5.2)
-
 ## v0.5.1 - June 14th, 2015
 - small bug fixes - baf3274
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.5.0...v0.5.1)
 
 ## v0.5.0 - June 14th, 2015
 - update "route" method.  It now looks more like a traditional HAPI route method by taking [an options object](http://hapijs.com/api#serverrouteoptions).
@@ -434,82 +355,54 @@ The pluggable input types should actually come with a minor release but I've got
 - add ability to save all route, variant and config selections as a "profile" in the admin panel
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.4.2...v0.5.0)
-
 ## v0.4.2 - June 12th, 2015
 - this is a mock server that might be running on localhost.  we'll go ahead and apply the CORS headers - 5a35486
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.4.1...v0.4.2)
 
 ## v0.4.1 - June 12th, 2015
 - add config values for plugins just like Routes/Variants have - 1701bca
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.4.0...v0.4.1)
-
 ## v0.4.0 - June 11th, 2015
 - add support for optional human readable route labels - 5df5d38
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.3.1...v0.4.0)
 
 ## v0.3.1 - June 11th, 2015
 - global plugin bug fix - 32b5afb
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.3.0...v0.3.1)
-
 ## v0.3.0 - June 11th, 2015
 - refactoring ```onRequest``` -> ```respondWith``` and ```withFile``` -> ```respondWithFile``` - d95a07b
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.3...v0.3.0)
 
 ## v0.2.3 - June 11th, 2015
 - small route visibility updates in admin panel - 4e32120
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.2...v0.2.3)
-
 ## v0.2.2 - June 10th, 2015
 - added "view endoing" link for GET routes to  admin page - 5ec09ef
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.1...v0.2.2)
 
 ## v0.2.1 - June 10th, 2015
 - update admin interface to support route filtering - a964455
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.2.0...v0.2.1)
-
 ## v0.2.0 - June 10th, 2015
 - add the "withFile" route/variant method - 358b0e8
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.1.2...v0.2.0)
 
 ## v0.1.2 - June 10th, 2015
 - sync text config field changes as they are typed (rather than blur) - 5659740
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.1.1...v0.1.2)
-
 ## v0.1.1 - June 10th, 2015
 - fix bux to render resources from the correct directory - 9eb9e92
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/v0.1.0...v0.1.1)
 
 ## v0.1.0 - June 9th, 2015
 - add "Reset State" button to admin panel - a77d0db
 
 
-[Commits](https://github.com/jhudson8/smocks/compare/v0.0.2...v0.1.0)
-
 ## v0.0.2 - June 9th, 2015
 initial release with core functionality
 
-
-[Commits](https://github.com/jhudson8/smocks/compare/4e1adec...v0.0.2)
