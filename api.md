@@ -735,6 +735,9 @@ Convienance method for creating a default variant (id of "default") and then cal
 #### respondWithFile(filePath)
 Convienance method for creating a default variant (id of "default") and then calling [Variant:respondWithFile](#project/jhudson8/smocks/snippet/method/Variant/respondWithFile) on the variant.
 
+#### respondWithVariantFile(mockDir, fileName)
+Convienance method for creating a default json response based on a response.json file and then calling [Variant:respondWithJsonData](#project/jhudson8/smocks/snippet/method/Variant/respondWithVariantFile) on the variant.
+
 
 ### Variant
 #### route(options)
@@ -792,3 +795,20 @@ Remember that using ```./``` will refer to the top level module directory (the d
 This would cause a request to ```/customer/1``` to return the file ```./customer-1.json```
 
 Return the same Variant object for chaining.
+
+#### respondWithVariantFile(mockDir, fileName)
+* ***mockDir***: the path to root mocking directory
+* ***fileName***: the name of the file to serve out
+
+This method enables you to have your json files in a route identical directory structure.
+
+Remember that using ```./``` will refer to the top level module directory (the directory where ```node_modules``` exists regardless of the location of the file that is referring to a file location with ```./```);
+
+```javascript
+    var smocks = require('smocks');
+    smocks.route({path: '/customer/{id}'}).respondWithVariantFile('./mocked-data', 'response.json')
+    .start(...)
+```
+
+This would cause a request to ```/customer/123``` to return the file ```./mocked-data/customer/123/response.json```
+
