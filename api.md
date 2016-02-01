@@ -32,7 +32,7 @@ require('smocks/hapi').start({
   port: 8080,
   host: 'localhost'
 }, {
-  // smocks core options
+  // smocks init options
 });
 ```
 
@@ -44,15 +44,26 @@ var plugin = require('smocks/hapi').toPlugin({
     // this is optional but "next" must be called if used
   }
 }, {
-  // smocks core options
+  // smocks init options
 });
+
 plugin.attributes = {
   pkg: require('/path/to/package.json')
 };
+
 module.exports = plugin;
 ```
 
 The different smocks core options are discussed in detail below.
+
+
+### Smocks init options
+
+| Attribute | value |
+|-----------|-------|
+| initialState | (optional) the initial application state that should be applied when first loaded (or reset)
+| har | see ***HTTP Archive Replay***
+| proxy | see ***Proxying***
 
 
 ### Concepts
@@ -226,7 +237,6 @@ You can use dynamic parameters in the route path, get access to query parameters
 ```
 
 
-
 #### Variants
 We briefly touch on variants when discussing routes but variants are route handlers that can be selected by you in the admin panel (or with a RESTful API) to determine what type of response a route should have.
 
@@ -288,7 +298,6 @@ Add variant specific config parameters (only visible if the variant is selected 
         }
       })
 ```
-
 
 
 #### Route / variant input
@@ -391,6 +400,19 @@ The real benefit to using ```smocks``` is that state can be maintained.  Within 
       }
     });
 ```
+
+
+#### Route / variant / plugin handlers
+
+This has been discussed previously, but to have all handler context methods in a single place (things referenced using `this.`) in your handlers
+
+| Attribute | Description |
+|-----------|-------------|
+| state | see ***State***
+| meta | see ***Meta***
+| input | see ***Input***
+| route | the current `route object`
+| variant | the currently selected `variant object`
 
 
 #### Input, state and meta, oh my
@@ -564,7 +586,7 @@ _select a profile_
 POST to ```/_admin/api/profile/{profile name}```
 
 
-### HTTP Archive Reply
+### HTTP Archive Replay
 
 Using [Google Chrome](http://www.google.com/chrome/) and other browsers, you can create a [HAR](https://en.wikipedia.org/wiki/.har) file which is basically a recording of the network activity during your session.
 
@@ -574,7 +596,7 @@ The smocks server has the ability to upload a [HAR](https://en.wikipedia.org/wik
 * The HAR response will be rendered as long as the path and method match (query parameters and request payload are not evaluated)
 * Network calls defined in the HAR but are not defined with the Smocks server will return a 404
 
-Click the ***Har Reply*** tab to upload a HAR file
+Click the ***Har Replay*** tab to upload a HAR file
 
 ![profile example](http://jhudson8.github.io/smocks/images/har-empty.png)
 
@@ -625,6 +647,28 @@ require('smocks/hapi').start({
 
 View the `Config` tab on the admin panel to make any proxy setting changes.
 
+### Pluggable State Handler
+
+The user application state handler is pluggable.  To assign a new state impl to your smocks server, use the `state` smocks option.
+
+```
+require('smocks').start({
+    // hapi options
+  }, {
+   // smocks options
+   state: myStateImpl
+  });
+```
+
+The state object must have the following methods (the can be instance prototype methods or simple object methods).
+
+| attribute | parameters | comments |
+|-----------|------------|----------|
+| initialize | (request, callback) | called at the beginning of each request; callback must be called with (err, value);  value = true if initialization needs to happen, false if the session has already been initialized
+| userState | (request, options) | return the user application state object.  `options` object contains `route` and `variant` attributes
+| resetUserState | {request, initialState) | reset the complete application state to be the initial state (no need to clone object);  this is also called if `initialize` callback is executed with `true`.
+| routeState | (request) | return the state object used to contain all admin panel route config changes
+| resetRouteState | (request) | reset the state object
 
 
 API
@@ -792,3 +836,4 @@ Remember that using ```./``` will refer to the top level module directory (the d
 This would cause a request to ```/customer/1``` to return the file ```./customer-1.json```
 
 Return the same Variant object for chaining.
+API

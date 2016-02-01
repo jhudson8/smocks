@@ -130,35 +130,46 @@ function configServer(server) {
         path: route.path(),
         config: route.config(),
         handler: function(request, reply) {
-          if (!smocks.state.isInitialized(request)) {
+
+          function doInit () {
             _.each(_routes, function(route) {
               route.resetRouteVariant(request);
               route.resetSelectedInput(request);
             });
             smocks.plugins.resetInput(request);
-            smocks.state.onInitialized && smocks.state.onInitialized(request);
+            var initialState = JSON.parse(JSON.stringify(smocks.initOptions.initialState || {}));
+            smocks.state.resetUserState(request, initialState)
           }
 
-          if (smocks.state.onRequest) {
-            smocks.state.onRequest(request, reply);
-          }
-
-          var pluginIndex = 0;
-          function handlePlugins() {
-            var plugin = _plugins[pluginIndex++];
-            if (plugin) {
-              if (plugin.onRequest) {
-                plugin.onRequest.call(smocks._executionContext(request, route, plugin), request, reply, handlePlugins);
-              } else {
-                handlePlugins();
-              }
-            } else {
-              reply = wrapReply(request, reply, _plugins);
-              route._handleRequest.call(route, request, reply);
+          function doExecute() {
+            if (smocks.state.onRequest) {
+              smocks.state.onRequest(request, reply);
             }
+
+            var pluginIndex = 0;
+            function handlePlugins() {
+              var plugin = _plugins[pluginIndex++];
+              if (plugin) {
+                if (plugin.onRequest) {
+                  plugin.onRequest.call(smocks._executionContext(request, route, plugin), request, reply, handlePlugins);
+                } else {
+                  handlePlugins();
+                }
+              } else {
+                reply = wrapReply(request, reply, _plugins);
+                route._handleRequest.call(route, request, reply);
+              }
+            }
+
+            handlePlugins();
           }
 
-          handlePlugins();
+          smocks.state.initialize(request, function (err, performInitialization) {
+            if (performInitialization) {
+              doInit();
+            }
+            doExecute();
+          });
         }
       });
     }
