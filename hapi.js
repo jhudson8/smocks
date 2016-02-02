@@ -52,6 +52,7 @@ module.exports = {
       hapiConnectionOptions = hapiOptions;
     }
     smocksOptions = smocks._sanitizeOptions(smocksOptions || {});
+    smocks.state = smocksOptions.state;
 
     smocks.initOptions = smocksOptions;
     smocks._sanityCheckRoutes();

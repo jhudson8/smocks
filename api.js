@@ -4,12 +4,14 @@
 var smocks = require('./lib');
 var _ = require('lodash');
 
+smocks.state = require('./lib/state/static-state');
+
 /**
  * Return a response as if the mock server were executed
  * routeId: the route id to identify the route handler
  * variantId: id of variant *only if something other than default is required*
  * context: optional context if route config and/or state is required for the response (see Config object)
- * 
+ *
  */
 function get(routeId/*, variantId, context, options*/) {
   var variantId, context, options, arg;
