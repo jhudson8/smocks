@@ -781,34 +781,34 @@ Return the same Variant object for chaining.
 ```
 
 
-#### respondWithFile(filePath)
-* ***filePath***: the path to the file to serve out (any route variables can be used in the file path as well)
+#### respondWithFile(options)
+* ***options***: options to override the default values.
+  * ***mockDir***: The base directory where the mocking data exists. 
+    * *default value set to* ```./mocked-data```
+  * ***fileName***: The file name smocks will search for in the ***mockDir*** directory structure and then set as the response.
+    * *default value set to* ```response.json```
+  * ***statusCode***: The status code of the response.
+    * *Default value set to* ```200```
+
+This method enables you to have your json files in a route similar directory structure as follows. 
 
 Remember that using ```./``` will refer to the top level module directory (the directory where ```node_modules``` exists regardless of the location of the file that is referring to a file location with ```./```);
 
+Example 1
 ```javascript
     var smocks = require('smocks');
-    smocks.route({path: '/customer/{id}'}).respondWithFile('./customer-{id}.json')
+    smocks.route({path: '/customer/{id}'}).respondWithFile()
     .start(...)
 ```
 
-This would cause a request to ```/customer/1``` to return the file ```./customer-1.json```
+This would cause a request to ```/customer/123``` to return the file ```./mocked-data/customer/default/response.json``` where ```default```is the variant id, the dynamic ```{id}``` in the path will not be used here.
 
-Return the same Variant object for chaining.
-
-#### respondWithVariantFile(mockDir, fileName)
-* ***mockDir***: the path to root mocking directory
-* ***fileName***: the name of the file to serve out
-
-This method enables you to have your json files in a route identical directory structure.
-
-Remember that using ```./``` will refer to the top level module directory (the directory where ```node_modules``` exists regardless of the location of the file that is referring to a file location with ```./```);
+Example 2
 
 ```javascript
     var smocks = require('smocks');
-    smocks.route({path: '/customer/{id}'}).respondWithVariantFile('./mocked-data', 'response.json')
+    smocks.route({path: '/customer/{id}'}).variant({id: 'invalid_customerid'}).respondWithFile({mockDir: './mocks, fileName: 'variantfile.json', statusCode: 422})
     .start(...)
 ```
 
-This would cause a request to ```/customer/123``` to return the file ```./mocked-data/customer/123/response.json```
-
+This would cause a request to ```/customer/123``` on the variant *invalid_customerid* to return the file ```./mocked-data/customer/invalid_customerid/response.json``` where ```default```is the variant id, the dynamic ```{id}``` in the path will not be used here.
