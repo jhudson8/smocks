@@ -11,17 +11,9 @@ var _inputs = {
   multiselect: require('./lib/admin/api/input-plugins/multiselect')
 };
 
-
 module.exports = {
   toPlugin: function(pluginOptions, smocksOptions) {
-    pluginOptions = pluginOptions || {};
-    smocksOptions = smocksOptions || {};
-    smocks.initOptions = smocksOptions;
-
-    smocks._sanityCheckRoutes();
-    options = smocks._sanitizeOptions(smocksOptions);
-
-    var register = function (server, options, next) {
+    var register = function (server, pluginOptions, next) {
       function _next (err) {
         if (err) {
           next(err);
@@ -31,8 +23,20 @@ module.exports = {
         }
       }
 
+      pluginOptions = pluginOptions || {};
+      smocksOptions = smocksOptions || {};
+
+      smocks._sanityCheckRoutes();
+      // allow for plugin state override
+      if (register.overrideState) {
+        smocksOptions.state = register.overrideState;
+      }
+      smocksOptions = smocks._sanitizeOptions(smocksOptions);
+      smocks.initOptions = smocksOptions;
+      smocks.state = smocksOptions.state;
+
       if (pluginOptions.onRegister) {
-        pluginOptions.onRegister(server, options, _next);
+        pluginOptions.onRegister(server, pluginOptions, _next);
       } else {
         _next();
       }
@@ -53,7 +57,6 @@ module.exports = {
     }
     smocksOptions = smocks._sanitizeOptions(smocksOptions || {});
     smocks.state = smocksOptions.state;
-
     smocks.initOptions = smocksOptions;
     smocks._sanityCheckRoutes();
 
