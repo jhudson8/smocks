@@ -782,13 +782,14 @@ Return the same Variant object for chaining.
 
 
 #### respondWithFile(options)
-* ***options***: options to override the default values.
+* ***options***: options to override the default values. *(These options can also be globally provided in the smocks core options when starting the server, see ([Starting the server](#section/Concepts/Starting%2520the%2520server))*
   * ***mockDir***: The base directory where the mocking data exists. 
     * *default value set to* ```./mocked-data```
   * ***fileName***: The file name smocks will search for in the ***mockDir*** directory structure and then set as the response.
     * *default value set to* ```response.json```
   * ***statusCode***: The status code of the response.
     * *Default value set to* ```200```
+    
 
 This method enables you to have your json files in a route similar directory structure as follows. 
 
