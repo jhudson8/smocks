@@ -810,3 +810,5 @@ Example 2
 ```
 
 This would cause a request to ```/customer/123``` on the variant *invalid_customerid* to return the file ```./mocked-data/customer/invalid_customerid/response.json``` where ```default```is the variant id, the dynamic ```{id}``` in the path will not be used here.
+
+If the ```response.json``` file doesn't exist in the variant directory, smocks will search for it in the parent directory (i.e. ```./mocked-data/customer/response.json```) and use it for both *example 1* and *example 2* above. This is useful if you want to respond with the same file for all your variants on the same path. 
