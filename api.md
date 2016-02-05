@@ -732,11 +732,8 @@ Refer to [global:plugin](#project/jhudson8/smocks/snippet/method/global/plugin)
 Convienance method for creating a default variant (id of "default") and then calling [Variant:respondWith](#project/jhudson8/smocks/snippet/method/Variant/respondWith) on the variant.
 
 
-#### respondWithFile(filePath)
+#### respondWithFile(options)
 Convienance method for creating a default variant (id of "default") and then calling [Variant:respondWithFile](#project/jhudson8/smocks/snippet/method/Variant/respondWithFile) on the variant.
-
-#### respondWithVariantFile(mockDir, fileName)
-Convienance method for creating a default json response based on a response.json file and then calling [Variant:respondWithJsonData](#project/jhudson8/smocks/snippet/method/Variant/respondWithVariantFile) on the variant.
 
 
 ### Variant
