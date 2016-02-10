@@ -822,8 +822,12 @@ Return the same Variant object for chaining.
 ```
 
 
-#### respondWithFile(filePath)
-* ***filePath***: the path to the file to serve out (any route variables can be used in the file path as well)
+#### respondWithFile(options)
+* ***options***: options or the path name as a string
+
+Option can include
+* ***code***: http status code
+* ***path***: the file path which can include route token references
 
 Remember that using ```./``` will refer to the top level module directory (the directory where ```node_modules``` exists regardless of the location of the file that is referring to a file location with ```./```);
 
@@ -835,5 +839,38 @@ Remember that using ```./``` will refer to the top level module directory (the d
 
 This would cause a request to ```/customer/1``` to return the file ```./customer-1.json```
 
-Return the same Variant object for chaining.
-API
+If the `path` option is not provided a custom file handler provided as a smocks option as `respondWithFileHandler` will be used.  This is a function which takes a single object parameter which contains
+* ***request***: the HAPI request object
+* ***response***: the HAPI response object
+* ***route***: the route object
+* ***variant***: the variant object
+* ***options***: the options object passed to the `respondWithFile` function
+* ***smocksOptions: the smocks options object
+
+```
+// smocks start code
+smocks.start({
+  port: 8000,
+  host: 'localhost',
+}, {
+  respondWithFileHandler: function(data) {
+    // example file handler
+    var reply = data.reply;
+    var code = data.options.code || 200;
+    var route = data.route;
+    var path = route.path().replace(/\{\}/g, '');
+    var variant = data.variant;
+    var filePath = // create file path from all this data
+    fs.readFile(function (err, stream) {
+      if (err) {
+        if (err.code === 'ENOENT') {
+     return reply().code(404);
+        } else {
+     return reply(err);
+        }
+      }
+      reply(stream).type('application/json').code(code);
+    });
+  }
+});
+```
