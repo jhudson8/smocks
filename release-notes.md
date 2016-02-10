@@ -1,5 +1,8 @@
 # Release Notes
 
+## v3.2.1 - February 10th 2016
+- fix bug allowing initial state smocks option to be used when resetting state through admin panel
+
 ## v3.2.0 - February 10th 2016
 - added custom `respondWithFile` handler capabilities
 - fixed `boolen` input rendering on admin panel
