@@ -1,21 +1,27 @@
 # Release Notes
 
-## v3.1.3 - January 26th 2015
+## v3.2.0 - February 10th 2016
+- added custom `respondWithFile` handler capabilities
+- fixed `boolen` input rendering on admin panel
+- added `route` and `variant` attributes to `this` in the route response handler (to access route and active variant objects)
+- added `initialState` smocks option for custom initial server state (or when state is reset)
+
+## v3.1.3 - January 26th 2016
 
 - add helpful tooltips to admin panel
 
 
-## v3.1.2 - January 25th 2015
+## v3.1.2 - January 25th 2016
 
 - fix global plugin config REST service
 
 
-## v3.1.1 - January 24th 2015
+## v3.1.1 - January 24th 2016
 
 bug fix: just added content type headers to resources used from the admin panel
 
 
-## v3.1.0 - January 20th 2015
+## v3.1.0 - January 20th 2016
 
 Allows a choice of to which connection endpoints are added
 https://github.com/jhudson8/smocks/pull/2
@@ -182,7 +188,7 @@ yes, I should let the release bake so I don't have to release so often but... th
 
 
 ## v1.4.2 - October 2nd 2015
-- fix select component and profile management 
+- fix select component and profile management
 
 
 ## v1.4.1 - October 1st, 2015
@@ -405,4 +411,3 @@ The pluggable input types should actually come with a minor release but I've got
 
 ## v0.0.2 - June 9th, 2015
 initial release with core functionality
-
