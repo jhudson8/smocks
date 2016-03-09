@@ -12,7 +12,7 @@ var _inputs = {
 };
 
 module.exports = {
-  toPlugin: function(pluginOptions, smocksOptions) {
+  toPlugin: function(hapiPluginOptions, smocksOptions) {
     var register = function (server, pluginOptions, next) {
       function _next (err) {
         if (err) {
@@ -23,7 +23,7 @@ module.exports = {
         }
       }
 
-      pluginOptions = pluginOptions || {};
+      hapiPluginOptions = hapiPluginOptions || {};
       smocksOptions = smocksOptions || {};
 
       smocks._sanityCheckRoutes();
@@ -35,8 +35,8 @@ module.exports = {
       smocks.initOptions = smocksOptions;
       smocks.state = smocksOptions.state;
 
-      if (pluginOptions.onRegister) {
-        pluginOptions.onRegister(server, pluginOptions, _next);
+      if (hapiPluginOptions.onRegister) {
+        hapiPluginOptions.onRegister(server, pluginOptions, _next);
       } else {
         _next();
       }
