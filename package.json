@@ -1,6 +1,6 @@
 {
   "name": "smocks",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Stateful mock HTTP server using HAPI",
   "main": "index.js",
   "repository": {
@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-core": "^6.5.2",
+    "babel-preset-react": "^6.5.0",
     "hapi": "^8.6.1",
     "lodash": "^3.9.3",
     "mime-types": "^2.1.9",

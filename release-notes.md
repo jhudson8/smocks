@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.0.1 - March 8th 2016
+- fix issue with admin panel rendering after upgrade to babel@6
+
 ## v4.0.0 - March 2nd 2016
 - upgrade to babel@6 for the admin panel transpilation
 
