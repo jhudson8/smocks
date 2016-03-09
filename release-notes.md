@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.0.2 - March 8th 2016
+- fix https://github.com/jhudson8/smocks/issues/12
+
 ## v4.0.1 - March 8th 2016
 - fix issue with admin panel rendering after upgrade to babel@6
 
