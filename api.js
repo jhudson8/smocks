@@ -3,8 +3,21 @@
  */
 var smocks = require('./lib');
 var _ = require('lodash');
+var initialized = false;
 
-smocks.state = require('./lib/state/static-state');
+function initialize (options) {
+  if (!initialized) {
+    var smocks = require('./lib');
+    options = options || {};
+
+    smocks._sanityCheckRoutes();
+    options = smocks._sanitizeOptions(options);
+    smocks.initOptions = options;
+    initialized = true;
+  } else {
+    throw new Error('smocks has already been initialized');
+  }
+}
 
 /**
  * Return a response as if the mock server were executed
@@ -13,24 +26,21 @@ smocks.state = require('./lib/state/static-state');
  * context: optional context if route config and/or state is required for the response (see Config object)
  *
  */
-function get(routeId/*, variantId, context, options*/) {
-  var variantId, context, options, arg;
-  for (var i=1; i<arguments.length; i++) {
+function handler(routeId/*, variantId, options*/) {
+  if (!initialized) {
+    throw new Error('You must call `init` before executing API actions');
+  }
+
+  var variantId, options;
+  for (var i = 1; i < arguments.length; i++) {
     arg = arguments[i];
     if (_.isString(arg)) {
       variantId = arg;
-    } else if (arg && arg.__Context) {
-      context = arg;
-    } else if (arg) {
+    } else {
       options = arg;
     }
   }
   options = options || {};
-
-  if (!context) {
-    // create an empty context
-    context = new Context({config: options.input});
-  }
 
   var route = smocks.routes.get(routeId);
   if (!route) {
@@ -41,18 +51,25 @@ function get(routeId/*, variantId, context, options*/) {
     throw new Error('invalid variant: ' + (variantId || 'default') + ' for route: ' + routeId);
   }
 
+  var context = new Context({
+    route: route,
+    variant: variant,
+    input: options.input,
+    state: options.state
+  });
+
   var request = new Request(options);
   var reply = Reply();
-  variant.handler.call(context || this, request, reply);
+  variant.handler.call(context, request, reply);
 
   return reply.payload;
 }
 
 
 function Request(options) {
-  this.payload = options;
-  this.params = options;
-  this.query = options;
+  this.payload = options.payload;
+  this.params = options.params;
+  this.query = options.query;
 }
 
 function Reply() {
@@ -69,9 +86,11 @@ function Reply() {
 }
 
 
-function Context(input, state) {
-  this._input = input || {};
-  this._state = state || {};
+function Context(options) {
+  this._input = options.input || {};
+  this._state = options.state || {};
+  this.route = options.route;
+  this.variant = options.variant;
 }
 _.extend(Context.prototype, {
   __Context: true,
@@ -84,10 +103,13 @@ _.extend(Context.prototype, {
   },
   input: function (key) {
     return this._input[key];
+  },
+  meta: function (key) {
+    return (this.route.meta() || {})[key];
   }
 });
 
 module.exports = {
-  get: get,
-  Context: Context
+  init: initialize,
+  get: handler
 };
