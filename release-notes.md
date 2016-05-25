@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.0.4 - May 25th 2016
+fix bug with direct API access
+
 ## v4.0.3 - May 25th 2016
 - fix proxying bug if multiple query parameters of the same name are provided
 
