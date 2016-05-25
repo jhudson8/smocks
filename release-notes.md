@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.0.3 - May 25th 2016
+- fix proxying bug if multiple query parameters of the same name are provided
+
 ## v4.0.2 - March 8th 2016
 - fix https://github.com/jhudson8/smocks/issues/12
 
