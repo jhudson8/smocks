@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.0.5 - May 26th 2016
+fix proxy support for cookies
+
 ## v4.0.4 - May 25th 2016
 fix bug with direct API access
 
