@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.0.6 - Jun 8th 2016
+bug fix: mutate host header when proxying to be correct
+
 ## v4.0.5 - May 26th 2016
 fix proxy support for cookies
 
