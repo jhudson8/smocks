@@ -9,6 +9,7 @@ body {
   min-width: 876px;
   max-width: 1024px;
   padding-top: 10px;
+  margin: auto;
 }
 
 .logo {
