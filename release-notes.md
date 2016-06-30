@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.0.7 - Jun 30th 2016
+enhancement: Show route id and variant id in the details view
+
 ## v4.0.6 - Jun 8th 2016
 bug fix: mutate host header when proxying to be correct
 
