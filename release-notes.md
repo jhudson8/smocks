@@ -1,5 +1,15 @@
 # Release Notes
 
+## v4.1.0 - Aug 18th 2016
+allow a "group" route attribute to categorize route in the admin panel
+
+```
+smocks.route({
+  ...
+  group: 'Some Group'
+});
+```
+
 ## v4.0.7 - Jun 30th 2016
 enhancement: Show route id and variant id in the details view
 
