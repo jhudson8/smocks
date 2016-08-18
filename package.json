@@ -17,7 +17,7 @@
   "dependencies": {
     "babel-core": "^6.5.2",
     "babel-preset-react": "^6.5.0",
-    "hapi": "^8.6.1",
+    "hapi": "14.2.0",
     "lodash": "^3.9.3",
     "mime-types": "^2.1.9",
     "moment": "^2.10.6",

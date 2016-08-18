@@ -253,3 +253,7 @@ body {
 .ui.radio.checkbox {
   margin-bottom: 8px;
 }
+
+.group-menu {
+  margin-bottom: 12px !important;
+}

@@ -32,7 +32,8 @@ module.exports = {
         smocksOptions.state = register.overrideState;
       }
       smocksOptions = smocks._sanitizeOptions(smocksOptions);
-      smocks.initOptions = smocksOptions;
+      // deprecate smocks.initOptions in favor of smocks.options
+      smocks.initOptions = smocks.options = smocksOptions;
       smocks.state = smocksOptions.state;
 
       if (hapiPluginOptions.onRegister) {
