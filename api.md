@@ -68,7 +68,7 @@ The different smocks core options are discussed in detail below.
 
 ### Concepts
 #### Admin Panel
-Whenever the mock server is running, you can view an admin panel at ```{host}:{port}/_admin```.  Using this, you can
+Whenever the mock server is running, you can view an admin panel at ```{host}:{port}```.  Using this, you can
 
 * Select what type of response your routes should have (see [Variants](#section/Concepts/Variants))
 * Execute route specific actions (see Actions)
@@ -567,7 +567,7 @@ _ALL_ connections.
 
 Using the Admin Panel, you can save all route, variant and input settings as a "profile".  Profiles can either be saved locally (using localStorage) or remotely by providing the code to update in your project.
 
-The profiles can also be changed using an admin endpoint (for example, to use this with an automated testing solution).  To do so, simply POST to {host}:{port}/_admin/api/profile/{profile name}.
+The profiles can also be changed using an admin endpoint (for example, to use this with an automated testing solution).  To do so, simply POST to {host}:{port}/api/profile/{profile name}.
 
 Global profiles can be set applied to the ```smocks``` object.  The easiest way to do this is to make your changes in the admin panel, enter the ```Profile Name``` in the settings header, and click the ```for everyone``` button.  You will be provided with the code that is necessary for the provide to be loaded globally.
 
@@ -577,13 +577,13 @@ Global profiles can be set applied to the ```smocks``` object.  The easiest way 
 
 ### RESTful admin API
 _reset the state_
-POST to ```{host}:{port}/_admin/api/state/reset```
+POST to ```{host}:{port}/api/state/reset```
 
 _set an active route variant_
-POST to ```{host}:{port}/_admin/api/route/{routeId}/variant/{variantId}
+POST to ```{host}:{port}/api/route/{routeId}/variant/{variantId}
 
 _select a profile_
-POST to ```/_admin/api/profile/{profile name}```
+POST to ```/api/profile/{profile name}```
 
 
 ### HTTP Archive Replay

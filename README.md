@@ -33,7 +33,7 @@ open ```mock-server.js``` and paste in [this content](https://raw.githubusercont
 ```
     node mock-server.js
 ```
-browse to [http://localhost:8000/_admin](http://localhost:8000/_admin) to see the admin panel and play around.
+browse to [http://localhost:8000](http://localhost:8000) to see the admin panel and play around.
 
 browse to [http://localhost:8000/api/counter](http://localhost:8000/api/counter) to see how your changes show up.
 
