@@ -1,7 +1,8 @@
 # Release Notes
 
 ## v5.0.0 - Dec 8th 2016
-bump HAPI version to 16
+- bump HAPI version to 16
+- allow empty path to show admin page (http://localhost:{port})
 
 ## v4.1.0 - Aug 18th 2016
 allow a "group" route attribute to categorize route in the admin panel
