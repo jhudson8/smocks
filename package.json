@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/jhudson8/smocks.git"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "keywords": [
     "hapi",
     "mock",
@@ -22,5 +25,9 @@
     "mime-types": "^2.1.9",
     "moment": "^2.10.6",
     "wreck": "6.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }

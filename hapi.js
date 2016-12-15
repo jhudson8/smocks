@@ -75,7 +75,7 @@ module.exports = {
         process.exit(1);
       }
     });
-    console.log('started smocks server on ' + hapiConnectionOptions.port + '.  visit http://localhost:' + hapiConnectionOptions.port + '/_admin to configure');
+    console.log('started smocks server on ' + hapiConnectionOptions.port + '.  visit http://localhost:' + hapiConnectionOptions.port + ' to configure');
 
     return {
       server: server,
@@ -143,7 +143,7 @@ function configServer(server) {
             });
             smocks.plugins.resetInput(request);
             var initialState = JSON.parse(JSON.stringify(smocks.initOptions.initialState || {}));
-            smocks.state.resetUserState(request, initialState)
+            smocks.state.resetUserState(request, initialState);
           }
 
           function doExecute() {
@@ -154,16 +154,22 @@ function configServer(server) {
             var pluginIndex = 0;
             function handlePlugins() {
               var plugin = _plugins[pluginIndex++];
+              var context;
               if (plugin) {
                 if (plugin.onRequest) {
-                  plugin.onRequest.call(smocks._executionContext(request, route, plugin), request, reply, handlePlugins);
+                  context = smocks.context = smocks._executionContext(request, route, plugin);
+                  plugin.onRequest.call(context, request, reply, handlePlugins);
+                  delete smocks.context;
                 } else {
                   handlePlugins();
                 }
               } else {
+                context = smocks.context = smocks._executionContext(request, route);
                 reply = wrapReply(request, reply, _plugins);
-                route._handleRequest.call(route, request, reply);
+                route._handleRequest  (request, reply, context);
+                delete smocks.context;
               }
+              delete smocks.context;
             }
 
             handlePlugins();
