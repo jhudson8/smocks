@@ -94,6 +94,27 @@ describe('datastore', function () {
           { id: '1', val: 1 }
         ]);
       });
+      it('should sort using a field name', function () {
+        insertItems('test', 3);
+        var sorted = db.list('test').sort('val', false).result();
+        expect(sorted).to.deep.equal([
+          { id: '3', val: 3 },
+          { id: '2', val: 2 },
+          { id: '1', val: 1 }
+        ]);
+        sorted = db.list('test').sort('val', true).result();
+        expect(sorted).to.deep.equal([
+          { id: '1', val: 1 },
+          { id: '2', val: 2 },
+          { id: '3', val: 3 }
+        ]);
+        sorted = db.list('test').sort('val').result();
+        expect(sorted).to.deep.equal([
+          { id: '1', val: 1 },
+          { id: '2', val: 2 },
+          { id: '3', val: 3 }
+        ]);
+      });
     });
 
     it('should do all things', function () {
@@ -108,6 +129,25 @@ describe('datastore', function () {
         { id: '10', val: 10 },
         { id: '9', val: 9 }
       ]);
+    });
+
+    it('should do all things and provide associated data', function () {
+      insertItems('test', 20);
+      var data = db.list('test').filter({ val: function(val) { return val < 15; } }).sort(function (a, b) {
+        return b.val - a.val;
+      }).limit(1, 5).data();
+      expect(data.result).to.deep.equal([
+        { id: '13', val: 13 },
+        { id: '12', val: 12 },
+        { id: '11', val: 11 },
+        { id: '10', val: 10 },
+        { id: '9', val: 9 }
+      ]);
+      expect(data.totalCount).to.equal(14);
+      expect(data.filtered).to.equal(true);
+      expect(data.sorted).to.equal(true);
+      expect(data.offset).to.equal(1);
+      expect(data.maxSize).to.equal(5);
     });
   });
 
