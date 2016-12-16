@@ -24,6 +24,7 @@
     "lodash": "^3.9.3",
     "mime-types": "^2.1.9",
     "moment": "^2.10.6",
+    "node-uuid": "^1.4.7",
     "wreck": "6.3.0"
   },
   "devDependencies": {
