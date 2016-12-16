@@ -28,6 +28,53 @@ describe('datastore', function () {
     db.clear('test');
   });
 
+  describe('join', function () {
+    beforeEach(function () {
+      db.init('fktest', [], {
+        join: {
+          fk1: {
+            path: 'fkObject',
+            domain: 'fkdomain'
+          },
+          'nested.fk2': {
+            path: 'nested2.fkObject',
+            domain: 'fkdomain',
+            removeId: true
+          }
+        }
+      });
+    });
+
+    it('should not fail if the foreign object does not exist', function () {
+      db.insert('fktest', { id: '1', fk1: '1' });
+      expect(db.get('fktest', '1')).to.equal({ id: '1', fk1: '1' });
+    });
+    it('should remove id even if foreign object does not exist', function () {
+      db.insert('fktest', { id: '1', fk1: '1', nested: { fk2: '2' } });
+      expect(db.get('fktest', '1')).to.deep.equal({ id: '1', fk1: '1', nested: {} });
+    });
+    it('should include foreign key objects', function () {
+      db.insert('fktest', { id: '1', fk1: '1', nested: { fk2: '2' } });
+      db.insert('fkdomain', { id: '1', abc: 'def' });
+      db.insert('fkdomain', { id: '2', ghi: 'jkl' });
+      expect(db.get('fktest', '1')).to.deep.equal({
+        id: '1',
+        fk1: '1',
+        fkObject: {
+          id: '1',
+          abc: 'def'
+        },
+        nested: {},
+        nested2: {
+          fkObject: {
+            id: '2',
+            ghi: 'jkl'
+          }
+        }
+      });
+    });
+  });
+
   describe('list', function () {
     it('should initialize with empty list', function () {
       expect(db.list('test').result().length).to.equal(0);
