@@ -243,19 +243,18 @@ You can expose "actions" which are represented as buttons.  These are meaningful
             yourName: {
               label: 'What is your name?',
               type: 'text',
-              defaultValue: 'John Doe',
-              handler: function(input) {
-                // this is how you access action specific user input
-                var yourName = input.yourName;
-                // this is how you access user input created for the route
-                var phoneNumber = this.input('yourPhoneNumber');
-                // now I would perform whatever action needs to be taken
-                // I would make changes to "state" most likely (more about state later)
-              }
+              defaultValue: 'John Doe'
             }
-          }        
+          },
+          handler: function(input) {
+            // this is how you access action specific user input
+            var yourName = input.yourName;
+            // this is how you access user input created for the route
+            var phoneNumber = this.input('yourPhoneNumber');
+            // now I would perform whatever action needs to be taken
+            // I would make changes to "state" most likely (more about state later)
+          }
         }
-
       }
     })
 ```
