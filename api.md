@@ -89,6 +89,7 @@ Routes are defined using the ```route``` method on the ```smocks``` object.  An 
 * _label_: (optional) the route label - used for display on the admin panel
 * _path_: the route path
 * _method_: (optional) the route method - defaults to ```GET```
+* _group_: (optional) arbitrary group name to organize routes in the admin panel
 * _handler_: (optional) the [HAPI route handler](http://hapijs.com/api#route-handler) which provides the route response.  This is optional because you could use multiple vairants to handle the response.  (see Variants).
 * _input_: An object contain input values which should be shown in the admin panel (see Input)
 * _display_: A function which can return [markdown]([markdown](http://daringfireball.net/projects/markdown/)) where the contents are exposed when viewing the route information on the amin panel
@@ -98,6 +99,50 @@ Routes are defined using the ```route``` method on the ```smocks``` object.  An 
   for smocks endpoint to run on port of choice, for instance.
 
 In more detail, you can...
+
+Organize your routes into logical groups
+```javascript
+    smocks.route({
+      id: 'group_1_1',
+      group: 'group 1',
+      path: '/api/group/1/1',
+
+      handler: function (req, reply) {
+        reply('I\'m in group 1');
+      }
+    })
+    .route({
+      id: 'group_1_2',
+      group: 'group 1',
+      path: '/api/group/1/2',
+
+      handler: function (req, reply) {
+        reply('I\'m also in group 1');
+      }
+    })
+
+    .route({
+      id: 'group_2_1',
+      group: 'group 2',
+      path: '/api/group/2/1',
+
+      handler: function (req, reply) {
+        reply('I\'m in group 2');
+      }
+    })
+    .route({
+      id: 'group_2_2',
+      group: 'group 2',
+      path: '/api/group/2/2',
+
+      handler: function (req, reply) {
+        reply('I\'m also in group 2');
+      }
+    });
+```
+
+![groups](http://jhudson8.github.io/smocks/images/groups.png)
+
 
 Add input parameters that are exposed through the admin panel
 
