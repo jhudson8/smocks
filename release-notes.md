@@ -1,5 +1,10 @@
 # Release Notes
 
+## v6.0.0 - Dec 16th 2016
+Reviewed documentation for accuracy and added docs for Route groupings.
+
+Added new pseudo database functionality which saves to smocks state.  See [smocks.db docs](http://jhudson8.github.io/fancydocs/index.html#project/jhudson8/smocks/api/Pseudo%20Database) for more details.
+
 ## v5.0.0 - Dec 8th 2016
 - bump HAPI version to 16
 - allow empty path to show admin page (http://localhost:{port})
