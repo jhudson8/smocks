@@ -198,17 +198,17 @@ You can expose "actions" which are represented as buttons.  These are meaningful
             yourName: {
               label: 'What is your name?',
               type: 'text',
-              defaultValue: 'John Doe'
+              defaultValue: 'John Doe',
+              handler: function(input) {
+                // this is how you access action specific user input
+                var yourName = input.yourName;
+                // this is how you access user input created for the route
+                var phoneNumber = this.input('yourPhoneNumber');
+                // now I would perform whatever action needs to be taken
+                // I would make changes to "state" most likely (more about state later)
+              }
             }
-          },
-          handler: function(config) {
-            // this is how you access action specific user input
-            var yourName = config.yourName;
-            // this is how you access user input created for the route
-            var phoneNumber = this.input('yourPhoneNumber');
-            // now I would perform whatever action needs to be taken
-            // I would make changes to "state" most likely (more about state later)
-          }          
+          }        
         }
 
       }
@@ -580,7 +580,7 @@ _reset the state_
 POST to ```{host}:{port}/api/state/reset```
 
 _set an active route variant_
-POST to ```{host}:{port}/api/route/{routeId}/variant/{variantId}
+POST to ```{host}:{port}/api/route/{routeId}``` with body content ```{ variant: _variant id_ }```
 
 _select a profile_
 POST to ```/api/profile/{profile name}```
@@ -671,9 +671,12 @@ The state object must have the following methods (the can be instance prototype 
 | resetRouteState | (request) | reset the state object
 
 
-API
+API:Route Config Objects
 --------------
-### global
+### Smocks
+
+This refers to functions which can be executed from the `smocks` object.
+
 #### route(options)
 * ***options***: object containing the following values
 * ***path***: the route path (must start with ```/```).  Ex: ```/api/customer/{id}```
@@ -681,33 +684,13 @@ API
 * ***method***: optional method (GET is default)
 * ***handler***: optional default route handler (same as the first variant applied to this route)
 
-Register a route handler to enable setting the method, adding variants or config properties.
-
-To see how variables can be used in the path, refer to the [HAPI routing guide](http://hapijs.com/tutorials/routing).
-
-Return the associated [Route object](#project/jhudson8/smocks/snippet/package/Route).
-
-```javascript
-    var smocks = require('smocks');
-    smocks.route({
-      method: 'POST', // optional if method is 'GET'
-      path: '/api/customer/{customerId}',
-      handler: function(request, reply) {
-        // route handler but we would use replyWith if we have
-        // multiple variants
-      }
-    })
-    .replyWith(function(request, reply) {
-      // another way of definiting route handlers
-    })
-    ...
-```
+Refer to the [route docs](#project/jhudson8/smocks/section/Concepts/Routes) for more details.
 
 
 #### plugin(plugin)
 * ***plugin***: the plugin object
 
-Register the plugin.  See the plugin object type for details.  Return the [global object](#project/jhudson8/smocks/snippet/package/global).
+Refer to the [plugin docs](#project/jhudson8/smocks/section/Concepts/Plugins) for more details.
 
 
 #### start(options)
@@ -722,8 +705,10 @@ If a HAPI server instance is provided, the routes will be bound to the HAPI serv
 
 ### Route
 #### route(options)
-Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
+Object returned when calling [smocks.route](#project/tmp/smocks/method/global/route)
+
+Refer to the [route docs](#project/jhudson8/smocks/section/Concepts/Routes) for more details.
 
 #### input(attributes)
 * ***attributes***: The input attributes
@@ -756,7 +741,9 @@ Set up a new route variant with the provided id.  The id is meaningful when sele
 
 A variant is basically a single request handler for a defined route.  This is useful to test out different scenarios for a single route definition.
 
-Return the [Variant object](#project/jhudson8/smocks/snippet/package/Variant).
+Return the [Variant object](#project/jhudson8/smocks/snippet/package/Variant) for chaining.
+
+Refer to the [variant docs](#project/jhudson8/smocks/section/Concepts/Variants) for more details.
 
 ```javascript
     var smocks = require('smocks');
@@ -781,6 +768,11 @@ Convienance method for creating a default variant (id of "default") and then cal
 
 
 ### Variant
+
+Object returned when calling [Route.variant](#project/tmp/smocks/method/smocks.route/variant)
+
+Refer to the [route docs](#project/jhudson8/smocks/section/Concepts/Variants) for more details.
+
 #### route(options)
 Refer to [global:route](#project/jhudson8/smocks/snippet/method/global/route)
 
@@ -874,3 +866,157 @@ smocks.start({
   }
 });
 ```
+
+API:Pseudo Database
+-------------------
+
+### smocks.db
+Smocks has a database-like object which can be used to store data in state in a why that makes data querying and normalization easy.
+You can access this object at any time during the event loop of a current request using ```require('smocks').db```.
+By default the smocks `state` object will be used to persist the data but that can be changed at the domain (AKA database table) level.
+
+#### insert(domain, object)
+* ***domain***: the top level store attribute that will contain this object
+* ***object***: the object to insert.  If the object does not have an `id` attribute, a uuid will be created.  (the attribute can be changed using the ***init*** function)
+
+Insert an object into the "table".  The object will be returned.
+
+```
+var db = require('smocks').db;
+
+// of `object` doesn't contain an id a uuid will be set
+var insertedObject = db.insert('foo', object);
+```
+
+#### get(domain, id)
+* ***domain***: the top level store attribute that will contain this object
+* ***id***: the object id
+
+Return an object from the "table" identified by the provided id.
+
+```
+var db = require('smocks').db;
+
+var object = db.get('foo', 'some_id');
+```
+
+#### delete(domain, id)
+* ***domain***: the top level store attribute that will contain this object
+* ***id***: the object id
+
+Delete and an object from the "table" identified by the provided id.  The deleted object will be returned.
+
+```
+var db = require('smocks').db;
+
+var deletedObject = db.delete('foo', 'some_id');
+```
+
+#### update(domain, idOrObject[, object])
+* ***domain***: the top level store attribute that will contain this object
+* ***idOrObject***: the object id or the object contents to update
+* ***object***: (if `idOrObject` is an id) the object contents to be updated
+
+Update an existing object in the "table" identified by the provided id.
+
+if the id is provided as the `idOrObject` with a separate object provided as the `object` parameter, the existing contents will only have individual fields updated identified by the provided object.
+
+if the object is provided as the `idOrObject` (so only 2 function parameters) then the entire object will be replaced.
+
+```
+var db = require('smocks').db;
+
+// this will only overwrite the attributes provided as the 3rd parameter
+var updatedObject = db.update('foo', 'some_id', data);
+
+// this will completely overwrite the stored object.  `newObject` must have an id
+var updatedObject = db.update('foo', newObject);
+```
+
+#### insertOrUpdate(domain, object)
+* ***domain***: the top level store attribute that will contain this object
+* ***object***: the object to insert or update.  If the object does not have an `id` attribute, a uuid will be created.  (the attribute can be changed using the ***init*** function)
+
+Either inserts or updates an object depending on whether it already exists.  Using ***update*** alone will throw an Error if no object can be found matching the provided id.
+
+```
+var db = require('smocks').db;
+
+var insertedOrUpdatedObject = db.insertOrUpdate('foo', object);
+```
+
+#### meta(domain, id, object)
+* ***domain***: the top level store attribute that will contain this object
+* ***id***: the object id
+* ***object***: meta contents.  If `false`, delete existing metadata.  If `undefined`, return the existing metadata.  If an object, replace the existing metadata.
+
+Store arbitrary object data which is kept separately from the object itself.
+
+```
+var db = require('smocks').db;
+
+var insertedObject = db.insert('foo', object);
+
+// this data will not be accessable from `insertedObject` directly
+db.meta('foo', insertedObject.id, { abc: 'def' });
+
+// meta will be { abc: 'def' }
+var meta = db.meta('foo', insertedObject.id);
+```
+
+#### list(domain)
+* ***domain***: the top level store attribute
+
+Return an object which will return the contents of the "table" as an array using the `result` function
+
+```
+var fooItems = db.list('foo').result();
+```
+
+The returned object has several additional helper methods which can be chained
+##### filter(criteria)
+* ***criteria***: the filter criteria
+
+Filter the results using the provided criteria.  The criteria can be
+* a function which accepts a domain object and returns a truthy if the item should be included
+* an object with key/values that should match domain object values (key an value paths can use "." for nesting)
+* the previous object but with functions for values.  The function parameter is the value from the object identified by the key
+
+```
+// the following statements do the same thing
+var filteredArray = db.list('foo').filter(function (object) { return object.nested.abc === 'def'; }).result();
+var filteredArray = db.list('foo').filter({ 'nested.abc': function (value) { return value === 'def'; }}).result();
+var filteredArray = db.list('foo').filter({ 'nested.abc': 'def' }).result();
+```
+
+##### sort(comparator, ascending)
+* ***comparator***: a string representing the attribute name or a `Array.sort` comparator function
+* ***ascending***: if `comparator` is a strong, true for ascending and false for descending (default is true)
+
+```
+// the following statements do the same thing
+var sortedArray = db.list('foo').sort('nested.abc', false).result();
+var sortedArray = db.list('foo').sort(function (a, b) { return a.nested.abc > b.nested.abc ? -1 : 1; }).result();
+```
+
+##### limit(offset, size)
+* ***offset***: 0-based starting point offset
+* ***size***: maximum number of results to return
+
+Return a limited set of results from the main set
+```
+// the following will only return the first 5 entries
+var limitedArray = db.list('foo').limit(0, 5).result();
+```
+When using limit, you may want to know the original size of the array.  You can use the `data` function for that (see below).
+
+##### data()
+
+Return an object containing the results as `result` attribute with additional attributes.
+
+* ***filtered***: `true` if the results have been filtered
+* ***sorted***: `true` if the results have been sorted
+* ***totalCount***: if the results were limited using the `limit` function, the total itme count ***before** limit was called
+* ***offset***: the `offset` value provided to `limit` if applicable
+* ***size***: the `size` value provided to `limit` if applicable
+* ***result***: the same value as if you had called `result()`
