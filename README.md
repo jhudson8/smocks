@@ -15,6 +15,7 @@ With smocks you can
 * use a RESTful API to make configuration changes programatically
 * Replay exports from HAR files
 * be able to use as a direct proxy to real service endpoints
+* provide a simple database-like API that works with your smocks state
 
 
 Docs
