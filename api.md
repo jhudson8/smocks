@@ -164,7 +164,7 @@ Add input parameters that are exposed through the admin panel
         }
       },
 
-      handler: function(request, reply) {
+      handler: function (request, reply) {
         // you can control this value through the admin panel
         var agreementAccepted = this.input('agreementAccepted');
         reply({accepted: agreementAccepted});
@@ -182,7 +182,7 @@ Provide multiple response types for each route (called Variants).  With the vari
     smocks.route({
       id: 'my_route',
       path: '/api/foo',
-      handler: function(request, reply) {
+      handler: function (request, reply) {
         // this is essentially the same as the "default" variant
         reply({firstName: 'John'});
       }
@@ -190,14 +190,14 @@ Provide multiple response types for each route (called Variants).  With the vari
     .variant({
       // in this case the label really isn't necesary since it would be the same as the id
       id: 'Billy',
-      handler: function(request, reply) {
+      handler: function (request, reply) {
         reply({firstName: 'Billy'});
       }
     })
     .variant({
       // in this case the label really isn't necesary since it would be the same as the id
       id: 'Clark',
-      handler: function(request, reply) {
+      handler: function (request, reply) {
         reply({firstName: 'Billy'});
       }
     })
@@ -212,7 +212,7 @@ You can provide a display value which will be used when viewing the route detail
     var smocks = require('smocks');
     smocks.route({
       // ...
-      display: function() {
+      display: function () {
         return '* this will show up as a unordered list';
       }
     })
@@ -246,7 +246,7 @@ You can expose "actions" which are represented as buttons.  These are meaningful
               defaultValue: 'John Doe'
             }
           },
-          handler: function(input) {
+          handler: function (input) {
             // this is how you access action specific user input
             var yourName = input.yourName;
             // this is how you access user input created for the route
@@ -267,7 +267,7 @@ You can use dynamic parameters in the route path, get access to query parameters
     var smocks = require('smocks');
     smocks.route({
       path: '/api/customer/{id}'
-      handler: function(config) {
+      handler: function (config) {
         // would be "123" if the endpiont hit was "/api/customer/123"
         var id = request.params.id;
 
@@ -324,7 +324,7 @@ Add variant specific config parameters (only visible if the variant is selected 
       .variant({
         id: 'invalid_password',
         label: 'invalid password',
-        handler: function(request, reply) {
+        handler: function (request, reply) {
           // the input value is retrieved using this.input('varName');
           var typeOfValidationError = this.input('typeOfValidationError')
           reply({error: 'field', message: typeOfValidationError}).code(400);
@@ -386,7 +386,7 @@ Input values are referenced using ```this.input('varName')``` where ```varName``
           defaultValue: [2, 3]
         }
       },
-      handler: function(request, response) {
+      handler: function (request, response) {
         var aBooleanField = this.input('aBooleanField'); // boolean
         var someTextField = this.input('someTextField'); // string
         var someSelectBox = this.input('someSelectBox'); // integer (because the values are integers)
@@ -416,7 +416,7 @@ Within the route handler, the options values can be accessed by using ```this.me
       meta: {
         requiresLogin: true
       },
-      handler: function(request, reply) {
+      handler: function (request, reply) {
         // this doesn't make a lot of sense because the value is defined here
         // but would actually make more sense as a plugin... this is just showing
         // how you would (and could) get the meta value in a route handler
@@ -437,7 +437,7 @@ The real benefit to using ```smocks``` is that state can be maintained.  Within 
     smocks.route({
       route: '/api/login',
       method: 'POST',
-      handler: function(request, reply) {
+      handler: function (request, reply) {
         // now you can use this.state('loggedIn') in any route handler to see if the user has logged in
         this.state('loggedIn', true);
         reply().code(204);
@@ -511,7 +511,7 @@ The following plugin will add simulated latency (which can be controlled by the 
         },
 
         // call "next" after a timeout if the user requested a delay
-        onRequest: function(request, reply, next) {
+        onRequest: function (request, reply, next) {
           // get the delay value from config
           var delay = this.input('delay');
           if (delay > 0) {
@@ -522,7 +522,7 @@ The following plugin will add simulated latency (which can be controlled by the 
           }
         },
 
-        onResponse: function(request, response) {
+        onResponse: function (request, response) {
           // I can do things to the response here
           response.code(404);
         }
@@ -536,7 +536,7 @@ Or, check to see if the use has logged in (assuming the route exposed a ```requi
 ```javascript
     var smocks = require('smocks');
     smocks.plugin({
-      onRequest: function(request, reply, next) {
+      onRequest: function (request, reply, next) {
         // only do this check if the route exposed a "requiresLogin" option
         if (this.meta('requiresLogin')) {
           // now, see if we have previously logged in (the login route would have set this state value)
@@ -848,7 +848,7 @@ Return the same Variant object for chaining.
 
 ```javascript
     var smocks = require('smocks');
-    smocks.route(...).respondWith(function(request, reply) {
+    smocks.route(...).respondWith(function (request, reply) {
       var theMessage = request.params.message;
       var aQueryStringValue = request.query.theQueryStringKey;
       reply({message: theMessage}); // reply with a JSON payload
@@ -889,7 +889,7 @@ smocks.start({
   port: 8000,
   host: 'localhost',
 }, {
-  respondWithFileHandler: function(data) {
+  respondWithFileHandler: function (data) {
     // example file handler
     var reply = data.reply;
     var code = data.options.code || 200;

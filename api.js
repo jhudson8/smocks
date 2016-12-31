@@ -1,7 +1,7 @@
 /**
  * Exposes ability to get mock request content using an API without actually starting a server
  */
-var smocks = require('./lib');
+var smocks = require('./lib').lastInstance;
 var _ = require('lodash');
 var initialized = false;
 
@@ -12,7 +12,7 @@ function initialize (options) {
 
     smocks._sanityCheckRoutes();
     options = smocks._sanitizeOptions(options);
-    smocks.initOptions = options;
+    smocks.options = options;
     initialized = true;
   } else {
     throw new Error('smocks has already been initialized');
@@ -73,10 +73,10 @@ function Request(options) {
 }
 
 function Reply() {
-  var rtn = function(payload) {
+  var rtn = function (payload) {
     rtn.payload = payload;
     return {
-      code: function(code) {
+      code: function (code) {
         rtn.code = code;
       }
     }

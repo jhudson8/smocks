@@ -166,7 +166,7 @@ describe('datastore', function () {
 
     it('should do all things', function () {
       insertItems('test', 20);
-      var result = db.list('test').filter({ val: function(val) { return val < 15; } }).sort(function (a, b) {
+      var result = db.list('test').filter({ val: function (val) { return val < 15; } }).sort(function (a, b) {
         return b.val - a.val;
       }).limit(1, 5).result();
       expect(result).to.deep.equal([
@@ -180,7 +180,7 @@ describe('datastore', function () {
 
     it('should do all things and provide associated data', function () {
       insertItems('test', 20);
-      var data = db.list('test').filter({ val: function(val) { return val < 15; } }).sort(function (a, b) {
+      var data = db.list('test').filter({ val: function (val) { return val < 15; } }).sort(function (a, b) {
         return b.val - a.val;
       }).limit(1, 5).data();
       expect(data.result).to.deep.equal([

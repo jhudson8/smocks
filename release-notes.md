@@ -1,5 +1,31 @@
 # Release Notes
 
+## v7.0.0
+- Multiple smocks servers can be created
+  * note: your code should still be ***mostly*** compatible as long as smocks.id(...) is the first function called
+- `smocks.context` is always available as the `this` available to a route request handler
+- `smocks.context.options` can be used to evaluate smocks options passed when starting the smocks server or creating the hapi plugin
+
+Changes that you will need to make to your code
+
+When creating a smocks instance (now you can have multiple)
+```
+var mockServer = require('smocks')(_arbitrary_server_id_);
+// now you can use the old style
+require('smocks').route(...);
+// or the new way
+mockServer.route(...);
+```
+
+When starting your HAPI server
+```
+// *almost* the old way
+require('smocks/hapi').start(...);
+// the new way
+require('smocks/hapi')(mockServer).start(...);
+```
+
+
 ## v6.0.0 - Dec 16th 2016
 Reviewed documentation for accuracy and added docs for Route groupings.
 
@@ -365,7 +391,7 @@ For any route, you can call .action(options) and it will expose a button that yo
 
 * id: a unique identifier
 * label: the button label
-* handler: function(options): the handler function (the options objects relates to the values to any config entries provided for the action... use this.config(...) still for normal route config values)
+* handler: function (options): the handler function (the options objects relates to the values to any config entries provided for the action... use this.config(...) still for normal route config values)
 * config: same type of config object that you would provide to a route
 
 
@@ -375,7 +401,7 @@ You can now also provide a ```display``` function to a route and it will display
 ```
     .route({
       id: ...
-      display: function() { return 'hello' }
+      display: function () { return 'hello' }
     })
 ```
 
