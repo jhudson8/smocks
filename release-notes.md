@@ -5,6 +5,7 @@
   * note: your code should still be ***mostly*** compatible as long as smocks.id(...) is the first function called
 - `smocks.context` is always available as the `this` available to a route request handler
 - `smocks.context.options` can be used to evaluate smocks options passed when starting the smocks server or creating the hapi plugin
+- smocks admin page URL is now on `/`.  Use the `adminPath` smocks option to use an alternate.
 
 Changes that you will need to make to your code
 

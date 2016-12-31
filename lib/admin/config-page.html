@@ -4,13 +4,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script type="text/javascript" src="/_admin/lib/jquery-2.2.0.min.js"></script>
-    <script type="text/javascript" src="/_admin/lib/opentip-jquery.min.js"></script>
-    <script type="text/javascript" src="/_admin/lib/showdown-1.1.0.min.js"></script>
-    <script type="text/javascript" src="/_admin/lib/react.js"></script>
-    <script type="text/javascript" src="/_admin/lib/underscore.js"></script>
-    <script type="text/javascript" src="/_admin/lib/zepto.js"></script>
-    <script type="text/javascript" src="/_admin/inputs.js"></script>
+    <script>
+      function loadScript (src, callback) {
+        var s = document.createElement('script');
+        s.setAttribute('src', src);
+        s.onload = callback;
+        document.head.appendChild(s);
+      }
+
+      var loaded = 0;
+      function callback () {
+        loaded++;
+        if (loaded === 4) {
+          loadScript('/_admin/lib/opentip-jquery.min.js');
+          loadScript('/_admin/inputs.js', function () {
+            loadScript('/_admin/app.js');
+          });
+        }
+      }
+      loadScript('/_admin/lib/jquery-2.2.4.min.js', callback);
+      loadScript('/_admin/lib/showdown-1.1.0.min.js', callback);
+      loadScript('/_admin/lib/react-0.13.3.min.js', callback);
+      loadScript('/_admin/lib/lodash-4.17.4.min.js', callback);
+    </script>
 
     <link rel="stylesheet" href="/_admin/lib/opentip.css"/>
     <link rel="stylesheet" href="/_admin/lib/semantic.min.css"/>
@@ -26,5 +42,4 @@
   <script>
     var data = {data};
   </script>
-  <script type="text/javascript" src="/_admin/app.js"></script>
 </html>
