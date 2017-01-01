@@ -156,29 +156,28 @@ module.exports = function (smocks) {
               var pluginIndex = 0;
               function handlePlugins() {
                 var plugin = _plugins[pluginIndex++];
-                var context;
                 if (plugin) {
                   if (plugin.onRequest) {
-                    context = util.executionContext({
+                    util.executionContext({
                       request: request,
                       route: route,
                       plugin: plugin,
                       smocks: smocks
+                    }, function (context) {
+                      plugin.onRequest.call(context, request, reply, handlePlugins);
                     });
-                    plugin.onRequest.call(context.setup(), request, reply, handlePlugins);
-                    context.teardown();
                   } else {
                     handlePlugins();
                   }
                 } else {
-                  context = util.executionContext({
+                  util.executionContext({
                     request: request,
                     route: route,
                     smocks: smocks
+                  }, function (context) {
+                    reply = wrapReply(request, reply, _plugins);
+                    route._handleRequest(request, reply, context);
                   });
-                  reply = wrapReply(request, reply, _plugins);
-                  route._handleRequest(request, reply, context.setup());
-                  context.teardown();
                 }
               }
 
