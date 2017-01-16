@@ -47,7 +47,7 @@ describe('datastore', function () {
 
     it('should not fail if the foreign object does not exist', function () {
       db.insert('fktest', { id: '1', fk1: '1' });
-      expect(db.get('fktest', '1')).to.equal({ id: '1', fk1: '1' });
+      expect(db.get('fktest', '1')).to.deep.equal({ id: '1', fk1: '1', nested: {} });
     });
     it('should remove id even if foreign object does not exist', function () {
       db.insert('fktest', { id: '1', fk1: '1', nested: { fk2: '2' } });
@@ -242,12 +242,12 @@ describe('datastore', function () {
   describe('update', function () {
     it('should update parts of an item and return the updated item using an id', function () {
       db.insert('test', { id: '1', foo: 'bar', abc: 'def' });
-      var updated = db.update('test', '1', { abc: 'ghi' });
+      var updated = db.update('test', '1', { abc: 'ghi' }, false);
       expect(updated).to.deep.equal({ id: '1', foo: 'bar', abc: 'ghi' });
     });
     it('should update parts of an item and return the updated item using a derived id from the item', function () {
       db.insert('test', { id: '1', foo: 'bar', abc: 'def' });
-      var updated = db.update('test', { id: '1', abc: 'ghi' });
+      var updated = db.update('test', { id: '1', abc: 'ghi' }, false);
       expect(updated).to.deep.equal({ id: '1', foo: 'bar', abc: 'ghi' });
     });
     it('should completely update a value with embedded id', function () {

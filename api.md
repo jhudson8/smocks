@@ -956,10 +956,11 @@ var db = require('smocks').db;
 var deletedObject = db.delete('foo', 'some_id');
 ```
 
-#### update(domain, idOrObject[, object])
+#### update(domain, idOrObject[, object, overwrite])
 * ***domain***: the top level store attribute that will contain this object
 * ***idOrObject***: the object id or the object contents to update
 * ***object***: (if `idOrObject` is an id) the object contents to be updated
+* ***overwrite***: if false, merge attributes provide into object (default to true)
 
 Update an existing object in the "table" identified by the provided id.
 
@@ -971,7 +972,7 @@ if the object is provided as the `idOrObject` (so only 2 function parameters) th
 var db = require('smocks').db;
 
 // this will only overwrite the attributes provided as the 3rd parameter
-var updatedObject = db.update('foo', 'some_id', data);
+var updatedObject = db.update('foo', 'some_id', data, false);
 
 // this will completely overwrite the stored object.  `newObject` must have an id
 var updatedObject = db.update('foo', newObject);

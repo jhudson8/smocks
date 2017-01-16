@@ -1,7 +1,7 @@
 var server = require('./standard-server');
 var util = require('./util');
 
-describe.only('standard tests', function () {
+describe('standard tests', function () {
   beforeEach(function (done) {
     util.beforeEach(server, this, done);
   });
