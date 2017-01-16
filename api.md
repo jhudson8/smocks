@@ -27,18 +27,20 @@ There are 2 ways to start the server:
 
 Starting the server directly
 ```
-require('smocks/hapi').start({
+var smocksInstance = require('smocks')(_id_)...
+smocksInstance.start({
   // options provided to Hapi.Server.start
   port: 8080,
   host: 'localhost'
 }, {
   // smocks init options
-});
+}, optionalCallback);
 ```
 
 Or, you can just export a Hapi plugin to be included elsewhere
 ```
-var plugin = require('smocks/hapi').toPlugin({
+var smocksInstance = require('smocks')(_id_)...
+var plugin = smocksInstance.toPlugin({
   // hapi plugin options
   onRegister: function (server, options, next) {
     // this is optional but "next" must be called if used
@@ -102,7 +104,8 @@ In more detail, you can...
 
 Organize your routes into logical groups
 ```javascript
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       id: 'group_1_1',
       group: 'group 1',
       path: '/api/group/1/1',
@@ -120,7 +123,6 @@ Organize your routes into logical groups
         reply('I\'m also in group 1');
       }
     })
-
     .route({
       id: 'group_2_1',
       group: 'group 2',
@@ -147,8 +149,8 @@ Organize your routes into logical groups
 Add input parameters that are exposed through the admin panel
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       // labels aren't required but make things easier to view in the admin panel for non-technical people
       id: 'my_route',
       label: 'My Route',
@@ -178,8 +180,8 @@ Add input parameters that are exposed through the admin panel
 Provide multiple response types for each route (called Variants).  With the variants below, you can select which type of response the ```/api/foo``` route should respond with in the admin panel.  More about variants later...
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       id: 'my_route',
       path: '/api/foo',
       handler: function (request, reply) {
@@ -209,8 +211,8 @@ Provide multiple response types for each route (called Variants).  With the vari
 You can provide a display value which will be used when viewing the route details in the admin panel.  We haven't discussed state yet but this is meaningful to represent the current state of things for quick glance in the admin panel.  The admin panel supports [markdown](http://daringfireball.net/projects/markdown/) for your display response.
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       // ...
       display: function () {
         return '* this will show up as a unordered list';
@@ -224,8 +226,8 @@ You can provide a display value which will be used when viewing the route detail
 You can expose "actions" which are represented as buttons.  These are meaningful to quickly make changes to the state of things.  Actions, like routes and variants, can accept config parameters which will allow you to input data required to perform the action.
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       // ...
       input: {
         yourPhoneNumber: {
@@ -264,8 +266,8 @@ You can expose "actions" which are represented as buttons.  These are meaningful
 You can use dynamic parameters in the route path, get access to query parameters and the body payload.  See [path parameters](http://hapijs.com/api#path-parameters) for more details.
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       path: '/api/customer/{id}'
       handler: function (config) {
         // would be "123" if the endpiont hit was "/api/customer/123"
@@ -304,8 +306,8 @@ In more detail, you can...
 Have multiple variants associated with a single route
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({...})
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({...})
 
       .variant(...)
 
@@ -318,8 +320,8 @@ Have multiple variants associated with a single route
 Add variant specific config parameters (only visible if the variant is selected as the active variant) that are exposed through the admin panel
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({...})
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({...})
 
       .variant({
         id: 'invalid_password',
@@ -360,6 +362,7 @@ The attributes for each input field setting are
 Input values are referenced using ```this.input('varName')``` where ```varName``` is the specific input attribute key.
 
 ```javascript
+    var smocksInstance = require('smocks')(_id_);
     smock.route({
       ...
       input: {
@@ -409,9 +412,8 @@ This is mostly useful for global plugins (see Plugins).
 Within the route handler, the options values can be accessed by using ```this.meta('varName')```.
 
 ```javascript
-    var smocks = require('smocks');
-
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       ...
       meta: {
         requiresLogin: true
@@ -432,9 +434,8 @@ Within the route handler, the options values can be accessed by using ```this.me
 The real benefit to using ```smocks``` is that state can be maintained.  Within any response handler, use ```this.state('varName')``` to access an object stored in the state and ```this.state('varName', 'varValue')``` where ```varValue``` can be any type of object you want.  There is a button on the admin panel which allows you to reset the state and start over.
 
 ```javascript
-    var smocks = require('smocks');
-
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       route: '/api/login',
       method: 'POST',
       handler: function (request, reply) {
@@ -498,8 +499,8 @@ Plugins are just simple objects that have the following attributes
 The following plugin will add simulated latency (which can be controlled by the user) to all requests.
 
 ```
-    var smocks = require('smocks');
-    smocks.plugin({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.plugin({
       // define the input field for the admin panel allowing the user to adjust the delay
         input: {
           delay: {
@@ -534,8 +535,8 @@ The following plugin will add simulated latency (which can be controlled by the 
 Or, check to see if the use has logged in (assuming the route exposed a ```requiresLogin``` option; see Route Options).  We are using state (see State) to track if the login endpoing has been hit prior to the current route.
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.plugin({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.plugin({
       onRequest: function (request, reply, next) {
         // only do this check if the route exposed a "requiresLogin" option
         if (this.meta('requiresLogin')) {
@@ -555,7 +556,7 @@ Or, check to see if the use has logged in (assuming the route exposed a ```requi
 #### Connections
 
 Smocks can use one or more connections for where to set endpoints. The main
-endpoints are set using `smocks.connection('label')` where label is the name
+endpoints are set using `smocksInstance.connection('label')` where label is the name
 of the connection.
 
 This is useful for where smocks is setup as a plugin.
@@ -564,19 +565,18 @@ Example:
 ``` javascript
 
 var hapi = require('hapi');
-var smocks = require('smocks');
 var server = new hapi.Server();
 server.connection({ port: 8080, labels: 'main' });
 server.connection({ port: 8088, labels: 'smocks' });
 server.connection({ port: 8089, labels: 'mockhost1' });
 
-smocks.id('example'); // must set
-smocks.connection('smocks');
+var smocksInstance = require('smocks')(_id_)...;
+smocksInstance.connection('smocks');
 
-var plugin = require('smocks/hapi').toPlugin({
+var plugin = smocksInstance.toPlugin({
     onRegister: (server, options, next) => {
 
-         smocks.route({
+         smocksInstance.route({
             id: 'counter',
             connection: 'mockhost1',
             method: 'GET',
@@ -651,7 +651,7 @@ Drag and drop your HAR file into the `HTTP Archive Upload` box
 There may be cases where you need to alter the URL of what is in the `.har` file to match what the
 mock server will respond to.  These can be set as `pathMapper` in the `har` options when starting the smocks server
 ```
-require('smocks/hapi').start({
+smocksInstance.start({
   // hapi options
 }, {
   // smocks options
@@ -671,7 +671,7 @@ require('smocks/hapi').start({
 You can use smocks to be a straight proxy to another server.  To do so, you must provide the proxy details in the hapi start options.
 n
 ```
-require('smocks/hapi').start({
+smocksInstance.start({
   // hapi options
   port: 8000,
   host: 'localhost',
@@ -696,7 +696,7 @@ View the `Config` tab on the admin panel to make any proxy setting changes.
 The user application state handler is pluggable.  To assign a new state impl to your smocks server, use the `state` smocks option.
 
 ```
-require('smocks').start({
+smocksInstance.start({
     // hapi options
   }, {
    // smocks options
@@ -750,7 +750,7 @@ If a HAPI server instance is provided, the routes will be bound to the HAPI serv
 ### Route
 #### route(options)
 
-Object returned when calling [smocks.route](#project/tmp/smocks/method/global/route)
+Object returned when calling [smocksInstance.route](#project/tmp/smocks/method/global/route)
 
 Refer to the [route docs](#project/jhudson8/smocks/section/Concepts/Routes) for more details.
 
@@ -764,8 +764,8 @@ See [config example](#project/jhudson8/smocks/section/Examples/Route%20%2F%20var
 Return the same route object for chaining.
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({
       ...
       input: {
         myVar: {
@@ -790,8 +790,8 @@ Return the [Variant object](#project/jhudson8/smocks/snippet/package/Variant) fo
 Refer to the [variant docs](#project/jhudson8/smocks/section/Concepts/Variants) for more details.
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route(...)
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route(...)
     .variant('respond like this').respondWith(...)
     .variant('respond like that').respondWith(...)
 ```
@@ -813,7 +813,7 @@ Convienance method for creating a default variant (id of "default") and then cal
 
 ### Variant
 
-Object returned when calling [Route.variant](#project/tmp/smocks/method/smocks.route/variant)
+Object returned when calling [Route.variant](#project/tmp/smocks/method/smocksInstance.route/variant)
 
 Refer to the [route docs](#project/jhudson8/smocks/section/Concepts/Variants) for more details.
 
@@ -847,8 +847,8 @@ Associate a request handler with the current route/method/variant combination.
 Return the same Variant object for chaining.
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route(...).respondWith(function (request, reply) {
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route(...).respondWith(function (request, reply) {
       var theMessage = request.params.message;
       var aQueryStringValue = request.query.theQueryStringKey;
       reply({message: theMessage}); // reply with a JSON payload
@@ -868,8 +868,8 @@ Option can include
 Remember that using ```./``` will refer to the top level module directory (the directory where ```node_modules``` exists regardless of the location of the file that is referring to a file location with ```./```);
 
 ```javascript
-    var smocks = require('smocks');
-    smocks.route({path: '/customer/{id}'}).respondWithFile('./customer-{id}.json')
+    var smocksInstance = require('smocks')(_id_);
+    smocksInstance.route({path: '/customer/{id}'}).respondWithFile('./customer-{id}.json')
     .start(...)
 ```
 
@@ -885,7 +885,7 @@ If the `path` option is not provided a custom file handler provided as a smocks 
 
 ```
 // smocks start code
-smocks.start({
+smocksInstance.start({
   port: 8000,
   host: 'localhost',
 }, {
@@ -914,7 +914,7 @@ smocks.start({
 API:Pseudo Database
 -------------------
 
-### smocks.db
+### smocksInstance.db
 Smocks has a database-like object which can be used to store data in state in a why that makes data querying and normalization easy.
 You can access this object at any time during the event loop of a current request using ```require('smocks').db```.
 By default the smocks `state` object will be used to persist the data but that can be changed at the domain (AKA database table) level.
@@ -926,7 +926,7 @@ By default the smocks `state` object will be used to persist the data but that c
 Insert an object into the "table".  The object will be returned.
 
 ```
-var db = require('smocks').db;
+var db = smocksInstance.db;
 
 // of `object` doesn't contain an id a uuid will be set
 var insertedObject = db.insert('foo', object);
@@ -969,7 +969,7 @@ if the id is provided as the `idOrObject` with a separate object provided as the
 if the object is provided as the `idOrObject` (so only 2 function parameters) then the entire object will be replaced.
 
 ```
-var db = require('smocks').db;
+var db = smocksInstance.db;
 
 // this will only overwrite the attributes provided as the 3rd parameter
 var updatedObject = db.update('foo', 'some_id', data, false);
@@ -985,7 +985,7 @@ var updatedObject = db.update('foo', newObject);
 Either inserts or updates an object depending on whether it already exists.  Using ***update*** alone will throw an Error if no object can be found matching the provided id.
 
 ```
-var db = require('smocks').db;
+var db = smocksInstance.db;
 
 var insertedOrUpdatedObject = db.insertOrUpdate('foo', object);
 ```

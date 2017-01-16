@@ -6,6 +6,7 @@
 - `smocks.context` is always available as the `this` available to a route request handler
 - `smocks.context.options` can be used to evaluate smocks options passed when starting the smocks server or creating the hapi plugin
 - smocks admin page URL is now on `/`.  Use the `adminPath` smocks option to use an alternate.
+- the `start` and `toPlugin` are now directly on the smocks instance object but have the same signature
 
 Changes that you will need to make to your code
 
@@ -16,6 +17,7 @@ var mockServer = require('smocks')(_arbitrary_server_id_);
 require('smocks').route(...);
 // or the new way
 mockServer.route(...);
+mockServer.start(...);
 ```
 
 When starting your HAPI server
