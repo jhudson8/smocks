@@ -17,15 +17,13 @@ var mockServer = require('smocks')(_arbitrary_server_id_);
 require('smocks').route(...);
 // or the new way
 mockServer.route(...);
-mockServer.start(...);
 ```
 
 When starting your HAPI server
 ```
-// *almost* the old way
-require('smocks/hapi').start(...);
-// the new way
-require('smocks/hapi')(mockServer).start(...);
+mockServer.start(...);
+// or
+mockServer.toPlugin(...);
 ```
 
 
