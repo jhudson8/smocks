@@ -8,7 +8,7 @@
     "url": "https://github.com/jhudson8/smocks.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "keywords": [
     "hapi",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "wreck": "^6.3.0"
   }
 }
