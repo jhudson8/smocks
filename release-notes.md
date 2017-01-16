@@ -1,6 +1,6 @@
 # Release Notes
 
-## v7.0.0
+## v7.0.1
 - Multiple smocks servers can be created
   * note: your code should still be ***mostly*** compatible as long as smocks.id(...) is the first function called
 - `smocks.context` is always available as the `this` available to a route request handler
