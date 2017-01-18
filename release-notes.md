@@ -1,5 +1,8 @@
 # Release Notes
 
+## v7.0.2
+- bug fix when using the default unitialized 'static' state
+
 ## v7.0.1
 - Multiple smocks servers can be created
   * note: your code should still be ***mostly*** compatible as long as smocks.id(...) is the first function called
