@@ -1,5 +1,8 @@
 # Release Notes
 
+## v7.0.3
+- bug fix when selecting variants on the admin panel
+
 ## v7.0.2
 - bug fix when using the default unitialized 'static' state
 
