@@ -31,7 +31,8 @@ body {
 }
 .route-description.selected {
   height: 460px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .route-description.closed {
   height: 52px;
