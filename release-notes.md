@@ -1,5 +1,8 @@
 # Release Notes
 
+## v7.0.4
+- very small admin page CSS tweak
+
 ## v7.0.3
 - bug fix when selecting variants on the admin panel
 
