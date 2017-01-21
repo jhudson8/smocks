@@ -530,6 +530,8 @@ The following plugin will add simulated latency (which can be controlled by the 
       })
 ```
 
+Any route request handler can access any plugin input using `this.pluginInput(_pluginId_, _inputId_)`
+
 ![plugin example](http://jhudson8.github.io/smocks/images/plugin-ex1.png)
 
 Or, check to see if the use has logged in (assuming the route exposed a ```requiresLogin``` option; see Route Options).  We are using state (see State) to track if the login endpoing has been hit prior to the current route.

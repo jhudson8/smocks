@@ -1,5 +1,8 @@
 # Release Notes
 
+## v7.1.0
+- add `this.pluginInput(_pluginId_, _inputId_)` to access global input values from your request handler
+
 ## v7.0.4
 - very small admin page CSS tweak
 
