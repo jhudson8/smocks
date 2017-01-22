@@ -2,6 +2,12 @@
 
 ## v7.1.0
 - add `this.pluginInput(_pluginId_, _inputId_)` to access global input values from your request handler
+- add common addons (see Addons in API docs)
+```
+server.addOn('reset-variants', { defaultValue: false })
+  .addOn('response-delay')
+  .addOn('response-error', { code: 500, response: { message: 'something bad happened' } });
+```
 
 ## v7.0.4
 - very small admin page CSS tweak

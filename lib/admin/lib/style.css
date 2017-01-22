@@ -25,6 +25,11 @@ body {
   line-height: 28px;
 }
 
+.display-content {
+  overflow: auto;
+  white-space: nowrap;
+}
+
 .route-description {
   -webkit-transition: height .1s !important;
   transition: height .1s !important;

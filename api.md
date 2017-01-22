@@ -554,6 +554,54 @@ Or, check to see if the use has logged in (assuming the route exposed a ```requi
     });
 ```
 
+#### Addons
+Some pre-defined plugins can be used with `smocks.addOn`;
+
+##### reset-variants
+Reset any non-default variants after a request is made.
+
+Options include:
+
+* ***defaultValue***: boolean indicating if it should be enabled by default (false if undefined)
+
+```javascript
+var smocksInstance = require('smocks')(_id_);
+smocksInstance.addOn('reset-variants', { defaultValue: true });
+```
+
+#### response-delay
+Add a modifiable delay to all responses
+
+Options include:
+
+* ***defaultValue***: milis (0 if undefined)
+
+```javascript
+var smocksInstance = require('smocks')(_id_);
+smocksInstance.addOn('response-delay');
+```
+
+#### response-error
+Add an error variant to all routes
+
+Options include:
+
+* ***code***: response http status code (500 if undefined)
+* ***label***: variant label ("_code_ error response" if undefined)
+* ***input***: any input values if necessary (useful if `response` is a function)
+* ***response***: object or function returning the response content
+
+```javascript
+var smocksInstance = require('smocks')(_id_);
+smocksInstance.addOn('response-error', {
+  code: 503,
+  label: 'Service Unavailable',
+  response: {
+    message: 'Service Unavailable'
+  }
+});
+```
+
 
 #### Connections
 
