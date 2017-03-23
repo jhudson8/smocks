@@ -1,4 +1,6 @@
 # Release Notes
+## v7.1.1
+- fix bug when pseudo database is creating a new id
 
 ## v7.1.0
 - add `this.pluginInput(_pluginId_, _inputId_)` to access global input values from your request handler
