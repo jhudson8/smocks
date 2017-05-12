@@ -1,0 +1,115 @@
+* {
+  font-family: monospace;
+}
+
+#root {
+  height: 100vh;
+}
+
+h2 {
+  flex: 1;
+  display: flex;
+  margin: 0px;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.Input, .Button {
+  border-radius: 3px;
+  outline: none;
+  border-style: solid;
+  border-width: 1px;
+  padding: 2px 5px;
+  border-color: rgb(31, 70, 98);
+  background-color: white;
+  color: #ffc600;
+}
+
+.Button {
+  color: black;
+  cursor: pointer;
+}
+
+.Button:hover {
+  background-color: rgb(31, 70, 98);
+  color: #ffc600;
+}
+
+textarea.Input {
+  resize: none;
+}
+
+pre.Input {
+  height: 82px;
+  box-sizing: border-box;
+  width: 202px;
+}
+
+select.Input {
+  cursor: pointer;
+}
+
+.Input[type="checkbox"] {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  -webkit-appearance: none;
+}
+
+.Input[type="checkbox"]:checked {
+  background-color: #193549;
+}
+
+.Inputs {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+.Input-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+}
+
+.Input-box {
+}
+
+.Input-box label {
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.Output {
+  display: flex;
+  flex: 7;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

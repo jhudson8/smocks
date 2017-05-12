@@ -38,9 +38,18 @@ browse to [http://localhost:8000](http://localhost:8000) to see the admin panel 
 
 browse to [http://localhost:8000/api/counter](http://localhost:8000/api/counter) to see how your changes show up.
 
-Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/example/eimple-smocks-server.js) and to see what the route handlers are doing.
+Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/example/simple-smocks-server.js) and to see what the route handlers are doing.
 
 The ```handler``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler).
+
+You can run the example server and a route test app by cd into `example/test-end-points`
+
+```bash
+    npm i
+    yarn start
+```
+
+If you use `smocks.start` not as a plugin then smocks will also handle Websockets by default.
 
 The admin panel shows you all of the routes you define and provides an interface to select different ways that routes should respond or update config values.
 ![admin panel](http://jhudson8.github.io/smocks/images/simple-example.png)
