@@ -6,6 +6,7 @@ Stateful HTTP mocking service built on top of [HAPI](http://hapijs.com/).  Easil
 With smocks you can
 
 * create route definitions (with dynamic tokens)
+* define websocket paths (via Nes)
 * define multiple route handlers (variants) for for any route (selectable through an admin panel)
 * add input configuration components for routes and variants (accessable through an admin panel)
 * define actions which can manipulate the current state and be executed from the admin pnael
@@ -37,7 +38,8 @@ smocksInstance.start({
 }, optionalCallback);
 ```
 
-Or, you can just export a Hapi plugin to be included elsewhere
+Or, you can just export a Hapi plugin to be included elsewhere if you do smocks will not work with
+websockets by default and you should also include [Nes](https://github.com/hapijs/nes).
 ```
 var smocksInstance = require('smocks')(_id_)...
 var plugin = smocksInstance.toPlugin({

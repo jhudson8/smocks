@@ -1,14 +1,13 @@
-var smocks = require('smocks');
-
-// we always have to set a mock server id
-smocks.id('example');
+var smocks = require('../index');
+var server = smocks('example'); // we always have to set a mock server id
 
 // fixture demonstrating user config, handling state and multiple variants
-smocks.route({
+server.route({
     id: 'counter',
     label: 'Counter and Message', // label is optional
     path: '/api/counter',
     method: 'GET', // method is optional if it is GET
+    websocketId: 'countUp', // websocketId is optional will default to path option
 
     input: {
       countBy: {
@@ -18,8 +17,10 @@ smocks.route({
       }
     },
 
-    handler: function (req, reply) {
-    // routes can have a default handler but do not have to
+    handler: function (req, reply, _server) {
+      _server.publish('/test/subscription', { message: 'From subscription', count: this.state('counter') || 0 });
+
+      // routes can have a default handler but do not have to
       respond.call(this, 'default message', reply);
     }
   })
@@ -62,8 +63,15 @@ function respond (message, reply) {
   });
 }
 
+server.subscription('/test/subscription');
+
 // now start the server
-require('smocks/hapi').start({
+server.start({
   port: 8000,
   host: 'localhost'
+}, {}, function (err) {
+  if (err) {
+    console.log('smocks server not started\n', err);
+    process.exit(1);
+  }
 });
