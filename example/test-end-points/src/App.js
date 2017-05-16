@@ -263,7 +263,7 @@ class App extends Component {
             body,
             (err, message) => {
               if (err) {
-                this.setState({ messageOutput: { error: error } });
+                this.setState({ messageOutput: { error: err } });
               } else {
                 this.setState({ messageOutput: { message } });
               }
