@@ -75,7 +75,7 @@ server.onWebsocketDisconnection(function(server, socket) {
 
 server.onWebsocketMessage(function(server, socket, message, reply) {
   console.log('got a message!', message);
-  reply('got it!');
+  reply('Got : ' + JSON.stringify(message));
 });
 
 // now start the server
