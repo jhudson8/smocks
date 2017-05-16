@@ -37,6 +37,7 @@ const preStyle = {
 
 const DEFAULT_STATE = {
   output: {},
+  messageOutput: {},
   subscriptionOutput: {},
   isWs: false,
   host: 'localhost:8000',
@@ -250,6 +251,29 @@ class App extends Component {
     }
   };
 
+  sendMessage = () => {
+    const { isWs, host, body } = this.state;
+    if (isWs) {
+      const client = new Nes.Client(`ws://${host}`);
+      client.connect((error) => {
+        if (error) {
+          this.setState({ output: { error } });
+        } else {
+          client.message(
+            body,
+            (err, message) => {
+              if (err) {
+                this.setState({ messageOutput: { error: error } });
+              } else {
+                this.setState({ messageOutput: { message } });
+              }
+            }
+          );
+        }
+      });
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -304,6 +328,9 @@ class App extends Component {
           </div>
           <div className="Input-group">
             <button className="Button" onClick={this.makeRequest}>Request</button>
+            {this.state.isWs ? (
+              <button className="Button" onClick={this.sendMessage}>WS Message</button>
+            ) : null }
             <button className="Button" onClick={this.resetState}>Reset State</button>
           </div>
         </div>
@@ -313,6 +340,9 @@ class App extends Component {
           )}
           {this.state.isWs ? (
             <JSONView data={this.state.subscriptionOutput} title="Subscription Output" />
+          ) : null }
+          {this.state.isWs ? (
+            <JSONView data={this.state.messageOutput} title="Message Output" />
           ) : null }
           {/* <JSONView data={this.state} title="State" /> */}
         </div>
