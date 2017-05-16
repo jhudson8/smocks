@@ -38,7 +38,7 @@ browse to [http://localhost:8000](http://localhost:8000) to see the admin panel 
 
 browse to [http://localhost:8000/api/counter](http://localhost:8000/api/counter) to see how your changes show up.
 
-Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/example/eimple-smocks-server.js) and to see what the route handlers are doing.
+Take a look at [the code](https://github.com/jhudson8/smocks/tree/master/example/simple-smocks-server.js) and to see what the route handlers are doing.
 
 The ```handler``` methods are just [HAPI route handlers](http://hapijs.com/api#route-handler).
 
