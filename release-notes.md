@@ -1,4 +1,7 @@
 # Release Notes
+## v7.2.0
+- added websocket support (credit goes to github.com/jcgertig)
+
 ## v7.1.1
 - fix bug when pseudo database is creating a new id
 
