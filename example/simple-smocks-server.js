@@ -65,6 +65,19 @@ function respond (message, reply) {
 
 server.subscription('/test/subscription');
 
+server.onWebsocketConnection(function(server, socket) {
+  console.log('got a connection!!');
+});
+
+server.onWebsocketDisconnection(function(server, socket) {
+  console.log('got a disconnection :(');
+});
+
+server.onWebsocketMessage(function(server, socket, message, reply) {
+  console.log('got a message!', message);
+  reply('Got : ' + JSON.stringify(message));
+});
+
 // now start the server
 server.start({
   port: 8000,
