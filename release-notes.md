@@ -1,4 +1,7 @@
 # Release Notes
+## v7.2.2
+- fix race condition on load of admin panel
+
 ## v7.2.1
 - Add support for event hooks in nes (credit to github.com/jcgertig)
 yes, this should really be a minor release but it's a part 2 to the 7.2.0 release yesterday
